@@ -21,4 +21,4 @@ dependencyResolutionManagement {
 
 rootProject.name = "happyinninobsbot"
 include(":app")
- 
+include(":core:designsystem")

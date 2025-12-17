@@ -15,105 +15,43 @@ import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.dp
-import com.obsbot.happyinn.apps.happyinninobsbot.core.designsystem.theme.BackgroundTheme
-import com.obsbot.happyinn.apps.happyinninobsbot.core.designsystem.theme.Blue10
-import com.obsbot.happyinn.apps.happyinninobsbot.core.designsystem.theme.Blue20
-import com.obsbot.happyinn.apps.happyinninobsbot.core.designsystem.theme.Blue30
-import com.obsbot.happyinn.apps.happyinninobsbot.core.designsystem.theme.Blue40
-import com.obsbot.happyinn.apps.happyinninobsbot.core.designsystem.theme.Blue80
-import com.obsbot.happyinn.apps.happyinninobsbot.core.designsystem.theme.Blue90
-import com.obsbot.happyinn.apps.happyinninobsbot.core.designsystem.theme.DarkGreen10
-import com.obsbot.happyinn.apps.happyinninobsbot.core.designsystem.theme.DarkGreen20
-import com.obsbot.happyinn.apps.happyinninobsbot.core.designsystem.theme.DarkGreen30
-import com.obsbot.happyinn.apps.happyinninobsbot.core.designsystem.theme.DarkGreen40
-import com.obsbot.happyinn.apps.happyinninobsbot.core.designsystem.theme.DarkGreen80
-import com.obsbot.happyinn.apps.happyinninobsbot.core.designsystem.theme.DarkGreen90
-import com.obsbot.happyinn.apps.happyinninobsbot.core.designsystem.theme.DarkGreenGray10
-import com.obsbot.happyinn.apps.happyinninobsbot.core.designsystem.theme.DarkGreenGray20
-import com.obsbot.happyinn.apps.happyinninobsbot.core.designsystem.theme.DarkGreenGray90
-import com.obsbot.happyinn.apps.happyinninobsbot.core.designsystem.theme.DarkGreenGray95
-import com.obsbot.happyinn.apps.happyinninobsbot.core.designsystem.theme.DarkGreenGray99
-import com.obsbot.happyinn.apps.happyinninobsbot.core.designsystem.theme.DarkPurpleGray10
-import com.obsbot.happyinn.apps.happyinninobsbot.core.designsystem.theme.DarkPurpleGray20
-import com.obsbot.happyinn.apps.happyinninobsbot.core.designsystem.theme.DarkPurpleGray90
-import com.obsbot.happyinn.apps.happyinninobsbot.core.designsystem.theme.DarkPurpleGray95
-import com.obsbot.happyinn.apps.happyinninobsbot.core.designsystem.theme.DarkPurpleGray99
-import com.obsbot.happyinn.apps.happyinninobsbot.core.designsystem.theme.Green10
-import com.obsbot.happyinn.apps.happyinninobsbot.core.designsystem.theme.Green20
-import com.obsbot.happyinn.apps.happyinninobsbot.core.designsystem.theme.Green30
-import com.obsbot.happyinn.apps.happyinninobsbot.core.designsystem.theme.Green40
-import com.obsbot.happyinn.apps.happyinninobsbot.core.designsystem.theme.Green80
-import com.obsbot.happyinn.apps.happyinninobsbot.core.designsystem.theme.Green90
-import com.obsbot.happyinn.apps.happyinninobsbot.core.designsystem.theme.GreenGray30
-import com.obsbot.happyinn.apps.happyinninobsbot.core.designsystem.theme.GreenGray50
-import com.obsbot.happyinn.apps.happyinninobsbot.core.designsystem.theme.GreenGray60
-import com.obsbot.happyinn.apps.happyinninobsbot.core.designsystem.theme.GreenGray80
-import com.obsbot.happyinn.apps.happyinninobsbot.core.designsystem.theme.GreenGray90
-import com.obsbot.happyinn.apps.happyinninobsbot.core.designsystem.theme.LocalBackgroundTheme
-import com.obsbot.happyinn.apps.happyinninobsbot.core.designsystem.theme.Orange10
-import com.obsbot.happyinn.apps.happyinninobsbot.core.designsystem.theme.Orange20
-import com.obsbot.happyinn.apps.happyinninobsbot.core.designsystem.theme.Orange30
-import com.obsbot.happyinn.apps.happyinninobsbot.core.designsystem.theme.Orange40
-import com.obsbot.happyinn.apps.happyinninobsbot.core.designsystem.theme.Orange80
-import com.obsbot.happyinn.apps.happyinninobsbot.core.designsystem.theme.Orange90
-import com.obsbot.happyinn.apps.happyinninobsbot.core.designsystem.theme.Purple10
-import com.obsbot.happyinn.apps.happyinninobsbot.core.designsystem.theme.Purple20
-import com.obsbot.happyinn.apps.happyinninobsbot.core.designsystem.theme.Purple30
-import com.obsbot.happyinn.apps.happyinninobsbot.core.designsystem.theme.Purple40
-import com.obsbot.happyinn.apps.happyinninobsbot.core.designsystem.theme.Purple80
-import com.obsbot.happyinn.apps.happyinninobsbot.core.designsystem.theme.Purple90
-import com.obsbot.happyinn.apps.happyinninobsbot.core.designsystem.theme.PurpleGray30
-import com.obsbot.happyinn.apps.happyinninobsbot.core.designsystem.theme.PurpleGray50
-import com.obsbot.happyinn.apps.happyinninobsbot.core.designsystem.theme.PurpleGray60
-import com.obsbot.happyinn.apps.happyinninobsbot.core.designsystem.theme.PurpleGray80
-import com.obsbot.happyinn.apps.happyinninobsbot.core.designsystem.theme.PurpleGray90
-import com.obsbot.happyinn.apps.happyinninobsbot.core.designsystem.theme.Red10
-import com.obsbot.happyinn.apps.happyinninobsbot.core.designsystem.theme.Red20
-import com.obsbot.happyinn.apps.happyinninobsbot.core.designsystem.theme.Red30
-import com.obsbot.happyinn.apps.happyinninobsbot.core.designsystem.theme.Red40
-import com.obsbot.happyinn.apps.happyinninobsbot.core.designsystem.theme.Red80
-import com.obsbot.happyinn.apps.happyinninobsbot.core.designsystem.theme.Red90
-import com.obsbot.happyinn.apps.happyinninobsbot.core.designsystem.theme.Teal10
-import com.obsbot.happyinn.apps.happyinninobsbot.core.designsystem.theme.Teal20
-import com.obsbot.happyinn.apps.happyinninobsbot.core.designsystem.theme.Teal30
-import com.obsbot.happyinn.apps.happyinninobsbot.core.designsystem.theme.Teal40
-import com.obsbot.happyinn.apps.happyinninobsbot.core.designsystem.theme.Teal80
-import com.obsbot.happyinn.apps.happyinninobsbot.core.designsystem.theme.Teal90
 
 /**
- * Light default theme color scheme
+ * 浅色默认主题颜色方案
  */
+/**表示类、方法或字段的可见性已放宽，使其可见范围比原本必要的范围更广，目的是让代码可测试。
+你可以选择性地指定如果不是为了测试，其可见性 “应该” 是什么；这能让工具捕获生产代码中意外的访问。*/
 @VisibleForTesting
 val LightDefaultColorScheme = lightColorScheme(
-    primary = Purple40,
-    onPrimary = Color.White,
-    primaryContainer = Purple90,
-    onPrimaryContainer = Purple10,
-    secondary = Orange40,
-    onSecondary = Color.White,
-    secondaryContainer = Orange90,
-    onSecondaryContainer = Orange10,
-    tertiary = Blue40,
-    onTertiary = Color.White,
-    tertiaryContainer = Blue90,
-    onTertiaryContainer = Blue10,
-    error = Red40,
-    onError = Color.White,
-    errorContainer = Red90,
-    onErrorContainer = Red10,
-    background = DarkPurpleGray99,
-    onBackground = DarkPurpleGray10,
-    surface = DarkPurpleGray99,
-    onSurface = DarkPurpleGray10,
-    surfaceVariant = PurpleGray90,
-    onSurfaceVariant = PurpleGray30,
-    inverseSurface = DarkPurpleGray20,
-    inverseOnSurface = DarkPurpleGray95,
-    outline = PurpleGray50,
+    primary = Purple40,                // 主色调
+    onPrimary = Color.White,           // 主色调上的文字颜色
+    primaryContainer = Purple90,       // 主色调容器背景色
+    onPrimaryContainer = Purple10,     // 主色调容器内文字颜色
+    secondary = Orange40,              // 次要色调
+    onSecondary = Color.White,         // 次要色调上文字颜色
+    secondaryContainer = Orange90,     // 次要色调容器背景色
+    onSecondaryContainer = Orange10,   // 次要色调容器内文字颜色
+    tertiary = Blue40,                 // 第三色调
+    onTertiary = Color.White,          // 第三色调上文字颜色
+    tertiaryContainer = Blue90,        // 第三色调容器背景色
+    onTertiaryContainer = Blue10,      // 第三色调容器内文字颜色
+    error = Red40,                     // 错误状态颜色
+    onError = Color.White,             // 错误状态上文字颜色
+    errorContainer = Red90,            // 错误状态容器背景色
+    onErrorContainer = Red10,          // 错误状态容器内文字颜色
+    background = DarkPurpleGray99,     // 背景色
+    onBackground = DarkPurpleGray10,   // 背景上文字颜色
+    surface = DarkPurpleGray99,        // 表面颜色
+    onSurface = DarkPurpleGray10,      // 表面上文字颜色
+    surfaceVariant = PurpleGray90,     // 变体表面颜色
+    onSurfaceVariant = PurpleGray30,   // 变体表面上文字颜色
+    inverseSurface = DarkPurpleGray20, // 反转表面颜色（深色）
+    inverseOnSurface = DarkPurpleGray95,// 反转表面对应的文字颜色（浅色）
+    outline = PurpleGray50,            // 边框线颜色
 )
 
 /**
- * Dark default theme color scheme
+ * 深色默认主题颜色方案
  */
 @VisibleForTesting
 val DarkDefaultColorScheme = darkColorScheme(
@@ -145,7 +83,7 @@ val DarkDefaultColorScheme = darkColorScheme(
 )
 
 /**
- * Light Android theme color scheme
+ * 浅色 Android 主题颜色方案
  */
 @VisibleForTesting
 val LightAndroidColorScheme = lightColorScheme(
@@ -177,7 +115,7 @@ val LightAndroidColorScheme = lightColorScheme(
 )
 
 /**
- * Dark Android theme color scheme
+ * 深色 Android 主题颜色方案
  */
 @VisibleForTesting
 val DarkAndroidColorScheme = darkColorScheme(
@@ -209,78 +147,88 @@ val DarkAndroidColorScheme = darkColorScheme(
 )
 
 /**
- * Light Android gradient colors
+ * 浅色 Android 渐变颜色配置
  */
 val LightAndroidGradientColors = GradientColors(container = DarkGreenGray95)
 
 /**
- * Dark Android gradient colors
+ * 深色 Android 渐变颜色配置
  */
 val DarkAndroidGradientColors = GradientColors(container = Color.Black)
 
 /**
- * Light Android background theme
+ * 浅色 Android 背景主题配置
  */
 val LightAndroidBackgroundTheme = BackgroundTheme(color = DarkGreenGray95)
 
 /**
- * Dark Android background theme
+ * 深色 Android 背景主题配置
  */
 val DarkAndroidBackgroundTheme = BackgroundTheme(color = Color.Black)
 
 /**
- * Now in Android theme.
+ * Hio 主题入口函数
  *
- * @param darkTheme Whether the theme should use a dark color scheme (follows system by default).
- * @param androidTheme Whether the theme should use the Android theme color scheme instead of the
- *        default theme.
- * @param disableDynamicTheming If `true`, disables the use of dynamic theming, even when it is
- *        supported. This parameter has no effect if [androidTheme] is `true`.
+ * @param darkTheme 是否使用深色主题，默认跟随系统设置
+ * @param androidTheme 是否使用 Android 风格的主题配色而非默认主题
+ * @param disableDynamicTheming 如果为 true，则禁用动态主题功能（即使支持）。当 androidTheme 为 true 时不生效
  */
 @Composable
-fun NiaTheme(
+fun HioTheme(
     darkTheme: Boolean = isSystemInDarkTheme(),
     androidTheme: Boolean = false,
     disableDynamicTheming: Boolean = true,
     content: @Composable () -> Unit,
 ) {
-    // Color scheme
+    // 根据参数决定使用的颜色方案
     val colorScheme = when {
+        // 使用 Android 风格主题
         androidTheme -> if (darkTheme) DarkAndroidColorScheme else LightAndroidColorScheme
+        // 启用动态主题且设备支持
         !disableDynamicTheming && supportsDynamicTheming() -> {
             val context = LocalContext.current
             if (darkTheme) dynamicDarkColorScheme(context) else dynamicLightColorScheme(context)
         }
-
+        // 使用默认主题
         else -> if (darkTheme) DarkDefaultColorScheme else LightDefaultColorScheme
     }
-    // Gradient colors
+
+    // 定义渐变颜色配置
+    // 动态主题下使用空的渐变色（基于基础表面颜色）
     val emptyGradientColors = GradientColors(container = colorScheme.surfaceColorAtElevation(2.dp))
+    // 默认渐变色配置
     val defaultGradientColors = GradientColors(
         top = colorScheme.inverseOnSurface,
         bottom = colorScheme.primaryContainer,
         container = colorScheme.surface,
     )
+
+    // 最终使用的渐变色配置
     val gradientColors = when {
         androidTheme -> if (darkTheme) DarkAndroidGradientColors else LightAndroidGradientColors
         !disableDynamicTheming && supportsDynamicTheming() -> emptyGradientColors
         else -> defaultGradientColors
     }
-    // Background theme
+
+    // 背景主题配置
     val defaultBackgroundTheme = BackgroundTheme(
         color = colorScheme.surface,
         tonalElevation = 2.dp,
     )
+
     val backgroundTheme = when {
         androidTheme -> if (darkTheme) DarkAndroidBackgroundTheme else LightAndroidBackgroundTheme
         else -> defaultBackgroundTheme
     }
+
+    // 着色主题配置
     val tintTheme = when {
         androidTheme -> TintTheme()
         !disableDynamicTheming && supportsDynamicTheming() -> TintTheme(colorScheme.primary)
         else -> TintTheme()
     }
-    // Composition locals
+
+    // 提供本地组合值给子组件使用
     CompositionLocalProvider(
         LocalGradientColors provides gradientColors,
         LocalBackgroundTheme provides backgroundTheme,
@@ -288,11 +236,12 @@ fun NiaTheme(
     ) {
         MaterialTheme(
             colorScheme = colorScheme,
-            typography = NiaTypography,
+            typography = HioTypography,
             content = content,
         )
     }
 }
 
+// 判断是否支持动态主题（API 31 及以上版本）
 @ChecksSdkIntAtLeast(api = Build.VERSION_CODES.S)
 fun supportsDynamicTheming() = Build.VERSION.SDK_INT >= Build.VERSION_CODES.S

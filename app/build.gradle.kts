@@ -3,15 +3,13 @@
 plugins {
 
     alias(libs.plugins.android.application)
-    alias(libs.plugins.kotlin.android)
-    alias(libs.plugins.kotlin.compose)
 
-    /*alias(libs.plugins.nowinandroid.android.application)
-    alias(libs.plugins.nowinandroid.android.application.compose)
-    alias(libs.plugins.nowinandroid.android.application.flavors)
-    alias(libs.plugins.nowinandroid.android.application.jacoco)
-    alias(libs.plugins.nowinandroid.android.application.firebase)
-    alias(libs.plugins.nowinandroid.hilt)*/
+    alias(libs.plugins.happyinninobsbot.android.application)
+    alias(libs.plugins.happyinninobsbot.android.application.compose)
+    alias(libs.plugins.happyinninobsbot.android.application.flavors)
+    alias(libs.plugins.happyinninobsbot.android.application.jacoco)
+    alias(libs.plugins.happyinninobsbot.android.application.firebase)
+    alias(libs.plugins.happyinninobsbot.hilt)
 
     alias(libs.plugins.google.osslicenses)
     alias(libs.plugins.baselineprofile)
@@ -112,7 +110,7 @@ dependencies {
     implementation(projects.sync.work)*/
 
 
-
+    implementation(projects.core.designsystem)
     implementation(libs.androidx.activity.compose)
     implementation(libs.androidx.compose.material3)
     implementation(libs.androidx.navigation3.ui)

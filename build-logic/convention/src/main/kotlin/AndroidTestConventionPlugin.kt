@@ -14,27 +14,25 @@
  *   limitations under the License.
  */
 
-import com.android.build.api.dsl.LibraryExtension
-import com.android.build.api.variant.LibraryAndroidComponentsExtension
-import com.obsbot.happyinn.apps.happyinninobsbot.configureJacoco
+import com.android.build.api.dsl.TestExtension
+import com.obsbot.happyinn.apps.happyinninobsbot.configureGradleManagedDevices
+import com.obsbot.happyinn.apps.happyinninobsbot.configureKotlinAndroid
 import org.gradle.api.Plugin
 import org.gradle.api.Project
 import org.gradle.kotlin.dsl.apply
-import org.gradle.kotlin.dsl.getByType
+import org.gradle.kotlin.dsl.configure
 
-class AndroidLibraryJacocoConventionPlugin : Plugin<Project> {
+class AndroidTestConventionPlugin : Plugin<Project> {
     override fun apply(target: Project) {
         with(target) {
-            apply(plugin = "jacoco")
+            apply(plugin = "com.android.test")
+            apply(plugin = "org.jetbrains.kotlin.android")
 
-            val androidExtension = extensions.getByType<LibraryExtension>()
-
-            androidExtension.buildTypes.configureEach {
-                enableAndroidTestCoverage = true
-                enableUnitTestCoverage = true
+            extensions.configure<TestExtension> {
+                configureKotlinAndroid(this)
+                defaultConfig.targetSdk = 36
+                configureGradleManagedDevices(this)
             }
-
-            configureJacoco(extensions.getByType<LibraryAndroidComponentsExtension>())
         }
     }
 }

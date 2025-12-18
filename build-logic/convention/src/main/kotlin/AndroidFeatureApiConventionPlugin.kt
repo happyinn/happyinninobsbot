@@ -14,27 +14,20 @@
  *   limitations under the License.
  */
 
-import com.android.build.api.dsl.LibraryExtension
-import com.android.build.api.variant.LibraryAndroidComponentsExtension
-import com.obsbot.happyinn.apps.happyinninobsbot.configureJacoco
 import org.gradle.api.Plugin
 import org.gradle.api.Project
 import org.gradle.kotlin.dsl.apply
-import org.gradle.kotlin.dsl.getByType
+import org.gradle.kotlin.dsl.dependencies
 
-class AndroidLibraryJacocoConventionPlugin : Plugin<Project> {
+class AndroidFeatureApiConventionPlugin : Plugin<Project> {
     override fun apply(target: Project) {
         with(target) {
-            apply(plugin = "jacoco")
+            apply(plugin = "nowinandroid.android.library")
+            apply(plugin = "org.jetbrains.kotlin.plugin.serialization")
 
-            val androidExtension = extensions.getByType<LibraryExtension>()
-
-            androidExtension.buildTypes.configureEach {
-                enableAndroidTestCoverage = true
-                enableUnitTestCoverage = true
+            dependencies {
+                "api"(project(":core:navigation"))
             }
-
-            configureJacoco(extensions.getByType<LibraryAndroidComponentsExtension>())
         }
     }
 }

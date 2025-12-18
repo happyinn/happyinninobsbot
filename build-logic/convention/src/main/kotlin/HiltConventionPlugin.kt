@@ -13,7 +13,6 @@
  *   See the License for the specific language governing permissions and
  *   limitations under the License.
  */
-
 import com.android.build.gradle.api.AndroidBasePlugin
 import com.obsbot.happyinn.apps.happyinninobsbot.libs
 import org.gradle.api.Plugin

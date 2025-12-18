@@ -1,9 +1,9 @@
+import com.obsbot.happyinn.apps.happyinninobsbot.HioBuildType
 
 
 plugins {
 
     alias(libs.plugins.android.application)
-
     alias(libs.plugins.happyinninobsbot.android.application)
     alias(libs.plugins.happyinninobsbot.android.application.compose)
     alias(libs.plugins.happyinninobsbot.android.application.flavors)
@@ -19,19 +19,19 @@ plugins {
 
 android {
     namespace = "com.obsbot.happyinn.apps.happyinninobsbot"
-    compileSdk {
-        version = release(36)
-    }
 
     defaultConfig {
         applicationId = "com.obsbot.happyinn.apps.happyinninobsbot"
         versionCode = 8
         versionName = "0.1.2" // X.Y.Z; X = Major, Y = minor, Z = Patch level
 
-        testInstrumentationRunner = "com.obsbot.happyinn.apps.happyinninobsbot.core.testing.NiaTestRunner"
+        testInstrumentationRunner = "com.obsbot.happyinn.apps.happyinninobsbot.core.testing.HioTestRunner"
     }
 
     buildTypes {
+        debug {
+            applicationIdSuffix = HioBuildType.DEBUG.applicationIdSuffix
+        }
         release {
             /**isMinifyEnabled: 启用代码混淆和压缩
             providers.gradleProperty("minifyWithR8"): 从 gradle.properties 文件读取 minifyWithR8 属性值
@@ -41,7 +41,7 @@ android {
                 .map(String::toBooleanStrict).getOrElse(true)
 
             /**为 Release 版本添加应用ID后缀，用于区分不同构建类型的应用*/
-//            applicationIdSuffix = NiaBuildType.RELEASE.applicationIdSuffix
+            applicationIdSuffix = HioBuildType.RELEASE.applicationIdSuffix
 
            /** getDefaultProguardFile(): 获取 Android SDK 提供的默认优化规则
             "proguard-rules.pro": 项目自定义的混淆规则文件*/
@@ -103,12 +103,11 @@ dependencies {
 
     implementation(projects.core.common)
     implementation(projects.core.ui)
-    implementation(projects.core.designsystem)
     implementation(projects.core.data)
     implementation(projects.core.model)
     implementation(projects.core.analytics)
     implementation(projects.sync.work)*/
-
+    implementation(projects.core.designsystem)
 
     implementation(projects.core.designsystem)
     implementation(libs.androidx.activity.compose)
@@ -131,12 +130,12 @@ dependencies {
     implementation(libs.coil.kt)
     implementation(libs.kotlinx.serialization.json)
 
-//    ksp(libs.hilt.compiler)
+    ksp(libs.hilt.compiler)
 
     debugImplementation(libs.androidx.compose.ui.testManifest)
 //    debugImplementation(projects.uiTestHiltManifest)
 
-//    kspTest(libs.hilt.compiler)
+    kspTest(libs.hilt.compiler)
 
 //    testImplementation(projects.core.dataTest)
 //    testImplementation(projects.core.datastoreTest)

@@ -7,14 +7,14 @@ plugins {
     alias(libs.plugins.happyinninobsbot.android.application)
     alias(libs.plugins.happyinninobsbot.android.application.compose)
     alias(libs.plugins.happyinninobsbot.android.application.flavors)
-    alias(libs.plugins.happyinninobsbot.android.application.jacoco)
-    alias(libs.plugins.happyinninobsbot.android.application.firebase)
+//    alias(libs.plugins.happyinninobsbot.android.application.jacoco)
+//    alias(libs.plugins.happyinninobsbot.android.application.firebase)
     alias(libs.plugins.happyinninobsbot.hilt)
 
-    alias(libs.plugins.google.osslicenses)
+//    alias(libs.plugins.google.osslicenses)
     alias(libs.plugins.baselineprofile)
-    alias(libs.plugins.roborazzi)
-    alias(libs.plugins.kotlin.serialization)
+//    alias(libs.plugins.roborazzi)
+//    alias(libs.plugins.kotlin.serialization)
 }
 
 android {
@@ -108,6 +108,8 @@ dependencies {
     implementation(projects.core.analytics)
     implementation(projects.sync.work)*/
     implementation(projects.core.designsystem)
+    implementation(projects.core.network)
+    implementation(projects.core.common)
 
     implementation(projects.core.designsystem)
     implementation(libs.androidx.activity.compose)

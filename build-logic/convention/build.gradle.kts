@@ -17,6 +17,7 @@ java {
 kotlin {
     compilerOptions {
         jvmTarget = JvmTarget.JVM_17
+        // 添加languageVersion配置以支持enum entries特性
     }
 }
 
@@ -116,3 +117,4 @@ gradlePlugin {
         }
     }
 }
+

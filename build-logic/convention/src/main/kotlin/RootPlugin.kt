@@ -1,28 +1,22 @@
-/*
- * Copyright 2025 The Android Open Source Project
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *     https://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- *//*
-
-
 import com.obsbot.happyinn.apps.happyinninobsbot.configureGraphTasks
 import org.gradle.api.Plugin
 import org.gradle.api.Project
 
+/**
+ * 根项目插件，用于配置整个项目的通用设置
+ */
 class RootPlugin : Plugin<Project> {
+    /**
+     * 应用插件时执行的逻辑
+     * @param target 当前应用插件的项目对象
+     */
     override fun apply(target: Project) {
+        // 确保此插件只能应用于根项目（路径为":"表示根项目）
         require(target.path == ":")
-        target.subprojects { configureGraphTasks() }
+
+        // 对所有子项目应用 configureGraphTasks 配置
+        target.subprojects {
+            configureGraphTasks()
+        }
     }
 }
-*/

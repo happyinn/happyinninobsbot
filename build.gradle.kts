@@ -17,5 +17,5 @@ plugins {
     alias(libs.plugins.google.osslicenses) apply false
     alias(libs.plugins.room) apply false
     alias(libs.plugins.kotlin.android) apply false
-//    alias(libs.plugins.happyinninobsbot.root)
+    alias(libs.plugins.happyinninobsbot.root)
 }

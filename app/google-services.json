@@ -43,6 +43,26 @@
         }
       }
     }
+  ,
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:819440939376:android:7ab70f920f004cc5035fb5",
+        "android_client_info": {
+          "package_name": "com.obsbot.happyinn.apps.happyinninobsbot.demo.debug"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA2qnFjzgctDPDu_XWOmufEb2CDe8_AoFY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
   ],
   "configuration_version": "1"
 }

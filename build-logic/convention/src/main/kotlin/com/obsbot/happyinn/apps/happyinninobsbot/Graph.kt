@@ -12,11 +12,8 @@
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
  * limitations under the License.
- *//*
+ */
 
-
-// 添加OptIn注解以使用实验性API
-@file:OptIn(kotlin.ExperimentalStdlibApi::class)
 
 package com.obsbot.happyinn.apps.happyinninobsbot
 
@@ -41,7 +38,6 @@ import org.gradle.kotlin.dsl.withType
 import kotlin.text.RegexOption.DOT_MATCHES_ALL
 import com.obsbot.happyinn.apps.happyinninobsbot.PluginType.Unknown
 
-*/
 /**
  * 生成模块依赖图的任务，包括 `graphDump` 和 `graphUpdate` 两个任务
  *
@@ -51,8 +47,7 @@ import com.obsbot.happyinn.apps.happyinninobsbot.PluginType.Unknown
  * - [Graph.invoke] 总是在Gradle配置阶段执行（通常每个项目耗时不到1毫秒）
  *
  * 可通过 `graph.ignoredProjects` 和 `graph.supportedConfigurations` 属性配置图表生成
- *//*
-
+ */
 private class Graph(
     private val root: Project,
     private val dependencies: MutableMap<Project, Set<Pair<Configuration, Project>>> = mutableMapOf(),
@@ -71,11 +66,9 @@ private class Graph(
             .map { it.split(",").toSet() }
             .orElse(setOf("api", "implementation", "baselineProfile", "testedApks"))
 
-    */
-/**
+    /**
      * 遍历并收集项目的依赖关系
-     *//*
-
+     */
     operator fun invoke(project: Project = root): Graph {
         if (project.path in seen) return this // 如果已经处理过该项目，则直接返回
         seen += project.path // 标记为已处理
@@ -100,29 +93,24 @@ private class Graph(
             }
         return this
     }
-    */
-/**
+    /**
      * 返回依赖关系映射表
-     *//*
-
+     */
     fun dependencies(): Map<String, Set<Pair<String, String>>> = dependencies
         .mapKeys { it.key.path }
         .mapValues { it.value.mapTo(mutableSetOf()) { (c, p) -> c.name to p.path } }
 
-    */
-/**
+    /**
      * 返回插件类型映射表
-     *//*
-
+     */
     fun plugins() = plugins.mapKeys { it.key.path }
+
 }
 
-*/
 /**
  * 插件类型枚举，定义了不同类型的模块及其样式
  * 声明顺序很重要，因为只有第一个匹配项会被保留
- *//*
-
+ */
 internal enum class PluginType(val id: String, val ref: String, val style: String) {
     AndroidApplication(
         id = "nowinandroid.android.application",
@@ -156,11 +144,9 @@ internal enum class PluginType(val id: String, val ref: String, val style: Strin
     ),
 }
 
-*/
 /**
  * 为项目配置图形化依赖任务
- *//*
-
+ */
 internal fun Project.configureGraphTasks() {
     if (!buildFile.exists()) return // 忽略没有构建文件的根模块
 
@@ -183,11 +169,9 @@ internal fun Project.configureGraphTasks() {
     }
 }
 
-*/
 /**
  * 图形转储任务，将依赖关系导出为Mermaid格式
- *//*
-
+ */
 @CacheableTask
 private abstract class GraphDumpTask : DefaultTask() {
 
@@ -215,11 +199,9 @@ private abstract class GraphDumpTask : DefaultTask() {
         logger.lifecycle(output.get().asFile.toPath().toUri().toString())
     }
 
-    */
-/**
+    /**
      * 生成Mermaid格式的依赖图
-     *//*
-
+     */
     private fun mermaid() = buildString {
         val dependencies: Set<Dependency> = dependencies.get()
             .flatMapTo(mutableSetOf()) { (project, entries) -> entries.map { it.toDependency(project) } }
@@ -291,11 +273,9 @@ private abstract class GraphDumpTask : DefaultTask() {
         appendLine()
         PluginType.entries.forEach { appendLine(it.classDef()) }
     }
-    */
-/**
+    /**
      * 生成图例
-     *//*
-
+     */
     private fun legend() = buildString {
         appendLine("graph TB")
         listOf(
@@ -344,11 +324,9 @@ private abstract class GraphDumpTask : DefaultTask() {
 
     private fun PluginType.classDef() = "classDef $ref $style;"
 }
-*/
 /**
  * 更新任务，将生成的依赖图插入到README.md中
- *//*
-
+ */
 @CacheableTask
 private abstract class GraphUpdateTask : DefaultTask() {
 
@@ -412,4 +390,3 @@ private abstract class GraphUpdateTask : DefaultTask() {
         .joinToString(System.lineSeparator())
 }
 
-*/

@@ -71,7 +71,8 @@ class AndroidApplicationFirebaseConventionPlugin : Plugin<Project> {
                     这些是Now in Android的可信数据源。
                     因此排除以下依赖中的重复类。
                     */
-                    exclude(group = "com.google.protobuf", module = "protobuf-javalite")
+                    // 修改排除规则，只排除可能导致冲突的特定模块，保留运行时必要的protobuf类
+//                    exclude(group = "com.google.protobuf", module = "protobuf-javalite")
                     exclude(group = "com.google.firebase", module = "protolite-well-known-types")
                 }
                 // 添加Firebase Crashlytics崩溃报告依赖

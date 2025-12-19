@@ -54,7 +54,8 @@ class AndroidLibraryConventionPlugin : Plugin<Project> {
                 testOptions.targetSdk = 36
                 // 设置Lint检查的目标SDK版本为36
                 lint.targetSdk = 36
-                // 不再使用defaultConfig.targetSdk，已通过testOptions.targetSdk和lint.targetSdk配置
+                // 设置默认配置的目标SDK版本为36
+                defaultConfig.targetSdk = 36
                 // 设置测试 instrumentation runner
                 defaultConfig.testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
                 // 禁用测试中的动画以提高测试稳定性

@@ -37,3 +37,8 @@ check(JavaVersion.current().isCompatibleWith(JavaVersion.VERSION_17)) {
 }
 
 include(":core:common")
+include(":core:data")
+include(":core:model")
+include(":core:database")
+include(":core:datastore")
+include(":core:datastore-proto")

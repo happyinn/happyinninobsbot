@@ -39,7 +39,7 @@ class JvmLibraryConventionPlugin : Plugin<Project> {
             // 应用Kotlin JVM插件，为项目提供Kotlin编译支持
             apply(plugin = "org.jetbrains.kotlin.jvm")
             // 应用Android Lint插件，提供代码质量检查功能
-            apply(plugin = "nowinandroid.android.lint")
+            apply(plugin = "happyinninobsbot.android.lint")
 
             // 调用自定义函数配置Kotlin JVM相关选项（如JVM目标版本、编译参数等）
             configureKotlinJvm()

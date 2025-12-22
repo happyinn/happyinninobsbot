@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="feature_bookmarks_api_title">Saved</string>
+    <string name="feature_bookmarks_api_loading">Loading saved…</string>
+    <string name="feature_bookmarks_api_empty_error">No saved updates</string>
+    <string name="feature_bookmarks_api_empty_description">Updates you save will be stored here\nto read later</string>
+    <string name="feature_bookmarks_api_removed">Bookmark removed</string>
+    <string name="feature_bookmarks_api_undo">UNDO</string>
+</resources>

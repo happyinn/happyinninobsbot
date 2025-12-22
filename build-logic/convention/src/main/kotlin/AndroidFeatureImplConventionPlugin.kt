@@ -27,8 +27,8 @@ import org.gradle.kotlin.dsl.dependencies
 class AndroidFeatureImplConventionPlugin : Plugin<Project> {
     override fun apply(target: Project) {
         with(target) {
-            apply(plugin = "nowinandroid.android.library")
-            apply(plugin = "nowinandroid.hilt")
+            apply(plugin = "happyinninobsbot.android.library")
+            apply(plugin = "happyinninobsbot.hilt")
 
             extensions.configure<LibraryExtension> {
                 testOptions.animationsDisabled = true
@@ -36,7 +36,7 @@ class AndroidFeatureImplConventionPlugin : Plugin<Project> {
             }
 
             dependencies {
-                "implementation"(project(":core:ui"))
+//                "implementation"(project(":core:ui"))
                 "implementation"(project(":core:designsystem"))
 
                 "implementation"(libs.findLibrary("androidx.lifecycle.runtimeCompose").get())

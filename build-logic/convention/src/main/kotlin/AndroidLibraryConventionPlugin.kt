@@ -44,7 +44,7 @@ class AndroidLibraryConventionPlugin : Plugin<Project> {
             // 应用Kotlin Android插件以支持Kotlin
             apply(plugin = "org.jetbrains.kotlin.android")
             // 应用自定义的Lint规则插件
-            apply(plugin = "nowinandroid.android.lint")
+            apply(plugin = "happyinninobsbot.android.lint")
 
             // 配置LibraryExtension扩展
             extensions.configure<LibraryExtension> {

@@ -89,7 +89,7 @@ dependencies {
 
 
 dependencies {
-    /*implementation(projects.feature.interests.api)
+    implementation(projects.feature.interests.api)
     implementation(projects.feature.interests.impl)
     implementation(projects.feature.foryou.api)
     implementation(projects.feature.foryou.impl)
@@ -101,10 +101,9 @@ dependencies {
     implementation(projects.feature.search.impl)
     implementation(projects.feature.settings.impl)
 
-    implementation(projects.core.common)
-    implementation(projects.core.ui)
-    implementation(projects.core.analytics)
-    implementation(projects.sync.work)*/
+//    implementation(projects.core.ui)
+//    implementation(projects.core.analytics)
+//    implementation(projects.sync.work)
     implementation(projects.core.designsystem)
     implementation(projects.core.network)
     implementation(projects.core.common)

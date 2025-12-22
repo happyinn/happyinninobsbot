@@ -65,6 +65,8 @@ uiTestJunit4 = "1.9.0-rc01"
 junit = "4.13.2"
 junitVersion = "1.3.0"
 material = "1.13.0"
+lifecycleRuntimeKtx = "2.10.0"
+composeBom = "2024.09.00"
 
 [bundles]
 androidx-compose-ui-test = ["androidx-compose-ui-test", "androidx-compose-ui-testManifest"]
@@ -175,6 +177,10 @@ androidx-compose-ui-test-junit4 = { group = "androidx.compose.ui", name = "ui-te
 junit = { group = "junit", name = "junit", version.ref = "junit" }
 androidx-junit = { group = "androidx.test.ext", name = "junit", version.ref = "junitVersion" }
 material = { group = "com.google.android.material", name = "material", version.ref = "material" }
+androidx-lifecycle-runtime-ktx = { group = "androidx.lifecycle", name = "lifecycle-runtime-ktx", version.ref = "lifecycleRuntimeKtx" }
+compose-bom = { group = "androidx.compose", name = "compose-bom", version.ref = "composeBom" }
+androidx-compose-ui = { group = "androidx.compose.ui", name = "ui" }
+androidx-compose-ui-graphics = { group = "androidx.compose.ui", name = "ui-graphics" }
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "androidGradlePlugin" }
@@ -198,19 +204,19 @@ room = { id = "androidx.room", version.ref = "room" }
 kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
 
 # Plugins defined by this project
-happyinninobsbot-android-application = { id = "nowinandroid.android.application" }
-happyinninobsbot-android-application-compose = { id = "nowinandroid.android.application.compose" }
-happyinninobsbot-android-application-firebase = { id = "nowinandroid.android.application.firebase" }
-happyinninobsbot-android-application-flavors = { id = "nowinandroid.android.application.flavors" }
-happyinninobsbot-android-application-jacoco = { id = "nowinandroid.android.application.jacoco" }
-happyinninobsbot-android-feature-impl = { id = "nowinandroid.android.feature.impl" }
-happyinninobsbot-android-feature-api = { id = "nowinandroid.android.feature.api" }
-happyinninobsbot-android-library = { id = "nowinandroid.android.library" }
-happyinninobsbot-android-library-compose = { id = "nowinandroid.android.library.compose" }
-happyinninobsbot-android-library-jacoco = { id = "nowinandroid.android.library.jacoco" }
-happyinninobsbot-android-lint = { id = "nowinandroid.android.lint" }
-happyinninobsbot-android-room = { id = "nowinandroid.android.room" }
-happyinninobsbot-android-test = { id = "nowinandroid.android.test" }
-happyinninobsbot-hilt = { id = "nowinandroid.hilt" }
-happyinninobsbot-jvm-library = { id = "nowinandroid.jvm.library" }
-happyinninobsbot-root = { id = "nowinandroid.root" }
+happyinninobsbot-android-application = { id = "happyinninobsbot.android.application" }
+happyinninobsbot-android-application-compose = { id = "happyinninobsbot.android.application.compose" }
+happyinninobsbot-android-application-firebase = { id = "happyinninobsbot.android.application.firebase" }
+happyinninobsbot-android-application-flavors = { id = "happyinninobsbot.android.application.flavors" }
+happyinninobsbot-android-application-jacoco = { id = "happyinninobsbot.android.application.jacoco" }
+happyinninobsbot-android-feature-impl = { id = "happyinninobsbot.android.feature.impl" }
+happyinninobsbot-android-feature-api = { id = "happyinninobsbot.android.feature.api" }
+happyinninobsbot-android-library = { id = "happyinninobsbot.android.library" }
+happyinninobsbot-android-library-compose = { id = "happyinninobsbot.android.library.compose" }
+happyinninobsbot-android-library-jacoco = { id = "happyinninobsbot.android.library.jacoco" }
+happyinninobsbot-android-lint = { id = "happyinninobsbot.android.lint" }
+happyinninobsbot-android-room = { id = "happyinninobsbot.android.room" }
+happyinninobsbot-android-test = { id = "happyinninobsbot.android.test" }
+happyinninobsbot-hilt = { id = "happyinninobsbot.hilt" }
+happyinninobsbot-jvm-library = { id = "happyinninobsbot.jvm.library" }
+happyinninobsbot-root = { id = "happyinninobsbot.root" }

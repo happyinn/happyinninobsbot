@@ -1,4 +1,4 @@
 <resources>
-    <string name="app_name">Happyinn In Obsbot</string>
-    <string name="not_connected">⚠️ You aren’t connected to the internet</string>
+    <string name="app_name">乐在寻影</string>
+    <string name="not_connected">⚠️无法连接到网络</string>
 </resources>

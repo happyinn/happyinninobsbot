@@ -5,7 +5,7 @@ plugins {
 }
 
 android {
-    namespace = "com.google.samples.apps.happyinninobsbot.feature.settings.impl"
+    namespace = "com.obsbot.happyinn.apps.happyinninobsbot.feature.settings.impl"
 }
 
 dependencies {
@@ -15,5 +15,5 @@ dependencies {
 
 //    testImplementation(projects.core.testing)
 
-    androidTestImplementation(libs.bundles.androidx.compose.ui.test)
+//    androidTestImplementation(libs.bundles.androidx.compose.ui.test)
 }

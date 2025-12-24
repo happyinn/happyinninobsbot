@@ -16,7 +16,7 @@ package com.obsbot.happyinn.apps.happyinninobsbot.navigation
 import androidx.annotation.StringRes
 import androidx.compose.ui.graphics.vector.ImageVector
 import com.obsbot.happyinn.apps.happyinninobsbot.R
-import com.obsbot.happyinn.apps.happyinninobsbot.core.designsystem.icon.NiaIcons
+import com.obsbot.happyinn.apps.happyinninobsbot.core.designsystem.icon.HioIcons
 import com.obsbot.happyinn.apps.happyinninobsbot.feature.bookmarks.api.navigation.BookmarksNavKey
 import com.obsbot.happyinn.apps.happyinninobsbot.feature.foryou.api.navigation.ForYouNavKey
 import com.obsbot.happyinn.apps.happyinninobsbot.feature.interests.api.navigation.InterestsNavKey
@@ -45,8 +45,8 @@ data class TopLevelNavItem(
  * 使用 Upcoming 图标，标题为应用程序名称
  */
 val FOR_YOU = TopLevelNavItem(
-    selectedIcon = NiaIcons.Upcoming,
-    unselectedIcon = NiaIcons.UpcomingBorder,
+    selectedIcon = HioIcons.Upcoming,
+    unselectedIcon = HioIcons.UpcomingBorder,
     iconTextId = forYouR.string.feature_foryou_api_title,
     titleTextId = R.string.app_name,
 )
@@ -56,8 +56,8 @@ val FOR_YOU = TopLevelNavItem(
  * 使用 Bookmarks 图标，图标文本和标题都显示为"书签"
  */
 val BOOKMARKS = TopLevelNavItem(
-    selectedIcon = NiaIcons.Bookmarks,
-    unselectedIcon = NiaIcons.BookmarksBorder,
+    selectedIcon = HioIcons.Bookmarks,
+    unselectedIcon = HioIcons.BookmarksBorder,
     iconTextId = bookmarksR.string.feature_bookmarks_api_title,
     titleTextId = bookmarksR.string.feature_bookmarks_api_title,
 )
@@ -67,8 +67,8 @@ val BOOKMARKS = TopLevelNavItem(
  * 使用 Grid3x3 图标，图标文本和标题都显示为"兴趣"
  */
 val INTERESTS = TopLevelNavItem(
-    selectedIcon = NiaIcons.Grid3x3,
-    unselectedIcon = NiaIcons.Grid3x3,
+    selectedIcon = HioIcons.Grid3x3,
+    unselectedIcon = HioIcons.Grid3x3,
     iconTextId = searchR.string.feature_search_api_interests,
     titleTextId = searchR.string.feature_search_api_interests,
 )

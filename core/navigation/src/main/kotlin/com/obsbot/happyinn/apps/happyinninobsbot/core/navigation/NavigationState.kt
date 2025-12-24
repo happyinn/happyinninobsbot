@@ -14,7 +14,6 @@ import androidx.navigation3.runtime.rememberDecoratedNavEntries
 import androidx.navigation3.runtime.rememberNavBackStack
 import androidx.navigation3.runtime.rememberSaveableStateHolderNavEntryDecorator
 
-//TODO 待深入细看
 /**
  * 创建一个能够持久化配置更改和进程死亡的导航状态
  *
@@ -80,8 +79,9 @@ class NavigationState(
  */
 @Composable
 fun NavigationState.toEntries(
-    entryProvider: (NavKey) -> NavEntry<NavKey>,
+    entryProvider: (NavKey) -> NavEntry<NavKey>,  //TODO 有点蒙，传的是很多entryProvider组成的一个entryProvider
 ): SnapshotStateList<NavEntry<NavKey>> {
+
     // 为每个子栈创建装饰后的导航条目
     val decoratedEntries = subStacks.mapValues { (_, stack) ->
         // 定义装饰器列表，包括可保存状态持有者装饰器和 ViewModel 存储装饰器

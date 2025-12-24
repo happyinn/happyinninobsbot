@@ -1,16 +1,16 @@
 -- Merging decision tree log ---
 manifest
-ADDED from E:\pros\happyinninobsbot\core\datastore-proto\build\intermediates\tmp\ProcessLibraryManifest\demo\debug\tempAndroidManifest13311490388131108866.xml:2:13-83
-INJECTED from E:\pros\happyinninobsbot\core\datastore-proto\build\intermediates\tmp\ProcessLibraryManifest\demo\debug\tempAndroidManifest13311490388131108866.xml:2:13-83
+ADDED from E:\pros\happyinninobsbot\core\datastore-proto\build\intermediates\tmp\ProcessLibraryManifest\demo\debug\tempAndroidManifest4565039401916098721.xml:2:13-83
+INJECTED from E:\pros\happyinninobsbot\core\datastore-proto\build\intermediates\tmp\ProcessLibraryManifest\demo\debug\tempAndroidManifest4565039401916098721.xml:2:13-83
 	package
-		INJECTED from E:\pros\happyinninobsbot\core\datastore-proto\build\intermediates\tmp\ProcessLibraryManifest\demo\debug\tempAndroidManifest13311490388131108866.xml
+		INJECTED from E:\pros\happyinninobsbot\core\datastore-proto\build\intermediates\tmp\ProcessLibraryManifest\demo\debug\tempAndroidManifest4565039401916098721.xml
 	xmlns:android
-		ADDED from E:\pros\happyinninobsbot\core\datastore-proto\build\intermediates\tmp\ProcessLibraryManifest\demo\debug\tempAndroidManifest13311490388131108866.xml:2:23-81
+		ADDED from E:\pros\happyinninobsbot\core\datastore-proto\build\intermediates\tmp\ProcessLibraryManifest\demo\debug\tempAndroidManifest4565039401916098721.xml:2:23-81
 uses-sdk
-INJECTED from E:\pros\happyinninobsbot\core\datastore-proto\build\intermediates\tmp\ProcessLibraryManifest\demo\debug\tempAndroidManifest13311490388131108866.xml reason: use-sdk injection requested
-INJECTED from E:\pros\happyinninobsbot\core\datastore-proto\build\intermediates\tmp\ProcessLibraryManifest\demo\debug\tempAndroidManifest13311490388131108866.xml
-INJECTED from E:\pros\happyinninobsbot\core\datastore-proto\build\intermediates\tmp\ProcessLibraryManifest\demo\debug\tempAndroidManifest13311490388131108866.xml
+INJECTED from E:\pros\happyinninobsbot\core\datastore-proto\build\intermediates\tmp\ProcessLibraryManifest\demo\debug\tempAndroidManifest4565039401916098721.xml reason: use-sdk injection requested
+INJECTED from E:\pros\happyinninobsbot\core\datastore-proto\build\intermediates\tmp\ProcessLibraryManifest\demo\debug\tempAndroidManifest4565039401916098721.xml
+INJECTED from E:\pros\happyinninobsbot\core\datastore-proto\build\intermediates\tmp\ProcessLibraryManifest\demo\debug\tempAndroidManifest4565039401916098721.xml
 	android:targetSdkVersion
-		INJECTED from E:\pros\happyinninobsbot\core\datastore-proto\build\intermediates\tmp\ProcessLibraryManifest\demo\debug\tempAndroidManifest13311490388131108866.xml
+		INJECTED from E:\pros\happyinninobsbot\core\datastore-proto\build\intermediates\tmp\ProcessLibraryManifest\demo\debug\tempAndroidManifest4565039401916098721.xml
 	android:minSdkVersion
-		INJECTED from E:\pros\happyinninobsbot\core\datastore-proto\build\intermediates\tmp\ProcessLibraryManifest\demo\debug\tempAndroidManifest13311490388131108866.xml
+		INJECTED from E:\pros\happyinninobsbot\core\datastore-proto\build\intermediates\tmp\ProcessLibraryManifest\demo\debug\tempAndroidManifest4565039401916098721.xml

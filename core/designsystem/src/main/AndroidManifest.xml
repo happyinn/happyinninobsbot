@@ -1,4 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android">
-
+    <!-- 添加 POST_NOTIFICATIONS 权限以允许应用发送通知 -->
+    <!-- 此权限在 Android 13 (API 33) 及以上版本中是必需的 -->
+    <uses-permission android:name="android.permission.POST_NOTIFICATIONS"/>
 </manifest>

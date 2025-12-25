@@ -24,10 +24,15 @@ import com.obsbot.happyinn.apps.happyinninobsbot.core.analytics.LocalAnalyticsHe
 import com.obsbot.happyinn.apps.happyinninobsbot.core.designsystem.theme.HioTheme
 import com.obsbot.happyinn.apps.happyinninobsbot.core.model.data.UserVideosResource
 
-//TODO 待细看
 /**
- * An extension on [LazyListScope] defining a feed with videos resources.
- * Depending on the [feedState], this might emit no items.
+ * LazyStaggeredGridScope的扩展函数，用于定义视频资源的推荐流
+ * 根据[feedState]状态，此函数可能不会渲染任何项目
+ *
+ * @param feedState 视频流的当前状态（加载中或加载成功）
+ * @param onVideosResourcesCheckedChanged 当视频资源的收藏状态改变时调用的回调函数
+ * @param onVideosResourceViewed 当视频资源被查看时调用的回调函数
+ * @param onTopicClick 当视频中的主题标签被点击时调用的回调函数
+ * @param onExpandedCardClick 当展开的视频卡片被点击时调用的可选回调函数
  */
 fun LazyStaggeredGridScope.videosFeed(
     feedState: VideosFeedUiState,
@@ -37,31 +42,39 @@ fun LazyStaggeredGridScope.videosFeed(
     onExpandedCardClick: () -> Unit = {},
 ) {
     when (feedState) {
+        // 加载状态下不显示任何内容
         VideosFeedUiState.Loading -> Unit
+        // 加载成功状态下，显示视频列表
         is VideosFeedUiState.Success -> {
             items(
                 items = feedState.feed,
                 key = { it.id },
                 contentType = { "videosFeedItem" },
             ) { userVideosResource ->
+                // 获取当前上下文、分析助手和主题背景色
                 val context = LocalContext.current
                 val analyticsHelper = LocalAnalyticsHelper.current
                 val backgroundColor = MaterialTheme.colorScheme.background.toArgb()
 
+                // 渲染视频资源卡片
                 VideosResourceCardExpanded(
                     userVideosResource = userVideosResource,
                     isBookmarked = userVideosResource.isSaved,
                     onClick = {
                         onExpandedCardClick()
+                        // 记录视频资源打开事件
                         analyticsHelper.logVideosResourceOpened(
                             videosResourceId = userVideosResource.id,
                         )
+                        // 使用自定义Chrome标签打开视频URL
                         launchCustomChromeTab(context, Uri.parse(userVideosResource.url), backgroundColor)
 
+                        // 更新视频资源的已观看状态
                         onVideosResourceViewed(userVideosResource.id)
                     },
                     hasBeenViewed = userVideosResource.hasBeenViewed,
                     onToggleBookmark = {
+                        // 更新视频资源的收藏状态
                         onVideosResourcesCheckedChanged(
                             userVideosResource.id,
                             !userVideosResource.isSaved,
@@ -77,36 +90,53 @@ fun LazyStaggeredGridScope.videosFeed(
     }
 }
 
+/**
+ * 使用自定义Chrome标签打开指定的URI链接
+ *
+ * @param context 上下文对象
+ * @param uri 要打开的URI链接
+ * @param toolbarColor 自定义标签栏的颜色
+ */
 fun launchCustomChromeTab(context: Context, uri: Uri, @ColorInt toolbarColor: Int) {
+    // 创建自定义标签颜色方案参数
     val customTabBarColor = CustomTabColorSchemeParams.Builder()
         .setToolbarColor(toolbarColor).build()
+    // 构建自定义标签意图
     val customTabsIntent = CustomTabsIntent.Builder()
         .setDefaultColorSchemeParams(customTabBarColor)
         .build()
 
+    // 启动自定义标签打开URL
     customTabsIntent.launchUrl(context, uri)
 }
 
 /**
- * A sealed hierarchy describing the state of the feed of videos resources.
+ * 描述视频资源推荐流状态的密封接口
+ * 提供不同状态下的UI表示
  */
 sealed interface VideosFeedUiState {
     /**
-     * The feed is still loading.
+     * 视频流正在加载中
+     * 表示数据尚未准备好显示
      */
     data object Loading : VideosFeedUiState
 
     /**
-     * The feed is loaded with the given list of videos resources.
+     * 视频流加载成功
+     * 包含已加载的视频资源列表
      */
     data class Success(
         /**
-         * The list of videos resources contained in this feed.
+         * 此推荐流中包含的视频资源列表
          */
         val feed: List<UserVideosResource>,
     ) : VideosFeedUiState
 }
 
+/**
+ * 视频流加载状态的预览组件
+ * 用于在Compose预览中展示加载状态的UI
+ */
 @Preview
 @Composable
 private fun VideosFeedLoadingPreview() {
@@ -122,6 +152,10 @@ private fun VideosFeedLoadingPreview() {
     }
 }
 
+/**
+ * 视频流内容的预览组件
+ * 用于在Compose预览中展示加载成功状态的UI，支持手机和平板设备预览
+ */
 @Preview
 @Preview(device = Devices.TABLET)
 @Composable

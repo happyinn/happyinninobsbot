@@ -1,51 +1,48 @@
-/*
- * Copyright 2022 The Android Open Source Project
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *     https://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
-
 package com.obsbot.happyinn.apps.happyinninobsbot.feature.foryou.impl
 
 import com.obsbot.happyinn.apps.happyinninobsbot.core.model.data.FollowableTopic
 import kotlin.collections.any
 
 /**
- * A sealed hierarchy describing the onboarding state for the for you screen.
+ * 首次使用引导界面的状态密封接口
+ *
+ * 定义了"为你推荐"页面中首次使用引导流程的各种可能状态
+ * 使用密封接口（sealed interface）确保所有可能的状态都被明确枚举
  */
 sealed interface OnboardingUiState {
     /**
-     * The onboarding state is loading.
+     * 加载中的引导状态
+     *
+     * 当应用正在加载引导数据（如可关注的主题列表）时使用此状态
      */
     data object Loading : OnboardingUiState
 
     /**
-     * The onboarding state was unable to load.
+     * 加载失败的引导状态
+     *
+     * 当应用无法加载引导数据时使用此状态，通常需要显示错误提示或重试选项
      */
     data object LoadFailed : OnboardingUiState
 
     /**
-     * There is no onboarding state.
+     * 不需要显示引导的状态
+     *
+     * 当用户已经完成过引导流程或已设置为不再显示引导时使用此状态
      */
     data object NotShown : OnboardingUiState
 
     /**
-     * There is a onboarding state, with the given lists of topics.
+     * 需要显示引导的状态，包含可选择的主题列表
+     *
+     * @property topics 可关注的主题列表，用户可以从中选择感兴趣的主题
      */
     data class Shown(
         val topics: List<FollowableTopic>,
     ) : OnboardingUiState {
         /**
-         * True if the onboarding can be dismissed.
+         * 判断引导界面是否可以被关闭
+         *
+         * 只有当用户至少关注了一个主题时，引导界面才允许被关闭
          */
         val isDismissable: Boolean get() = topics.any { it.isFollowed }
     }

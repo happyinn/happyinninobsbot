@@ -18,7 +18,7 @@ public  final class UserPreferences extends
     deprecatedIntFollowedAuthorIds_ = emptyIntList();
     deprecatedFollowedTopicIds_ = com.google.protobuf.GeneratedMessageLite.emptyProtobufList();
     deprecatedFollowedAuthorIds_ = com.google.protobuf.GeneratedMessageLite.emptyProtobufList();
-    deprecatedBookmarkedVideosResourceIds_ = com.google.protobuf.GeneratedMessageLite.emptyProtobufList();
+    deprecatedBookmarkedNewsResourceIds_ = com.google.protobuf.GeneratedMessageLite.emptyProtobufList();
   }
   public static final int DEPRECATED_INT_FOLLOWED_TOPIC_IDS_FIELD_NUMBER = 1;
   private com.google.protobuf.Internal.IntList deprecatedIntFollowedTopicIds_;
@@ -143,30 +143,30 @@ public  final class UserPreferences extends
     authorChangeListVersion_ = 0;
   }
 
-  public static final int VIDEOSRESOURCECHANGELISTVERSION_FIELD_NUMBER = 6;
-  private int videosResourceChangeListVersion_;
+  public static final int NEWSRESOURCECHANGELISTVERSION_FIELD_NUMBER = 6;
+  private int newsResourceChangeListVersion_;
   /**
-   * <code>int32 videosResourceChangeListVersion = 6;</code>
-   * @return The videosResourceChangeListVersion.
+   * <code>int32 NewsResourceChangeListVersion = 6;</code>
+   * @return The newsResourceChangeListVersion.
    */
   @java.lang.Override
-  public int getVideosResourceChangeListVersion() {
-    return videosResourceChangeListVersion_;
+  public int getNewsResourceChangeListVersion() {
+    return newsResourceChangeListVersion_;
   }
   /**
-   * <code>int32 videosResourceChangeListVersion = 6;</code>
-   * @param value The videosResourceChangeListVersion to set.
+   * <code>int32 NewsResourceChangeListVersion = 6;</code>
+   * @param value The newsResourceChangeListVersion to set.
    */
-  private void setVideosResourceChangeListVersion(int value) {
+  private void setNewsResourceChangeListVersion(int value) {
     
-    videosResourceChangeListVersion_ = value;
+    newsResourceChangeListVersion_ = value;
   }
   /**
-   * <code>int32 videosResourceChangeListVersion = 6;</code>
+   * <code>int32 NewsResourceChangeListVersion = 6;</code>
    */
-  private void clearVideosResourceChangeListVersion() {
+  private void clearNewsResourceChangeListVersion() {
 
-    videosResourceChangeListVersion_ = 0;
+    newsResourceChangeListVersion_ = 0;
   }
 
   public static final int DEPRECATED_INT_FOLLOWED_AUTHOR_IDS_FIELD_NUMBER = 7;
@@ -456,99 +456,99 @@ public  final class UserPreferences extends
     deprecatedFollowedAuthorIds_.add(value.toStringUtf8());
   }
 
-  public static final int DEPRECATED_BOOKMARKED_VIDEOS_RESOURCE_IDS_FIELD_NUMBER = 11;
-  private com.google.protobuf.Internal.ProtobufList<java.lang.String> deprecatedBookmarkedVideosResourceIds_;
+  public static final int DEPRECATED_BOOKMARKED_NEWS_RESOURCE_IDS_FIELD_NUMBER = 11;
+  private com.google.protobuf.Internal.ProtobufList<java.lang.String> deprecatedBookmarkedNewsResourceIds_;
   /**
-   * <code>repeated string deprecated_bookmarked_videos_resource_ids = 11;</code>
-   * @return A list containing the deprecatedBookmarkedVideosResourceIds.
+   * <code>repeated string deprecated_bookmarked_News_resource_ids = 11;</code>
+   * @return A list containing the deprecatedBookmarkedNewsResourceIds.
    */
   @java.lang.Override
-  public java.util.List<java.lang.String> getDeprecatedBookmarkedVideosResourceIdsList() {
-    return deprecatedBookmarkedVideosResourceIds_;
+  public java.util.List<java.lang.String> getDeprecatedBookmarkedNewsResourceIdsList() {
+    return deprecatedBookmarkedNewsResourceIds_;
   }
   /**
-   * <code>repeated string deprecated_bookmarked_videos_resource_ids = 11;</code>
-   * @return The count of deprecatedBookmarkedVideosResourceIds.
+   * <code>repeated string deprecated_bookmarked_News_resource_ids = 11;</code>
+   * @return The count of deprecatedBookmarkedNewsResourceIds.
    */
   @java.lang.Override
-  public int getDeprecatedBookmarkedVideosResourceIdsCount() {
-    return deprecatedBookmarkedVideosResourceIds_.size();
+  public int getDeprecatedBookmarkedNewsResourceIdsCount() {
+    return deprecatedBookmarkedNewsResourceIds_.size();
   }
   /**
-   * <code>repeated string deprecated_bookmarked_videos_resource_ids = 11;</code>
+   * <code>repeated string deprecated_bookmarked_News_resource_ids = 11;</code>
    * @param index The index of the element to return.
-   * @return The deprecatedBookmarkedVideosResourceIds at the given index.
+   * @return The deprecatedBookmarkedNewsResourceIds at the given index.
    */
   @java.lang.Override
-  public java.lang.String getDeprecatedBookmarkedVideosResourceIds(int index) {
-    return deprecatedBookmarkedVideosResourceIds_.get(index);
+  public java.lang.String getDeprecatedBookmarkedNewsResourceIds(int index) {
+    return deprecatedBookmarkedNewsResourceIds_.get(index);
   }
   /**
-   * <code>repeated string deprecated_bookmarked_videos_resource_ids = 11;</code>
+   * <code>repeated string deprecated_bookmarked_News_resource_ids = 11;</code>
    * @param index The index of the value to return.
-   * @return The bytes of the deprecatedBookmarkedVideosResourceIds at the given index.
+   * @return The bytes of the deprecatedBookmarkedNewsResourceIds at the given index.
    */
   @java.lang.Override
   public com.google.protobuf.ByteString
-      getDeprecatedBookmarkedVideosResourceIdsBytes(int index) {
+      getDeprecatedBookmarkedNewsResourceIdsBytes(int index) {
     return com.google.protobuf.ByteString.copyFromUtf8(
-        deprecatedBookmarkedVideosResourceIds_.get(index));
+        deprecatedBookmarkedNewsResourceIds_.get(index));
   }
-  private void ensureDeprecatedBookmarkedVideosResourceIdsIsMutable() {
+  private void ensureDeprecatedBookmarkedNewsResourceIdsIsMutable() {
     com.google.protobuf.Internal.ProtobufList<java.lang.String> tmp =
-        deprecatedBookmarkedVideosResourceIds_;  if (!tmp.isModifiable()) {
-      deprecatedBookmarkedVideosResourceIds_ =
+        deprecatedBookmarkedNewsResourceIds_;  if (!tmp.isModifiable()) {
+      deprecatedBookmarkedNewsResourceIds_ =
           com.google.protobuf.GeneratedMessageLite.mutableCopy(tmp);
      }
   }
   /**
-   * <code>repeated string deprecated_bookmarked_videos_resource_ids = 11;</code>
+   * <code>repeated string deprecated_bookmarked_News_resource_ids = 11;</code>
    * @param index The index to set the value at.
-   * @param value The deprecatedBookmarkedVideosResourceIds to set.
+   * @param value The deprecatedBookmarkedNewsResourceIds to set.
    */
   @java.lang.SuppressWarnings("ReturnValueIgnored")
-  private void setDeprecatedBookmarkedVideosResourceIds(
+  private void setDeprecatedBookmarkedNewsResourceIds(
       int index, java.lang.String value) {
     value.getClass();  // minimal bytecode null check
-    ensureDeprecatedBookmarkedVideosResourceIdsIsMutable();
-    deprecatedBookmarkedVideosResourceIds_.set(index, value);
+    ensureDeprecatedBookmarkedNewsResourceIdsIsMutable();
+    deprecatedBookmarkedNewsResourceIds_.set(index, value);
   }
   /**
-   * <code>repeated string deprecated_bookmarked_videos_resource_ids = 11;</code>
-   * @param value The deprecatedBookmarkedVideosResourceIds to add.
+   * <code>repeated string deprecated_bookmarked_News_resource_ids = 11;</code>
+   * @param value The deprecatedBookmarkedNewsResourceIds to add.
    */
   @java.lang.SuppressWarnings("ReturnValueIgnored")
-  private void addDeprecatedBookmarkedVideosResourceIds(
+  private void addDeprecatedBookmarkedNewsResourceIds(
       java.lang.String value) {
     value.getClass();  // minimal bytecode null check
-    ensureDeprecatedBookmarkedVideosResourceIdsIsMutable();
-    deprecatedBookmarkedVideosResourceIds_.add(value);
+    ensureDeprecatedBookmarkedNewsResourceIdsIsMutable();
+    deprecatedBookmarkedNewsResourceIds_.add(value);
   }
   /**
-   * <code>repeated string deprecated_bookmarked_videos_resource_ids = 11;</code>
-   * @param values The deprecatedBookmarkedVideosResourceIds to add.
+   * <code>repeated string deprecated_bookmarked_News_resource_ids = 11;</code>
+   * @param values The deprecatedBookmarkedNewsResourceIds to add.
    */
-  private void addAllDeprecatedBookmarkedVideosResourceIds(
+  private void addAllDeprecatedBookmarkedNewsResourceIds(
       java.lang.Iterable<java.lang.String> values) {
-    ensureDeprecatedBookmarkedVideosResourceIdsIsMutable();
+    ensureDeprecatedBookmarkedNewsResourceIdsIsMutable();
     com.google.protobuf.AbstractMessageLite.addAll(
-        values, deprecatedBookmarkedVideosResourceIds_);
+        values, deprecatedBookmarkedNewsResourceIds_);
   }
   /**
-   * <code>repeated string deprecated_bookmarked_videos_resource_ids = 11;</code>
+   * <code>repeated string deprecated_bookmarked_News_resource_ids = 11;</code>
    */
-  private void clearDeprecatedBookmarkedVideosResourceIds() {
-    deprecatedBookmarkedVideosResourceIds_ = com.google.protobuf.GeneratedMessageLite.emptyProtobufList();
+  private void clearDeprecatedBookmarkedNewsResourceIds() {
+    deprecatedBookmarkedNewsResourceIds_ = com.google.protobuf.GeneratedMessageLite.emptyProtobufList();
   }
   /**
-   * <code>repeated string deprecated_bookmarked_videos_resource_ids = 11;</code>
-   * @param value The bytes of the deprecatedBookmarkedVideosResourceIds to add.
+   * <code>repeated string deprecated_bookmarked_News_resource_ids = 11;</code>
+   * @param value The bytes of the deprecatedBookmarkedNewsResourceIds to add.
    */
-  private void addDeprecatedBookmarkedVideosResourceIdsBytes(
+  private void addDeprecatedBookmarkedNewsResourceIdsBytes(
       com.google.protobuf.ByteString value) {
     checkByteStringIsUtf8(value);
-    ensureDeprecatedBookmarkedVideosResourceIdsIsMutable();
-    deprecatedBookmarkedVideosResourceIds_.add(value.toStringUtf8());
+    ensureDeprecatedBookmarkedNewsResourceIdsIsMutable();
+    deprecatedBookmarkedNewsResourceIds_.add(value.toStringUtf8());
   }
 
   public static final int HAS_DONE_LIST_TO_MAP_MIGRATION_FIELD_NUMBER = 12;
@@ -788,8 +788,8 @@ public  final class UserPreferences extends
     return internalGetMutableFollowedAuthorIds();
   }
 
-  public static final int BOOKMARKED_VIDEOS_RESOURCE_IDS_FIELD_NUMBER = 15;
-  private static final class BookmarkedVideosResourceIdsDefaultEntryHolder {
+  public static final int BOOKMARKED_NEWS_RESOURCE_IDS_FIELD_NUMBER = 15;
+  private static final class BookmarkedNewsResourceIdsDefaultEntryHolder {
     static final com.google.protobuf.MapEntryLite<
         java.lang.String, java.lang.Boolean> defaultEntry =
             com.google.protobuf.MapEntryLite
@@ -800,89 +800,89 @@ public  final class UserPreferences extends
                 false);
   }
   private com.google.protobuf.MapFieldLite<
-      java.lang.String, java.lang.Boolean> bookmarkedVideosResourceIds_ =
+      java.lang.String, java.lang.Boolean> bookmarkedNewsResourceIds_ =
           com.google.protobuf.MapFieldLite.emptyMapField();
   private com.google.protobuf.MapFieldLite<java.lang.String, java.lang.Boolean>
-  internalGetBookmarkedVideosResourceIds() {
-    return bookmarkedVideosResourceIds_;
+  internalGetBookmarkedNewsResourceIds() {
+    return bookmarkedNewsResourceIds_;
   }
   private com.google.protobuf.MapFieldLite<java.lang.String, java.lang.Boolean>
-  internalGetMutableBookmarkedVideosResourceIds() {
-    if (!bookmarkedVideosResourceIds_.isMutable()) {
-      bookmarkedVideosResourceIds_ = bookmarkedVideosResourceIds_.mutableCopy();
+  internalGetMutableBookmarkedNewsResourceIds() {
+    if (!bookmarkedNewsResourceIds_.isMutable()) {
+      bookmarkedNewsResourceIds_ = bookmarkedNewsResourceIds_.mutableCopy();
     }
-    return bookmarkedVideosResourceIds_;
+    return bookmarkedNewsResourceIds_;
   }
   @java.lang.Override
 
-  public int getBookmarkedVideosResourceIdsCount() {
-    return internalGetBookmarkedVideosResourceIds().size();
+  public int getBookmarkedNewsResourceIdsCount() {
+    return internalGetBookmarkedNewsResourceIds().size();
   }
   /**
-   * <code>map&lt;string, bool&gt; bookmarked_videos_resource_ids = 15;</code>
+   * <code>map&lt;string, bool&gt; bookmarked_News_resource_ids = 15;</code>
    */
   @java.lang.Override
 
-  public boolean containsBookmarkedVideosResourceIds(
+  public boolean containsBookmarkedNewsResourceIds(
       java.lang.String key) {
     java.lang.Class<?> keyClass = key.getClass();
-    return internalGetBookmarkedVideosResourceIds().containsKey(key);
+    return internalGetBookmarkedNewsResourceIds().containsKey(key);
   }
   /**
-   * Use {@link #getBookmarkedVideosResourceIdsMap()} instead.
+   * Use {@link #getBookmarkedNewsResourceIdsMap()} instead.
    */
   @java.lang.Override
   @java.lang.Deprecated
-  public java.util.Map<java.lang.String, java.lang.Boolean> getBookmarkedVideosResourceIds() {
-    return getBookmarkedVideosResourceIdsMap();
+  public java.util.Map<java.lang.String, java.lang.Boolean> getBookmarkedNewsResourceIds() {
+    return getBookmarkedNewsResourceIdsMap();
   }
   /**
-   * <code>map&lt;string, bool&gt; bookmarked_videos_resource_ids = 15;</code>
+   * <code>map&lt;string, bool&gt; bookmarked_News_resource_ids = 15;</code>
    */
   @java.lang.Override
 
-  public java.util.Map<java.lang.String, java.lang.Boolean> getBookmarkedVideosResourceIdsMap() {
+  public java.util.Map<java.lang.String, java.lang.Boolean> getBookmarkedNewsResourceIdsMap() {
     return java.util.Collections.unmodifiableMap(
-        internalGetBookmarkedVideosResourceIds());
+        internalGetBookmarkedNewsResourceIds());
   }
   /**
-   * <code>map&lt;string, bool&gt; bookmarked_videos_resource_ids = 15;</code>
+   * <code>map&lt;string, bool&gt; bookmarked_News_resource_ids = 15;</code>
    */
   @java.lang.Override
 
-  public boolean getBookmarkedVideosResourceIdsOrDefault(
+  public boolean getBookmarkedNewsResourceIdsOrDefault(
       java.lang.String key,
       boolean defaultValue) {
     java.lang.Class<?> keyClass = key.getClass();
     java.util.Map<java.lang.String, java.lang.Boolean> map =
-        internalGetBookmarkedVideosResourceIds();
+        internalGetBookmarkedNewsResourceIds();
     return map.containsKey(key) ? map.get(key) : defaultValue;
   }
   /**
-   * <code>map&lt;string, bool&gt; bookmarked_videos_resource_ids = 15;</code>
+   * <code>map&lt;string, bool&gt; bookmarked_News_resource_ids = 15;</code>
    */
   @java.lang.Override
 
-  public boolean getBookmarkedVideosResourceIdsOrThrow(
+  public boolean getBookmarkedNewsResourceIdsOrThrow(
       java.lang.String key) {
     java.lang.Class<?> keyClass = key.getClass();
     java.util.Map<java.lang.String, java.lang.Boolean> map =
-        internalGetBookmarkedVideosResourceIds();
+        internalGetBookmarkedNewsResourceIds();
     if (!map.containsKey(key)) {
       throw new java.lang.IllegalArgumentException();
     }
     return map.get(key);
   }
   /**
-   * <code>map&lt;string, bool&gt; bookmarked_videos_resource_ids = 15;</code>
+   * <code>map&lt;string, bool&gt; bookmarked_News_resource_ids = 15;</code>
    */
   private java.util.Map<java.lang.String, java.lang.Boolean>
-  getMutableBookmarkedVideosResourceIdsMap() {
-    return internalGetMutableBookmarkedVideosResourceIds();
+  getMutableBookmarkedNewsResourceIdsMap() {
+    return internalGetMutableBookmarkedNewsResourceIds();
   }
 
-  public static final int VIEWED_VIDEOS_RESOURCE_IDS_FIELD_NUMBER = 20;
-  private static final class ViewedVideosResourceIdsDefaultEntryHolder {
+  public static final int VIEWED_NEWS_RESOURCE_IDS_FIELD_NUMBER = 20;
+  private static final class ViewedNewsResourceIdsDefaultEntryHolder {
     static final com.google.protobuf.MapEntryLite<
         java.lang.String, java.lang.Boolean> defaultEntry =
             com.google.protobuf.MapEntryLite
@@ -893,85 +893,85 @@ public  final class UserPreferences extends
                 false);
   }
   private com.google.protobuf.MapFieldLite<
-      java.lang.String, java.lang.Boolean> viewedVideosResourceIds_ =
+      java.lang.String, java.lang.Boolean> viewedNewsResourceIds_ =
           com.google.protobuf.MapFieldLite.emptyMapField();
   private com.google.protobuf.MapFieldLite<java.lang.String, java.lang.Boolean>
-  internalGetViewedVideosResourceIds() {
-    return viewedVideosResourceIds_;
+  internalGetViewedNewsResourceIds() {
+    return viewedNewsResourceIds_;
   }
   private com.google.protobuf.MapFieldLite<java.lang.String, java.lang.Boolean>
-  internalGetMutableViewedVideosResourceIds() {
-    if (!viewedVideosResourceIds_.isMutable()) {
-      viewedVideosResourceIds_ = viewedVideosResourceIds_.mutableCopy();
+  internalGetMutableViewedNewsResourceIds() {
+    if (!viewedNewsResourceIds_.isMutable()) {
+      viewedNewsResourceIds_ = viewedNewsResourceIds_.mutableCopy();
     }
-    return viewedVideosResourceIds_;
+    return viewedNewsResourceIds_;
   }
   @java.lang.Override
 
-  public int getViewedVideosResourceIdsCount() {
-    return internalGetViewedVideosResourceIds().size();
+  public int getViewedNewsResourceIdsCount() {
+    return internalGetViewedNewsResourceIds().size();
   }
   /**
-   * <code>map&lt;string, bool&gt; viewed_videos_resource_ids = 20;</code>
+   * <code>map&lt;string, bool&gt; viewed_News_resource_ids = 20;</code>
    */
   @java.lang.Override
 
-  public boolean containsViewedVideosResourceIds(
+  public boolean containsViewedNewsResourceIds(
       java.lang.String key) {
     java.lang.Class<?> keyClass = key.getClass();
-    return internalGetViewedVideosResourceIds().containsKey(key);
+    return internalGetViewedNewsResourceIds().containsKey(key);
   }
   /**
-   * Use {@link #getViewedVideosResourceIdsMap()} instead.
+   * Use {@link #getViewedNewsResourceIdsMap()} instead.
    */
   @java.lang.Override
   @java.lang.Deprecated
-  public java.util.Map<java.lang.String, java.lang.Boolean> getViewedVideosResourceIds() {
-    return getViewedVideosResourceIdsMap();
+  public java.util.Map<java.lang.String, java.lang.Boolean> getViewedNewsResourceIds() {
+    return getViewedNewsResourceIdsMap();
   }
   /**
-   * <code>map&lt;string, bool&gt; viewed_videos_resource_ids = 20;</code>
+   * <code>map&lt;string, bool&gt; viewed_News_resource_ids = 20;</code>
    */
   @java.lang.Override
 
-  public java.util.Map<java.lang.String, java.lang.Boolean> getViewedVideosResourceIdsMap() {
+  public java.util.Map<java.lang.String, java.lang.Boolean> getViewedNewsResourceIdsMap() {
     return java.util.Collections.unmodifiableMap(
-        internalGetViewedVideosResourceIds());
+        internalGetViewedNewsResourceIds());
   }
   /**
-   * <code>map&lt;string, bool&gt; viewed_videos_resource_ids = 20;</code>
+   * <code>map&lt;string, bool&gt; viewed_News_resource_ids = 20;</code>
    */
   @java.lang.Override
 
-  public boolean getViewedVideosResourceIdsOrDefault(
+  public boolean getViewedNewsResourceIdsOrDefault(
       java.lang.String key,
       boolean defaultValue) {
     java.lang.Class<?> keyClass = key.getClass();
     java.util.Map<java.lang.String, java.lang.Boolean> map =
-        internalGetViewedVideosResourceIds();
+        internalGetViewedNewsResourceIds();
     return map.containsKey(key) ? map.get(key) : defaultValue;
   }
   /**
-   * <code>map&lt;string, bool&gt; viewed_videos_resource_ids = 20;</code>
+   * <code>map&lt;string, bool&gt; viewed_News_resource_ids = 20;</code>
    */
   @java.lang.Override
 
-  public boolean getViewedVideosResourceIdsOrThrow(
+  public boolean getViewedNewsResourceIdsOrThrow(
       java.lang.String key) {
     java.lang.Class<?> keyClass = key.getClass();
     java.util.Map<java.lang.String, java.lang.Boolean> map =
-        internalGetViewedVideosResourceIds();
+        internalGetViewedNewsResourceIds();
     if (!map.containsKey(key)) {
       throw new java.lang.IllegalArgumentException();
     }
     return map.get(key);
   }
   /**
-   * <code>map&lt;string, bool&gt; viewed_videos_resource_ids = 20;</code>
+   * <code>map&lt;string, bool&gt; viewed_News_resource_ids = 20;</code>
    */
   private java.util.Map<java.lang.String, java.lang.Boolean>
-  getMutableViewedVideosResourceIdsMap() {
-    return internalGetMutableViewedVideosResourceIds();
+  getMutableViewedNewsResourceIdsMap() {
+    return internalGetMutableViewedNewsResourceIds();
   }
 
   public static final int THEME_BRAND_FIELD_NUMBER = 16;
@@ -1333,30 +1333,30 @@ public  final class UserPreferences extends
     }
 
     /**
-     * <code>int32 videosResourceChangeListVersion = 6;</code>
-     * @return The videosResourceChangeListVersion.
+     * <code>int32 NewsResourceChangeListVersion = 6;</code>
+     * @return The newsResourceChangeListVersion.
      */
     @java.lang.Override
-    public int getVideosResourceChangeListVersion() {
-      return instance.getVideosResourceChangeListVersion();
+    public int getNewsResourceChangeListVersion() {
+      return instance.getNewsResourceChangeListVersion();
     }
     /**
-     * <code>int32 videosResourceChangeListVersion = 6;</code>
-     * @param value The videosResourceChangeListVersion to set.
+     * <code>int32 NewsResourceChangeListVersion = 6;</code>
+     * @param value The newsResourceChangeListVersion to set.
      * @return This builder for chaining.
      */
-    public Builder setVideosResourceChangeListVersion(int value) {
+    public Builder setNewsResourceChangeListVersion(int value) {
       copyOnWrite();
-      instance.setVideosResourceChangeListVersion(value);
+      instance.setNewsResourceChangeListVersion(value);
       return this;
     }
     /**
-     * <code>int32 videosResourceChangeListVersion = 6;</code>
+     * <code>int32 NewsResourceChangeListVersion = 6;</code>
      * @return This builder for chaining.
      */
-    public Builder clearVideosResourceChangeListVersion() {
+    public Builder clearNewsResourceChangeListVersion() {
       copyOnWrite();
-      instance.clearVideosResourceChangeListVersion();
+      instance.clearNewsResourceChangeListVersion();
       return this;
     }
 
@@ -1642,94 +1642,94 @@ public  final class UserPreferences extends
     }
 
     /**
-     * <code>repeated string deprecated_bookmarked_videos_resource_ids = 11;</code>
-     * @return A list containing the deprecatedBookmarkedVideosResourceIds.
+     * <code>repeated string deprecated_bookmarked_News_resource_ids = 11;</code>
+     * @return A list containing the deprecatedBookmarkedNewsResourceIds.
      */
     @java.lang.Override
     public java.util.List<java.lang.String>
-        getDeprecatedBookmarkedVideosResourceIdsList() {
+        getDeprecatedBookmarkedNewsResourceIdsList() {
       return java.util.Collections.unmodifiableList(
-          instance.getDeprecatedBookmarkedVideosResourceIdsList());
+          instance.getDeprecatedBookmarkedNewsResourceIdsList());
     }
     /**
-     * <code>repeated string deprecated_bookmarked_videos_resource_ids = 11;</code>
-     * @return The count of deprecatedBookmarkedVideosResourceIds.
+     * <code>repeated string deprecated_bookmarked_News_resource_ids = 11;</code>
+     * @return The count of deprecatedBookmarkedNewsResourceIds.
      */
     @java.lang.Override
-    public int getDeprecatedBookmarkedVideosResourceIdsCount() {
-      return instance.getDeprecatedBookmarkedVideosResourceIdsCount();
+    public int getDeprecatedBookmarkedNewsResourceIdsCount() {
+      return instance.getDeprecatedBookmarkedNewsResourceIdsCount();
     }
     /**
-     * <code>repeated string deprecated_bookmarked_videos_resource_ids = 11;</code>
+     * <code>repeated string deprecated_bookmarked_News_resource_ids = 11;</code>
      * @param index The index of the element to return.
-     * @return The deprecatedBookmarkedVideosResourceIds at the given index.
+     * @return The deprecatedBookmarkedNewsResourceIds at the given index.
      */
     @java.lang.Override
-    public java.lang.String getDeprecatedBookmarkedVideosResourceIds(int index) {
-      return instance.getDeprecatedBookmarkedVideosResourceIds(index);
+    public java.lang.String getDeprecatedBookmarkedNewsResourceIds(int index) {
+      return instance.getDeprecatedBookmarkedNewsResourceIds(index);
     }
     /**
-     * <code>repeated string deprecated_bookmarked_videos_resource_ids = 11;</code>
+     * <code>repeated string deprecated_bookmarked_News_resource_ids = 11;</code>
      * @param index The index of the value to return.
-     * @return The bytes of the deprecatedBookmarkedVideosResourceIds at the given index.
+     * @return The bytes of the deprecatedBookmarkedNewsResourceIds at the given index.
      */
     @java.lang.Override
     public com.google.protobuf.ByteString
-        getDeprecatedBookmarkedVideosResourceIdsBytes(int index) {
-      return instance.getDeprecatedBookmarkedVideosResourceIdsBytes(index);
+        getDeprecatedBookmarkedNewsResourceIdsBytes(int index) {
+      return instance.getDeprecatedBookmarkedNewsResourceIdsBytes(index);
     }
     /**
-     * <code>repeated string deprecated_bookmarked_videos_resource_ids = 11;</code>
+     * <code>repeated string deprecated_bookmarked_News_resource_ids = 11;</code>
      * @param index The index to set the value at.
-     * @param value The deprecatedBookmarkedVideosResourceIds to set.
+     * @param value The deprecatedBookmarkedNewsResourceIds to set.
      * @return This builder for chaining.
      */
-    public Builder setDeprecatedBookmarkedVideosResourceIds(
+    public Builder setDeprecatedBookmarkedNewsResourceIds(
         int index, java.lang.String value) {
       copyOnWrite();
-      instance.setDeprecatedBookmarkedVideosResourceIds(index, value);
+      instance.setDeprecatedBookmarkedNewsResourceIds(index, value);
       return this;
     }
     /**
-     * <code>repeated string deprecated_bookmarked_videos_resource_ids = 11;</code>
-     * @param value The deprecatedBookmarkedVideosResourceIds to add.
+     * <code>repeated string deprecated_bookmarked_News_resource_ids = 11;</code>
+     * @param value The deprecatedBookmarkedNewsResourceIds to add.
      * @return This builder for chaining.
      */
-    public Builder addDeprecatedBookmarkedVideosResourceIds(
+    public Builder addDeprecatedBookmarkedNewsResourceIds(
         java.lang.String value) {
       copyOnWrite();
-      instance.addDeprecatedBookmarkedVideosResourceIds(value);
+      instance.addDeprecatedBookmarkedNewsResourceIds(value);
       return this;
     }
     /**
-     * <code>repeated string deprecated_bookmarked_videos_resource_ids = 11;</code>
-     * @param values The deprecatedBookmarkedVideosResourceIds to add.
+     * <code>repeated string deprecated_bookmarked_News_resource_ids = 11;</code>
+     * @param values The deprecatedBookmarkedNewsResourceIds to add.
      * @return This builder for chaining.
      */
-    public Builder addAllDeprecatedBookmarkedVideosResourceIds(
+    public Builder addAllDeprecatedBookmarkedNewsResourceIds(
         java.lang.Iterable<java.lang.String> values) {
       copyOnWrite();
-      instance.addAllDeprecatedBookmarkedVideosResourceIds(values);
+      instance.addAllDeprecatedBookmarkedNewsResourceIds(values);
       return this;
     }
     /**
-     * <code>repeated string deprecated_bookmarked_videos_resource_ids = 11;</code>
+     * <code>repeated string deprecated_bookmarked_News_resource_ids = 11;</code>
      * @return This builder for chaining.
      */
-    public Builder clearDeprecatedBookmarkedVideosResourceIds() {
+    public Builder clearDeprecatedBookmarkedNewsResourceIds() {
       copyOnWrite();
-      instance.clearDeprecatedBookmarkedVideosResourceIds();
+      instance.clearDeprecatedBookmarkedNewsResourceIds();
       return this;
     }
     /**
-     * <code>repeated string deprecated_bookmarked_videos_resource_ids = 11;</code>
-     * @param value The bytes of the deprecatedBookmarkedVideosResourceIds to add.
+     * <code>repeated string deprecated_bookmarked_News_resource_ids = 11;</code>
+     * @param value The bytes of the deprecatedBookmarkedNewsResourceIds to add.
      * @return This builder for chaining.
      */
-    public Builder addDeprecatedBookmarkedVideosResourceIdsBytes(
+    public Builder addDeprecatedBookmarkedNewsResourceIdsBytes(
         com.google.protobuf.ByteString value) {
       copyOnWrite();
-      instance.addDeprecatedBookmarkedVideosResourceIdsBytes(value);
+      instance.addDeprecatedBookmarkedNewsResourceIdsBytes(value);
       return this;
     }
 
@@ -1994,197 +1994,197 @@ public  final class UserPreferences extends
 
     @java.lang.Override
 
-    public int getBookmarkedVideosResourceIdsCount() {
-      return instance.getBookmarkedVideosResourceIdsMap().size();
+    public int getBookmarkedNewsResourceIdsCount() {
+      return instance.getBookmarkedNewsResourceIdsMap().size();
     }
     /**
-     * <code>map&lt;string, bool&gt; bookmarked_videos_resource_ids = 15;</code>
+     * <code>map&lt;string, bool&gt; bookmarked_News_resource_ids = 15;</code>
      */
     @java.lang.Override
 
-    public boolean containsBookmarkedVideosResourceIds(
+    public boolean containsBookmarkedNewsResourceIds(
         java.lang.String key) {
       java.lang.Class<?> keyClass = key.getClass();
-      return instance.getBookmarkedVideosResourceIdsMap().containsKey(key);
+      return instance.getBookmarkedNewsResourceIdsMap().containsKey(key);
     }
 
-    public Builder clearBookmarkedVideosResourceIds() {
+    public Builder clearBookmarkedNewsResourceIds() {
       copyOnWrite();
-      instance.getMutableBookmarkedVideosResourceIdsMap().clear();
+      instance.getMutableBookmarkedNewsResourceIdsMap().clear();
       return this;
     }
     /**
-     * <code>map&lt;string, bool&gt; bookmarked_videos_resource_ids = 15;</code>
+     * <code>map&lt;string, bool&gt; bookmarked_News_resource_ids = 15;</code>
      */
 
-    public Builder removeBookmarkedVideosResourceIds(
+    public Builder removeBookmarkedNewsResourceIds(
         java.lang.String key) {
       java.lang.Class<?> keyClass = key.getClass();
       copyOnWrite();
-      instance.getMutableBookmarkedVideosResourceIdsMap().remove(key);
+      instance.getMutableBookmarkedNewsResourceIdsMap().remove(key);
       return this;
     }
     /**
-     * Use {@link #getBookmarkedVideosResourceIdsMap()} instead.
+     * Use {@link #getBookmarkedNewsResourceIdsMap()} instead.
      */
     @java.lang.Override
     @java.lang.Deprecated
-    public java.util.Map<java.lang.String, java.lang.Boolean> getBookmarkedVideosResourceIds() {
-      return getBookmarkedVideosResourceIdsMap();
+    public java.util.Map<java.lang.String, java.lang.Boolean> getBookmarkedNewsResourceIds() {
+      return getBookmarkedNewsResourceIdsMap();
     }
     /**
-     * <code>map&lt;string, bool&gt; bookmarked_videos_resource_ids = 15;</code>
+     * <code>map&lt;string, bool&gt; bookmarked_News_resource_ids = 15;</code>
      */
     @java.lang.Override
-    public java.util.Map<java.lang.String, java.lang.Boolean> getBookmarkedVideosResourceIdsMap() {
+    public java.util.Map<java.lang.String, java.lang.Boolean> getBookmarkedNewsResourceIdsMap() {
       return java.util.Collections.unmodifiableMap(
-          instance.getBookmarkedVideosResourceIdsMap());
+          instance.getBookmarkedNewsResourceIdsMap());
     }
     /**
-     * <code>map&lt;string, bool&gt; bookmarked_videos_resource_ids = 15;</code>
+     * <code>map&lt;string, bool&gt; bookmarked_News_resource_ids = 15;</code>
      */
     @java.lang.Override
 
-    public boolean getBookmarkedVideosResourceIdsOrDefault(
+    public boolean getBookmarkedNewsResourceIdsOrDefault(
         java.lang.String key,
         boolean defaultValue) {
       java.lang.Class<?> keyClass = key.getClass();
       java.util.Map<java.lang.String, java.lang.Boolean> map =
-          instance.getBookmarkedVideosResourceIdsMap();
+          instance.getBookmarkedNewsResourceIdsMap();
       return map.containsKey(key) ? map.get(key) : defaultValue;
     }
     /**
-     * <code>map&lt;string, bool&gt; bookmarked_videos_resource_ids = 15;</code>
+     * <code>map&lt;string, bool&gt; bookmarked_News_resource_ids = 15;</code>
      */
     @java.lang.Override
 
-    public boolean getBookmarkedVideosResourceIdsOrThrow(
+    public boolean getBookmarkedNewsResourceIdsOrThrow(
         java.lang.String key) {
       java.lang.Class<?> keyClass = key.getClass();
       java.util.Map<java.lang.String, java.lang.Boolean> map =
-          instance.getBookmarkedVideosResourceIdsMap();
+          instance.getBookmarkedNewsResourceIdsMap();
       if (!map.containsKey(key)) {
         throw new java.lang.IllegalArgumentException();
       }
       return map.get(key);
     }
     /**
-     * <code>map&lt;string, bool&gt; bookmarked_videos_resource_ids = 15;</code>
+     * <code>map&lt;string, bool&gt; bookmarked_News_resource_ids = 15;</code>
      */
-    public Builder putBookmarkedVideosResourceIds(
+    public Builder putBookmarkedNewsResourceIds(
         java.lang.String key,
         boolean value) {
       java.lang.Class<?> keyClass = key.getClass();
 
       copyOnWrite();
-      instance.getMutableBookmarkedVideosResourceIdsMap().put(key, value);
+      instance.getMutableBookmarkedNewsResourceIdsMap().put(key, value);
       return this;
     }
     /**
-     * <code>map&lt;string, bool&gt; bookmarked_videos_resource_ids = 15;</code>
+     * <code>map&lt;string, bool&gt; bookmarked_News_resource_ids = 15;</code>
      */
-    public Builder putAllBookmarkedVideosResourceIds(
+    public Builder putAllBookmarkedNewsResourceIds(
         java.util.Map<java.lang.String, java.lang.Boolean> values) {
       copyOnWrite();
-      instance.getMutableBookmarkedVideosResourceIdsMap().putAll(values);
+      instance.getMutableBookmarkedNewsResourceIdsMap().putAll(values);
       return this;
     }
 
     @java.lang.Override
 
-    public int getViewedVideosResourceIdsCount() {
-      return instance.getViewedVideosResourceIdsMap().size();
+    public int getViewedNewsResourceIdsCount() {
+      return instance.getViewedNewsResourceIdsMap().size();
     }
     /**
-     * <code>map&lt;string, bool&gt; viewed_videos_resource_ids = 20;</code>
+     * <code>map&lt;string, bool&gt; viewed_News_resource_ids = 20;</code>
      */
     @java.lang.Override
 
-    public boolean containsViewedVideosResourceIds(
+    public boolean containsViewedNewsResourceIds(
         java.lang.String key) {
       java.lang.Class<?> keyClass = key.getClass();
-      return instance.getViewedVideosResourceIdsMap().containsKey(key);
+      return instance.getViewedNewsResourceIdsMap().containsKey(key);
     }
 
-    public Builder clearViewedVideosResourceIds() {
+    public Builder clearViewedNewsResourceIds() {
       copyOnWrite();
-      instance.getMutableViewedVideosResourceIdsMap().clear();
+      instance.getMutableViewedNewsResourceIdsMap().clear();
       return this;
     }
     /**
-     * <code>map&lt;string, bool&gt; viewed_videos_resource_ids = 20;</code>
+     * <code>map&lt;string, bool&gt; viewed_News_resource_ids = 20;</code>
      */
 
-    public Builder removeViewedVideosResourceIds(
+    public Builder removeViewedNewsResourceIds(
         java.lang.String key) {
       java.lang.Class<?> keyClass = key.getClass();
       copyOnWrite();
-      instance.getMutableViewedVideosResourceIdsMap().remove(key);
+      instance.getMutableViewedNewsResourceIdsMap().remove(key);
       return this;
     }
     /**
-     * Use {@link #getViewedVideosResourceIdsMap()} instead.
+     * Use {@link #getViewedNewsResourceIdsMap()} instead.
      */
     @java.lang.Override
     @java.lang.Deprecated
-    public java.util.Map<java.lang.String, java.lang.Boolean> getViewedVideosResourceIds() {
-      return getViewedVideosResourceIdsMap();
+    public java.util.Map<java.lang.String, java.lang.Boolean> getViewedNewsResourceIds() {
+      return getViewedNewsResourceIdsMap();
     }
     /**
-     * <code>map&lt;string, bool&gt; viewed_videos_resource_ids = 20;</code>
+     * <code>map&lt;string, bool&gt; viewed_News_resource_ids = 20;</code>
      */
     @java.lang.Override
-    public java.util.Map<java.lang.String, java.lang.Boolean> getViewedVideosResourceIdsMap() {
+    public java.util.Map<java.lang.String, java.lang.Boolean> getViewedNewsResourceIdsMap() {
       return java.util.Collections.unmodifiableMap(
-          instance.getViewedVideosResourceIdsMap());
+          instance.getViewedNewsResourceIdsMap());
     }
     /**
-     * <code>map&lt;string, bool&gt; viewed_videos_resource_ids = 20;</code>
+     * <code>map&lt;string, bool&gt; viewed_News_resource_ids = 20;</code>
      */
     @java.lang.Override
 
-    public boolean getViewedVideosResourceIdsOrDefault(
+    public boolean getViewedNewsResourceIdsOrDefault(
         java.lang.String key,
         boolean defaultValue) {
       java.lang.Class<?> keyClass = key.getClass();
       java.util.Map<java.lang.String, java.lang.Boolean> map =
-          instance.getViewedVideosResourceIdsMap();
+          instance.getViewedNewsResourceIdsMap();
       return map.containsKey(key) ? map.get(key) : defaultValue;
     }
     /**
-     * <code>map&lt;string, bool&gt; viewed_videos_resource_ids = 20;</code>
+     * <code>map&lt;string, bool&gt; viewed_News_resource_ids = 20;</code>
      */
     @java.lang.Override
 
-    public boolean getViewedVideosResourceIdsOrThrow(
+    public boolean getViewedNewsResourceIdsOrThrow(
         java.lang.String key) {
       java.lang.Class<?> keyClass = key.getClass();
       java.util.Map<java.lang.String, java.lang.Boolean> map =
-          instance.getViewedVideosResourceIdsMap();
+          instance.getViewedNewsResourceIdsMap();
       if (!map.containsKey(key)) {
         throw new java.lang.IllegalArgumentException();
       }
       return map.get(key);
     }
     /**
-     * <code>map&lt;string, bool&gt; viewed_videos_resource_ids = 20;</code>
+     * <code>map&lt;string, bool&gt; viewed_News_resource_ids = 20;</code>
      */
-    public Builder putViewedVideosResourceIds(
+    public Builder putViewedNewsResourceIds(
         java.lang.String key,
         boolean value) {
       java.lang.Class<?> keyClass = key.getClass();
 
       copyOnWrite();
-      instance.getMutableViewedVideosResourceIdsMap().put(key, value);
+      instance.getMutableViewedNewsResourceIdsMap().put(key, value);
       return this;
     }
     /**
-     * <code>map&lt;string, bool&gt; viewed_videos_resource_ids = 20;</code>
+     * <code>map&lt;string, bool&gt; viewed_News_resource_ids = 20;</code>
      */
-    public Builder putAllViewedVideosResourceIds(
+    public Builder putAllViewedNewsResourceIds(
         java.util.Map<java.lang.String, java.lang.Boolean> values) {
       copyOnWrite();
-      instance.getMutableViewedVideosResourceIdsMap().putAll(values);
+      instance.getMutableViewedNewsResourceIdsMap().putAll(values);
       return this;
     }
 
@@ -2355,25 +2355,25 @@ public  final class UserPreferences extends
             "deprecatedIntFollowedTopicIds_",
             "topicChangeListVersion_",
             "authorChangeListVersion_",
-            "videosResourceChangeListVersion_",
+            "newsResourceChangeListVersion_",
             "deprecatedIntFollowedAuthorIds_",
             "hasDoneIntToStringIdMigration_",
             "deprecatedFollowedTopicIds_",
             "deprecatedFollowedAuthorIds_",
-            "deprecatedBookmarkedVideosResourceIds_",
+            "deprecatedBookmarkedNewsResourceIds_",
             "hasDoneListToMapMigration_",
             "followedTopicIds_",
             FollowedTopicIdsDefaultEntryHolder.defaultEntry,
             "followedAuthorIds_",
             FollowedAuthorIdsDefaultEntryHolder.defaultEntry,
-            "bookmarkedVideosResourceIds_",
-            BookmarkedVideosResourceIdsDefaultEntryHolder.defaultEntry,
+            "bookmarkedNewsResourceIds_",
+            BookmarkedNewsResourceIdsDefaultEntryHolder.defaultEntry,
             "themeBrand_",
             "darkThemeConfig_",
             "shouldHideOnboarding_",
             "useDynamicColor_",
-            "viewedVideosResourceIds_",
-            ViewedVideosResourceIdsDefaultEntryHolder.defaultEntry,
+            "viewedNewsResourceIds_",
+            ViewedNewsResourceIdsDefaultEntryHolder.defaultEntry,
           };
           java.lang.String info =
               "\u0000\u0012\u0000\u0000\u0001\u0014\u0012\u0004\u0005\u0000\u0001\'\u0003\u0004" +

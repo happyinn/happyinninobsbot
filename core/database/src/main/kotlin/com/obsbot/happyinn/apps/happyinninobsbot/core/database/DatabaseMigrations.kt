@@ -22,7 +22,7 @@ internal object DatabaseMigrations {
     class Schema2to3 : AutoMigrationSpec
 
     @DeleteColumn(
-        tableName = "videos_resources",
+        tableName = "News_resources",
         columnName = "episode_id",
     )
     @DeleteTable.Entries(
@@ -37,7 +37,7 @@ internal object DatabaseMigrations {
 
     @DeleteTable.Entries(
         DeleteTable(
-            tableName = "videos_resources_authors",
+            tableName = "News_resources_authors",
         ),
         DeleteTable(
             tableName = "authors",
@@ -45,3 +45,4 @@ internal object DatabaseMigrations {
     )
     class Schema11to12 : AutoMigrationSpec
 }
+

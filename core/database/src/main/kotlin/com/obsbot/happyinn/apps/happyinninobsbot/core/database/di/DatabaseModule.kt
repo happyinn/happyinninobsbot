@@ -2,7 +2,7 @@ package com.obsbot.happyinn.apps.happyinninobsbot.core.database.di
 
 import android.content.Context
 import androidx.room.Room
-import com.obsbot.happyinn.apps.happyinninobsbot.core.database.NiaDatabase
+import com.obsbot.happyinn.apps.happyinninobsbot.core.database.HioDatabase
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -20,15 +20,15 @@ internal object DatabaseModule {
      * 提供 Nia 数据库单例实例
      *
      * @param context 应用上下文
-     * @return NiaDatabase 数据库实例
+     * @return HioDatabase 数据库实例
      */
     @Provides
     @Singleton
     fun providesNiaDatabase(
         @ApplicationContext context: Context,
-    ): NiaDatabase = Room.databaseBuilder(
+    ): HioDatabase = Room.databaseBuilder(
         context,
-        NiaDatabase::class.java,
+        HioDatabase::class.java,
         "nia-database",
     ).build()
 }

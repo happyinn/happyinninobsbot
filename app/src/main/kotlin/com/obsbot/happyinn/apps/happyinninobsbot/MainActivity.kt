@@ -7,12 +7,9 @@ import androidx.activity.SystemBarStyle
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import androidx.activity.viewModels
-import androidx.compose.material3.Text
-import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
-import androidx.compose.ui.Modifier
 import androidx.compose.ui.util.trace
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import androidx.lifecycle.Lifecycle
@@ -23,7 +20,7 @@ import com.obsbot.happyinn.apps.happyinninobsbot.core.designsystem.theme.HioThem
 import com.obsbot.happyinn.apps.happyinninobsbot.util.isSystemInDarkTheme
 import dagger.hilt.android.AndroidEntryPoint
 import com.obsbot.happyinn.apps.happyinninobsbot.MainActivityUiState.Loading
-import com.obsbot.happyinn.apps.happyinninobsbot.core.data.repository.UserVideosResourceRepository
+import com.obsbot.happyinn.apps.happyinninobsbot.core.data.repository.UserNewsResourceRepository
 import com.obsbot.happyinn.apps.happyinninobsbot.core.data.util.NetworkMonitor
 import com.obsbot.happyinn.apps.happyinninobsbot.core.data.util.TimeZoneMonitor
 import com.obsbot.happyinn.apps.happyinninobsbot.ui.HioApp
@@ -41,13 +38,13 @@ import javax.inject.Inject
 class MainActivity : ComponentActivity() {
 
     /**
-     * 延迟注入 JankStats，用于在整个应用中跟踪卡顿情况
+     * 延迟注入 JankStats，用于在整个应用中跟踪卡顿情�?
      */
 /*    @Inject
     lateinit var lazyStats: dagger.Lazy<JankStats>*/
 
     /**
-     * 网络监控器，用于监控网络连接状态
+     * 网络监控器，用于监控网络连接状�?
      */
     @Inject
     lateinit var networkMonitor: NetworkMonitor
@@ -68,11 +65,11 @@ class MainActivity : ComponentActivity() {
      * 用户新闻资源仓库，用于管理用户相关的新闻内容
      */
     @Inject
-    lateinit var userVideosResourceRepository: UserVideosResourceRepository
+    lateinit var userNewsResourceRepository: UserNewsResourceRepository
 
 
     /**
-     * 主 Activity 的 ViewModel，用于管理 UI 状态
+     * �?Activity �?ViewModel，用于管�?UI 状�?
      */
     private val viewModel: MainActivityViewModel by viewModels()
 
@@ -81,8 +78,8 @@ class MainActivity : ComponentActivity() {
         val splashScreen = installSplashScreen()
         super.onCreate(savedInstanceState)
 
-        // 我们将其保持为可变状态，以便在组合中跟踪变化。
-        // 这允许我们对深色/浅色模式变化做出反应。
+        // 我们将其保持为可变状态，以便在组合中跟踪变化�?
+        // 这允许我们对深色/浅色模式变化做出反应�?
         var themeSettings by mutableStateOf(
             ThemeSettings(
                 darkTheme = resources.configuration.isSystemInDarkTheme,
@@ -91,21 +88,21 @@ class MainActivity : ComponentActivity() {
             ),
         )
 
-        //TODO 待深入学习
+        //TODO 待深入学�?
         /**
         * - lifecycleScope ：Activity的生命周期作用域，确保协程在Activity销毁时自动取消
-        - launch ：启动新的协程进行异步操作
-        - repeatOnLifecycle(Lifecycle.State.STARTED) ：这是Android推荐的最佳实践，确保：
+        - launch ：启动新的协程进行异步操�?
+        - repeatOnLifecycle(Lifecycle.State.STARTED) ：这是Android推荐的最佳实践，确保�?
         - 仅在Activity处于STARTED状态时执行和收集流
         - 在Activity进入STOPPED状态时自动暂停收集
-        - 在Activity恢复到STARTED状态时重新开始收集
-        - 有效避免内存泄漏和不必要的后台处理
+        - 在Activity恢复到STARTED状态时重新开始收�?
+        - 有效避免内存泄漏和不必要的后台处�?
         */
         lifecycleScope.launch {
             // 流操作和收集逻辑
             lifecycle.repeatOnLifecycle(Lifecycle.State.STARTED){
                 /**
-                 * - combine ：组合两个流（系统深色主题状态流和ViewModel中的UI状态流）
+                 * - combine ：组合两个流（系统深色主题状态流和ViewModel中的UI状态流�?
                  *
                  * - 当任一输入流发出新值时，组合函数会执行并发出新的结果
                  * - ThemeSettings ：一个数据类，用于封装完整的主题配置
@@ -131,7 +128,7 @@ class MainActivity : ComponentActivity() {
                 }
                     .catch { exception ->
                         // 处理潜在异常
-                        Log.e("MainActivity", "主题流组合失败", exception)
+                        Log.e("MainActivity", "主题流组合失�?, exception")
                         // 提供默认主题设置
                         emit(ThemeSettings(darkTheme = resources.configuration.isSystemInDarkTheme, androidTheme = true, disableDynamicTheming = false))
                     }
@@ -141,25 +138,25 @@ class MainActivity : ComponentActivity() {
                     .distinctUntilChanged()
                     .collect {
                         /**
-                         * - trace ：使用AndroidX Tracing API标记代码块，用于性能分析和调试
+                         * - trace ：使用AndroidX Tracing API标记代码块，用于性能分析和调�?
                          *
-                         * - 有助于在性能分析工具中识别和监控此代码块的执行情况
-                         * - enableEdgeToEdge ：启用边缘到边缘显示效果，允许内容延伸到系统UI区域（状态栏和导航栏）
-                         * - SystemBarStyle.auto ：根据条件自动选择合适的系统栏样式
+                         * - 有助于在性能分析工具中识别和监控此代码块的执行情�?
+                         * - enableEdgeToEdge ：启用边缘到边缘显示效果，允许内容延伸到系统UI区域（状态栏和导航栏�?
+                         * - SystemBarStyle.auto ：根据条件自动选择合适的系统栏样�?
                          *
-                         * - 接收浅色和深色两种样式参数
-                         * - 最后一个lambda参数（ { darkTheme } ）决定使用哪种样式
+                         * - 接收浅色和深色两种样式参�?
+                         * - 最后一个lambda参数�?{ darkTheme } ）决定使用哪种样�?
                          * - 状态栏特殊处理 ：使用完全透明的scrim ( Color.TRANSPARENT )
                          *
                          * - 这使得状态栏背景完全透明，让内容可以无缝延伸
-                         * - 导航栏处理 ：使用预定义的半透明scrim值
+                         * - 导航栏处�?：使用预定义的半透明scrim�?
                          *
-                         * - lightScrim ： Color.argb(0xe6, 0xFF, 0xFF, 0xFF) - 89.4%不透明的白色
-                         * - darkScrim ： Color.argb(0x80, 0x1b, 0x1b, 0x1b) - 50%不透明的深灰色
+                         * - lightScrim �?Color.argb(0xe6, 0xFF, 0xFF, 0xFF) - 89.4%不透明的白�?
+                         * - darkScrim �?Color.argb(0x80, 0x1b, 0x1b, 0x1b) - 50%不透明的深灰色
                          * */
                         darkTheme ->
                         trace("hioEdgeToEdge"){
-                            //TODO 该方法有待深入了解
+                            //TODO 该方法有待深入了�?
                             enableEdgeToEdge(
                                 statusBarStyle = SystemBarStyle.auto(
                                     lightScrim = android.graphics.Color.TRANSPARENT,
@@ -178,7 +175,7 @@ class MainActivity : ComponentActivity() {
             }
 
             // 保持启动画面显示直到 UI 状态加载完成。这个条件在每次应用需要重绘时都会被评估，
-            // 所以应该快速执行以避免阻塞 UI。
+            // 所以应该快速执行以避免阻塞 UI�?
             splashScreen.setKeepOnScreenCondition { viewModel.uiState.value.shouldKeepSplashScreen() }
         }
 
@@ -187,11 +184,11 @@ class MainActivity : ComponentActivity() {
             // 记住应用状态，包括网络监控、用户新闻资源和时区监控
             val appState = rememberHioAppState(
                 networkMonitor = networkMonitor,
-                userVideosResourceRepository = userVideosResourceRepository,
+                userNewsResourceRepository = userNewsResourceRepository,
                 timeZoneMonitor = timeZoneMonitor,
             )
 
-            // 收集当前时区状态
+            // 收集当前时区状�?
             val currentTimeZone by appState.currentTimeZone.collectAsStateWithLifecycle()
 
 
@@ -201,11 +198,28 @@ class MainActivity : ComponentActivity() {
                 androidTheme = themeSettings.androidTheme,
                 disableDynamicTheming = themeSettings.disableDynamicTheming,
             ){
-                // 显示主应用界面
+                // 显示主应用界�?
                 HioApp(appState)
             }
         }
     }
+
+    /**
+     * Activity 恢复时启用卡顿统计跟踪
+     */
+    override fun onResume() {
+        super.onResume()
+//        lazyStats.get().isTrackingEnabled = true
+    }
+
+    /**
+     * Activity 暂停时禁用卡顿统计跟踪
+     */
+    override fun onPause() {
+        super.onPause()
+//        lazyStats.get().isTrackingEnabled = false
+    }
+
 }
 
 
@@ -225,8 +239,8 @@ private val darkScrim = android.graphics.Color.argb(0x80, 0x1b, 0x1b, 0x1b)
 
 
 /**
- * 系统主题设置类。
- * 这个包装类允许我们将所有变化组合在一起，防止不必要的重新组合。
+ * 系统主题设置类�?
+ * 这个包装类允许我们将所有变化组合在一起，防止不必要的重新组合�?
  */
 data class ThemeSettings(
     val darkTheme: Boolean,

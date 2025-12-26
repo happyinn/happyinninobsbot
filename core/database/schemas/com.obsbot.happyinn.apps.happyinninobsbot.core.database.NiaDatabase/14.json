@@ -1,11 +1,11 @@
-{
+﻿{
   "formatVersion": 1,
   "database": {
     "version": 14,
     "identityHash": "69717f7a51996659fd9dbe1ebd0dcecb",
     "entities": [
       {
-        "tableName": "videos_resources",
+        "tableName": "News_resources",
         "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` TEXT NOT NULL, `title` TEXT NOT NULL, `content` TEXT NOT NULL, `url` TEXT NOT NULL, `header_image_url` TEXT, `publish_date` INTEGER NOT NULL, `type` TEXT NOT NULL, PRIMARY KEY(`id`))",
         "fields": [
           {
@@ -58,12 +58,12 @@
         }
       },
       {
-        "tableName": "videos_resources_topics",
-        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`videos_resource_id` TEXT NOT NULL, `topic_id` TEXT NOT NULL, PRIMARY KEY(`videos_resource_id`, `topic_id`), FOREIGN KEY(`videos_resource_id`) REFERENCES `videos_resources`(`id`) ON UPDATE NO ACTION ON DELETE CASCADE , FOREIGN KEY(`topic_id`) REFERENCES `topics`(`id`) ON UPDATE NO ACTION ON DELETE CASCADE )",
+        "tableName": "News_resources_topics",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`News_resource_id` TEXT NOT NULL, `topic_id` TEXT NOT NULL, PRIMARY KEY(`News_resource_id`, `topic_id`), FOREIGN KEY(`News_resource_id`) REFERENCES `News_resources`(`id`) ON UPDATE NO ACTION ON DELETE CASCADE , FOREIGN KEY(`topic_id`) REFERENCES `topics`(`id`) ON UPDATE NO ACTION ON DELETE CASCADE )",
         "fields": [
           {
-            "fieldPath": "videosResourceId",
-            "columnName": "videos_resource_id",
+            "fieldPath": "NewsResourceId",
+            "columnName": "News_resource_id",
             "affinity": "TEXT",
             "notNull": true
           },
@@ -77,37 +77,37 @@
         "primaryKey": {
           "autoGenerate": false,
           "columnNames": [
-            "videos_resource_id",
+            "News_resource_id",
             "topic_id"
           ]
         },
         "indices": [
           {
-            "name": "index_videos_resources_topics_videos_resource_id",
+            "name": "index_News_resources_topics_News_resource_id",
             "unique": false,
             "columnNames": [
-              "videos_resource_id"
+              "News_resource_id"
             ],
             "orders": [],
-            "createSql": "CREATE INDEX IF NOT EXISTS `index_videos_resources_topics_videos_resource_id` ON `${TABLE_NAME}` (`videos_resource_id`)"
+            "createSql": "CREATE INDEX IF NOT EXISTS `index_News_resources_topics_News_resource_id` ON `${TABLE_NAME}` (`News_resource_id`)"
           },
           {
-            "name": "index_videos_resources_topics_topic_id",
+            "name": "index_News_resources_topics_topic_id",
             "unique": false,
             "columnNames": [
               "topic_id"
             ],
             "orders": [],
-            "createSql": "CREATE INDEX IF NOT EXISTS `index_videos_resources_topics_topic_id` ON `${TABLE_NAME}` (`topic_id`)"
+            "createSql": "CREATE INDEX IF NOT EXISTS `index_News_resources_topics_topic_id` ON `${TABLE_NAME}` (`topic_id`)"
           }
         ],
         "foreignKeys": [
           {
-            "table": "videos_resources",
+            "table": "News_resources",
             "onDelete": "CASCADE",
             "onUpdate": "NO ACTION",
             "columns": [
-              "videos_resource_id"
+              "News_resource_id"
             ],
             "referencedColumns": [
               "id"
@@ -127,12 +127,12 @@
         ]
       },
       {
-        "tableName": "videosResourcesFts",
-        "createSql": "CREATE VIRTUAL TABLE IF NOT EXISTS `${TABLE_NAME}` USING FTS4(`videosResourceId` TEXT NOT NULL, `title` TEXT NOT NULL, `content` TEXT NOT NULL)",
+        "tableName": "NewsResourcesFts",
+        "createSql": "CREATE VIRTUAL TABLE IF NOT EXISTS `${TABLE_NAME}` USING FTS4(`NewsResourceId` TEXT NOT NULL, `title` TEXT NOT NULL, `content` TEXT NOT NULL)",
         "fields": [
           {
-            "fieldPath": "videosResourceId",
-            "columnName": "videosResourceId",
+            "fieldPath": "NewsResourceId",
+            "columnName": "NewsResourceId",
             "affinity": "TEXT",
             "notNull": true
           },

@@ -58,6 +58,8 @@
             <option value="$PROJECT_DIR$/feature/topic" />
             <option value="$PROJECT_DIR$/feature/topic/api" />
             <option value="$PROJECT_DIR$/feature/topic/impl" />
+            <option value="$PROJECT_DIR$/sync" />
+            <option value="$PROJECT_DIR$/sync/work" />
           </set>
         </option>
       </GradleProjectSettings>

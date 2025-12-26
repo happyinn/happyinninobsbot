@@ -9,8 +9,8 @@ android {
 }
 
 dependencies {
-//    implementation(projects.core.domain)
-//    implementation(projects.feature.topic.api)
+    implementation(projects.core.domain)
+    implementation(projects.feature.topic.api)
     implementation(projects.feature.interests.api)
     implementation(libs.androidx.compose.material3)
     implementation(libs.androidx.compose.material3.adaptive)

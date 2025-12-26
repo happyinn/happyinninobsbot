@@ -16,40 +16,40 @@ import androidx.core.app.NotificationCompat
 import androidx.core.app.NotificationCompat.InboxStyle
 import androidx.core.app.NotificationManagerCompat
 import androidx.core.net.toUri
-import com.obsbot.happyinn.apps.happyinninobsbot.core.model.data.VideosResource
+import com.obsbot.happyinn.apps.happyinninobsbot.core.model.data.NewsResource
 import dagger.hilt.android.qualifiers.ApplicationContext
 import javax.inject.Inject
 import javax.inject.Singleton
-//TODO 待细看
+//TODO 待细�?
 // 通知相关常量定义
 // 最大通知数量限制
 private const val MAX_NUM_NOTIFICATIONS = 5
-// 目标Activity名称（点击通知打开的Activity）
+// 目标Activity名称（点击通知打开的Activity�?
 private const val TARGET_ACTIVITY_NAME = "com.obsbot.happyinn.apps.happyinninobsbot.MainActivity"
-// 视频通知请求码
-private const val VIDEOS_NOTIFICATION_REQUEST_CODE = 0
-// 视频通知摘要ID
-private const val VIDEOS_NOTIFICATION_SUMMARY_ID = 1
-// 视频通知渠道ID
-private const val VIDEOS_NOTIFICATION_CHANNEL_ID = ""
-// 视频通知组ID
-private const val VIDEOS_NOTIFICATION_GROUP = "VIDEOS_NOTIFICATIONS"
-// 深度链接的协议和主机名
+// 新闻通知请求�?
+private const val News_NOTIFICATION_REQUEST_CODE = 0
+// 新闻通知摘要ID
+private const val News_NOTIFICATION_SUMMARY_ID = 1
+// 新闻通知渠道ID
+private const val News_NOTIFICATION_CHANNEL_ID = ""
+// 新闻通知组ID
+private const val News_NOTIFICATION_GROUP = "News_NOTIFICATIONS"
+// 深度链接的协议和主机�?
 private const val DEEP_LINK_SCHEME_AND_HOST = "https://www.nowinandroid.apps.samples.google.com"
-// 深度链接的路径部分
+// 深度链接的路径部�?
 private const val DEEP_LINK_FOR_YOU_PATH = "foryou"
 // 深度链接的基础路径
 private const val DEEP_LINK_BASE_PATH = "$DEEP_LINK_SCHEME_AND_HOST/$DEEP_LINK_FOR_YOU_PATH"
-// 深度链接中视频资源ID的键名
-const val DEEP_LINK_VIDEOS_RESOURCE_ID_KEY = "linkedVideosResourceId"
+// 深度链接中新闻资源ID的键�?
+const val DEEP_LINK_News_RESOURCE_ID_KEY = "linkedNewsResourceId"
 // 深度链接URI模式
-const val DEEP_LINK_URI_PATTERN = "$DEEP_LINK_BASE_PATH/{$DEEP_LINK_VIDEOS_RESOURCE_ID_KEY}"
+const val DEEP_LINK_URI_PATTERN = "$DEEP_LINK_BASE_PATH/{$DEEP_LINK_News_RESOURCE_ID_KEY}"
 
 /**
- * [Notifier]接口的系统托盘通知实现类
+ * [Notifier]接口的系统托盘通知实现�?
  * 
- * 负责在Android系统托盘中显示通知，特别是视频资源相关的通知。
- * 支持批量通知管理、通知分组以及点击通知后的深度链接导航。
+ * 负责在Android系统托盘中显示通知，特别是新闻资源相关的通知�?
+ * 支持批量通知管理、通知分组以及点击通知后的深度链接导航�?
  */
 @Singleton
 internal class SystemTrayNotifier @Inject constructor(
@@ -58,51 +58,51 @@ internal class SystemTrayNotifier @Inject constructor(
 ) : Notifier {
 
     /**
-     * 发布视频资源通知
+     * 发布新闻资源通知
      * 
-     * @param videosResources 视频资源列表，将为每个资源创建一个通知
+     * @param newsResources 新闻资源列表，将为每个资源创建一个通知
      */
-    override fun postVideosNotifications(
-        videosResources: List<VideosResource>,
+    override fun postNewsNotifications(
+        newsResources: List<NewsResource>,
     ) = with(context) {
-        // 检查是否有发布通知的权限
+        // 检查是否有发布通知的权�?
         if (checkSelfPermission(this, permission.POST_NOTIFICATIONS) != PERMISSION_GRANTED) {
             return
         }
 
-        // 限制通知数量，只取前MAX_NUM_NOTIFICATIONS个视频资源
-        val truncatedVideosResources = videosResources.take(MAX_NUM_NOTIFICATIONS)
+        // 限制通知数量，只取前MAX_NUM_NOTIFICATIONS个新闻资�?
+        val truncatedNewsResources = newsResources.take(MAX_NUM_NOTIFICATIONS)
 
-        // 为每个视频资源创建对应的通知
-        val videosNotifications = truncatedVideosResources.map { videosResource ->
-            createVideosNotification {
+        // 为每个新闻资源创建对应的通知
+        val newsNotifications = truncatedNewsResources.map { newsResource ->
+            createNewsNotification {
                 // 设置通知图标
                 setSmallIcon(R.drawable.core_notifications_ic_nia_notification)
-                // 设置通知标题为视频标题
-                .setContentTitle(videosResource.title)
-                // 设置通知内容为视频内容摘要
-                .setContentText(videosResource.content)
+                // 设置通知标题为新闻标�?
+                .setContentTitle(newsResource.title)
+                // 设置通知内容为新闻内容摘�?
+                .setContentText(newsResource.content)
                 // 设置点击通知后的跳转意图
-                .setContentIntent(videosPendingIntent(videosResource))
+                .setContentIntent(newsPendingIntent(newsResource))
                 // 设置通知组，用于将相关通知分组显示
-                .setGroup(VIDEOS_NOTIFICATION_GROUP)
+                .setGroup(News_NOTIFICATION_GROUP)
                 // 设置点击后自动取消通知
                 .setAutoCancel(true)
             }
         }
         
         // 创建摘要通知，用于在通知组折叠时显示
-        val summaryNotification = createVideosNotification {
+        val summaryNotification = createNewsNotification {
             val title = getString(
-                R.string.core_notifications_videos_notification_group_summary,
-                truncatedVideosResources.size,
+                R.string.core_notifications_News_notification_group_summary,
+                truncatedNewsResources.size,
             )
             setContentTitle(title)
                 .setContentText(title)
                 .setSmallIcon(R.drawable.core_notifications_ic_nia_notification)
                 // 使用InboxStyle构建摘要信息
-                .setStyle(videosNotificationStyle(truncatedVideosResources, title))
-                .setGroup(VIDEOS_NOTIFICATION_GROUP)
+                .setStyle(newsNotificationStyle(truncatedNewsResources, title))
+                .setGroup(News_NOTIFICATION_GROUP)
                 // 标记为组摘要通知
                 .setGroupSummary(true)
                 .setAutoCancel(true)
@@ -111,54 +111,54 @@ internal class SystemTrayNotifier @Inject constructor(
 
         // 获取通知管理器并发送通知
         val notificationManager = NotificationManagerCompat.from(this)
-        // 发送每个视频资源的单独通知
-        videosNotifications.forEachIndexed { index, notification ->
+        // 发送每个新闻资源的单独通知
+        newsNotifications.forEachIndexed { index, notification ->
             notificationManager.notify(
-                truncatedVideosResources[index].id.hashCode(),
+                truncatedNewsResources[index].id.hashCode(),
                 notification,
             )
         }
         // 发送摘要通知
-        notificationManager.notify(VIDEOS_NOTIFICATION_SUMMARY_ID, summaryNotification)
+        notificationManager.notify(News_NOTIFICATION_SUMMARY_ID, summaryNotification)
     }
 
     /**
-     * 创建收件箱样式的视频更新摘要通知
+     * 创建收件箱样式的新闻更新摘要通知
      * 
-     * @param videosResources 视频资源列表
+     * @param newsResources 新闻资源列表
      * @param title 摘要通知标题
      * @return 配置好的InboxStyle实例
      */
-    private fun videosNotificationStyle(
-        videosResources: List<VideosResource>,
+    private fun newsNotificationStyle(
+        newsResources: List<NewsResource>,
         title: String,
-    ): InboxStyle = videosResources
-        // 将所有视频标题添加到收件箱样式中
-        .fold(InboxStyle()) { inboxStyle, videosResource -> inboxStyle.addLine(videosResource.title) }
-        // 设置大内容标题
+    ): InboxStyle = newsResources
+        // 将所有新闻标题添加到收件箱样式中
+        .fold(InboxStyle()) { inboxStyle, newsResource -> inboxStyle.addLine(newsResource.title) }
+        // 设置大内容标�?
         .setBigContentTitle(title)
         // 设置摘要文本
         .setSummaryText(title)
 }
 
 /**
- * 为视频更新创建配置好的通知
+ * 为新闻更新创建配置好的通知
  * 
- * @param block 用于自定义通知构建器的lambda表达式
+ * @param block 用于自定义通知构建器的lambda表达�?
  * @return 构建好的通知对象
  */
-private fun Context.createVideosNotification(
+private fun Context.createNewsNotification(
     block: NotificationCompat.Builder.() -> Unit,
 ): Notification {
-    // 确保通知渠道存在（Android 8.0+要求）
+    // 确保通知渠道存在（Android 8.0+要求�?
     ensureNotificationChannelExists()
     return NotificationCompat.Builder(
         this,
-        VIDEOS_NOTIFICATION_CHANNEL_ID,
+        News_NOTIFICATION_CHANNEL_ID,
     )
         // 设置通知优先级为默认
         .setPriority(NotificationCompat.PRIORITY_DEFAULT)
-        // 应用自定义配置
+        // 应用自定义配�?
         .apply(block)
         // 构建通知
         .build()
@@ -173,45 +173,45 @@ private fun Context.ensureNotificationChannelExists() {
 
     // 创建通知渠道
     val channel = NotificationChannel(
-        VIDEOS_NOTIFICATION_CHANNEL_ID,
-        getString(R.string.core_notifications_videos_notification_channel_name),
+        News_NOTIFICATION_CHANNEL_ID,
+        getString(R.string.core_notifications_News_notification_channel_name),
         NotificationManager.IMPORTANCE_DEFAULT,
     ).apply {
-        description = getString(R.string.core_notifications_videos_notification_channel_description)
+        description = getString(R.string.core_notifications_News_notification_channel_description)
     }
     // 向系统注册通知渠道
     NotificationManagerCompat.from(this).createNotificationChannel(channel)
 }
 
 /**
- * 为视频资源创建PendingIntent，用于点击通知时的跳转
+ * 为新闻资源创建PendingIntent，用于点击通知时的跳转
  * 
- * @param videosResource 视频资源对象
+ * @param newsResource 新闻资源对象
  * @return 配置好的PendingIntent
  */
-private fun Context.videosPendingIntent(
-    videosResource: VideosResource,
+private fun Context.newsPendingIntent(
+    newsResource: NewsResource,
 ): PendingIntent? = PendingIntent.getActivity(
     this,
-    VIDEOS_NOTIFICATION_REQUEST_CODE,
+    News_NOTIFICATION_REQUEST_CODE,
     Intent().apply {
-        // 设置操作为查看
+        // 设置操作为查�?
         action = Intent.ACTION_VIEW
         // 设置深度链接数据
-        data = videosResource.videosDeepLinkUri()
+        data = newsResource.newsDeepLinkUri()
         // 设置目标组件为指定的Activity
         component = ComponentName(
             packageName,
             TARGET_ACTIVITY_NAME,
         )
     },
-    // 设置Intent标志：更新当前存在的Intent，并确保Intent是不可变的（Android 12+安全要求）
+    // 设置Intent标志：更新当前存在的Intent，并确保Intent是不可变的（Android 12+安全要求�?
     PendingIntent.FLAG_UPDATE_CURRENT or PendingIntent.FLAG_IMMUTABLE,
 )
 
 /**
- * 为视频资源生成深度链接URI
+ * 为新闻资源生成深度链接URI
  * 
- * @return 包含视频ID的深度链接URI
+ * @return 包含新闻ID的深度链接URI
  */
-private fun VideosResource.videosDeepLinkUri() = "$DEEP_LINK_BASE_PATH/$id".toUri()
+private fun NewsResource.newsDeepLinkUri() = "$DEEP_LINK_BASE_PATH/$id".toUri()

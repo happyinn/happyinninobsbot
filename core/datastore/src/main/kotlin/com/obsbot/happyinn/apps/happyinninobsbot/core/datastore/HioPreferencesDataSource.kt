@@ -1,4 +1,4 @@
-package com.obsbot.happyinn.apps.happyinninobsbot.core.datastore
+﻿package com.obsbot.happyinn.apps.happyinninobsbot.core.datastore
 
 import android.util.Log
 import androidx.datastore.core.DataStore
@@ -13,9 +13,9 @@ import kotlin.collections.associateWith
 import kotlin.collections.forEach
 
 /**
- * NIA偏好设置数据源，负责管理用户偏好设置的读取和更新
+ * HIO偏好设置数据源，负责管理用户偏好设置的读取和更新
  *
- * @param userPreferences 用户偏好设置的数据存储
+ * @param userPreferences 用户偏好设置的数据存�?
  */
 class HioPreferencesDataSource @Inject constructor(
     private val userPreferences: DataStore<UserPreferences>,
@@ -27,9 +27,9 @@ class HioPreferencesDataSource @Inject constructor(
         .map {
             UserData(
                 // 书签视频资源ID集合
-                bookmarkedVideosResources = it.bookmarkedVideosResourceIdsMap.keys,
+                bookmarkedNewsResources = it.bookmarkedNewsResourceIdsMap.keys,
                 // 已查看视频资源ID集合
-                viewedVideosResources = it.viewedVideosResourceIdsMap.keys,
+                viewedNewsResources = it.viewedNewsResourceIdsMap.keys,
                 // 关注的主题ID集合
                 followedTopics = it.followedTopicIdsMap.keys,
                 // 主题品牌设置
@@ -56,7 +56,7 @@ class HioPreferencesDataSource @Inject constructor(
 
                     DarkThemeConfigProto.DARK_THEME_CONFIG_DARK -> DarkThemeConfig.DARK
                 },
-                // 是否使用动态颜色
+                // 是否使用动态颜�?
                 useDynamicColor = it.useDynamicColor,
                 // 是否隐藏引导页面
                 shouldHideOnboarding = it.shouldHideOnboarding,
@@ -78,12 +78,12 @@ class HioPreferencesDataSource @Inject constructor(
                 }
             }
         } catch (ioException: IOException) {
-            Log.e("NiaPreferences", "Failed to update user preferences", ioException)
+            Log.e("HioPreferences", "Failed to update user preferences", ioException)
         }
     }
 
     /**
-     * 设置单个主题的关注状态
+     * 设置单个主题的关注状�?
      *
      * @param topicId 主题ID
      * @param followed 是否关注
@@ -101,7 +101,7 @@ class HioPreferencesDataSource @Inject constructor(
                 }
             }
         } catch (ioException: IOException) {
-            Log.e("NiaPreferences", "Failed to update user preferences", ioException)
+            Log.e("HioPreferences", "Failed to update user preferences", ioException)
         }
     }
 
@@ -122,9 +122,9 @@ class HioPreferencesDataSource @Inject constructor(
     }
 
     /**
-     * 设置动态颜色偏好
+     * 设置动态颜色偏�?
      *
-     * @param useDynamicColor 是否使用动态颜色
+     * @param useDynamicColor 是否使用动态颜�?
      */
     suspend fun setDynamicColorPreference(useDynamicColor: Boolean) {
         userPreferences.updateData {
@@ -151,51 +151,51 @@ class HioPreferencesDataSource @Inject constructor(
     }
 
     /**
-     * 设置视频资源的书签状态
+     * 设置视频资源的书签状�?
      *
-     * @param videosResourceId 视频资源ID
+     * @param newsResourceId 视频资源ID
      * @param bookmarked 是否添加书签
      */
-    suspend fun setvideosResourceBookmarked(videosResourceId: String, bookmarked: Boolean) {
+    suspend fun setNewsResourceBookmarked(newsResourceId: String, bookmarked: Boolean) {
         try {
             userPreferences.updateData {
                 it.copy {
                     if (bookmarked) {
-                        bookmarkedVideosResourceIds.put(videosResourceId, true)
+                        bookmarkedNewsResourceIds.put(newsResourceId, true)
                     } else {
-                        bookmarkedVideosResourceIds.remove(videosResourceId)
+                        bookmarkedNewsResourceIds.remove(newsResourceId)
                     }
                 }
             }
         } catch (ioException: IOException) {
-            Log.e("NiaPreferences", "Failed to update user preferences", ioException)
+            Log.e("HioPreferences", "Failed to update user preferences", ioException)
         }
     }
 
     /**
-     * 设置单个视频资源的查看状态
+     * 设置单个视频资源的查看状�?
      *
-     * @param videosResourceId 视频资源ID
-     * @param viewed 是否已查看
+     * @param newsResourceId 视频资源ID
+     * @param viewed 是否已查�?
      */
-    suspend fun setvideosResourceViewed(videosResourceId: String, viewed: Boolean) {
-        setvideosResourcesViewed(listOf(videosResourceId), viewed)
+    suspend fun setNewsResourceViewed(newsResourceId: String, viewed: Boolean) {
+        setNewsResourcesViewed(listOf(newsResourceId), viewed)
     }
 
     /**
-     * 设置多个视频资源的查看状态
+     * 设置多个视频资源的查看状�?
      *
-     * @param videosResourceIds 视频资源ID列表
-     * @param viewed 是否已查看
+     * @param newsResourceIds 视频资源ID列表
+     * @param viewed 是否已查�?
      */
-    suspend fun setvideosResourcesViewed(videosResourceIds: List<String>, viewed: Boolean) {
+    suspend fun setNewsResourcesViewed(newsResourceIds: List<String>, viewed: Boolean) {
         userPreferences.updateData { prefs ->
             prefs.copy {
-                videosResourceIds.forEach { id ->
+                newsResourceIds.forEach { id ->
                     if (viewed) {
-                        viewedVideosResourceIds.put(id, true)
+                        viewedNewsResourceIds.put(id, true)
                     } else {
-                        viewedVideosResourceIds.remove(id)
+                        viewedNewsResourceIds.remove(id)
                     }
                 }
             }
@@ -211,7 +211,7 @@ class HioPreferencesDataSource @Inject constructor(
         .map {
             ChangeListVersions(
                 topicVersion = it.topicChangeListVersion,
-                videosResourceVersion = it.videosResourceChangeListVersion,
+                newsResourceVersion = it.newsResourceChangeListVersion,
             )
         }
         .firstOrNull() ?: ChangeListVersions()
@@ -227,17 +227,17 @@ class HioPreferencesDataSource @Inject constructor(
                 val updatedChangeListVersions = update(
                     ChangeListVersions(
                         topicVersion = currentPreferences.topicChangeListVersion,
-                        videosResourceVersion = currentPreferences.videosResourceChangeListVersion,
+                        newsResourceVersion = currentPreferences.newsResourceChangeListVersion,
                     ),
                 )
 
                 currentPreferences.copy {
                     topicChangeListVersion = updatedChangeListVersions.topicVersion
-                    videosResourceChangeListVersion = updatedChangeListVersions.videosResourceVersion
+                    newsResourceChangeListVersion = updatedChangeListVersions.newsResourceVersion
                 }
             }
         } catch (ioException: IOException) {
-            Log.e("NiaPreferences", "Failed to update user preferences", ioException)
+            Log.e("HioPreferences", "Failed to update user preferences", ioException)
         }
     }
 
@@ -254,11 +254,12 @@ class HioPreferencesDataSource @Inject constructor(
 }
 
 /**
- * 更新是否隐藏引导页面的辅助函数
- * 如果没有关注任何主题和作者，则不应隐藏引导页面
+ * 更新是否隐藏引导页面的辅助函�?
+ * 如果没有关注任何主题和作者，则不应隐藏引导页�?
  */
 private fun UserPreferencesKt.Dsl.updateShouldHideOnboardingIfNecessary() {
     if (followedTopicIds.isEmpty() && followedAuthorIds.isEmpty()) {
         shouldHideOnboarding = false
     }
 }
+

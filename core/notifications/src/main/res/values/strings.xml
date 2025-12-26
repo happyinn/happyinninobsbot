@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="core_notifications_videos_notification_channel_name">新闻更新</string>
-    <string name="core_notifications_videos_notification_channel_description">关于Android最新动态的最新更新</string>
-    <string name="core_notifications_videos_notification_group_summary">%1$d 条新闻更新</string>
+    <string name="core_notifications_News_notification_channel_name">新闻更新</string>
+    <string name="core_notifications_News_notification_channel_description">关于Android最新动态的最新更新</string>
+    <string name="core_notifications_News_notification_group_summary">%1$d 条新闻更新</string>
 </resources>
+
+

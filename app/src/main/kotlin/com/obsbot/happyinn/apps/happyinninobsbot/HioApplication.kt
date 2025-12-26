@@ -20,6 +20,7 @@ import android.os.StrictMode
 import android.os.StrictMode.ThreadPolicy.Builder
 import coil.ImageLoader
 import coil.ImageLoaderFactory
+import com.obsbot.happyinn.apps.happyinninobsbot.sync.initializers.Sync
 import dagger.Lazy
 import dagger.hilt.android.HiltAndroidApp
 import javax.inject.Inject
@@ -53,9 +54,9 @@ class HioApplication : Application(), ImageLoaderFactory {
         setStrictModePolicy()
 
         // 初始化同步系统；负责保持应用数据的最新状态
-/*        Sync.initialize(context = this)
+        Sync.initialize(context = this)
         // 记录性能分析验证器日志
-        profileVerifierLogger()*/
+//        profileVerifierLogger()
     }
 
     /**

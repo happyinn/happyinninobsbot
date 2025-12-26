@@ -22,12 +22,12 @@ interface TopicDao {
     )
     fun getTopicEntity(topicId: String): Flow<TopicEntity>
 
+//TODO 这里拉去不到数据，待研究
     @Query(value = "SELECT * FROM topics")
     fun getTopicEntities(): Flow<List<TopicEntity>>
 
     @Query(value = "SELECT * FROM topics")
     suspend fun getOneOffTopicEntities(): List<TopicEntity>
-
     @Query(
         value = """
         SELECT * FROM topics

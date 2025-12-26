@@ -1,0 +1,78 @@
+package com.obsbot.happyinn.apps.happyinninobsbot.feature.interests.impl
+
+import androidx.lifecycle.SavedStateHandle
+import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
+import com.obsbot.happyinn.apps.happyinninobsbot.core.data.repository.UserDataRepository
+import com.obsbot.happyinn.apps.happyinninobsbot.core.domain.GetFollowableTopicsUseCase
+import com.obsbot.happyinn.apps.happyinninobsbot.core.domain.TopicSortField
+
+import com.obsbot.happyinn.apps.happyinninobsbot.core.model.data.FollowableTopic
+import com.obsbot.happyinn.apps.happyinninobsbot.feature.interests.api.navigation.InterestsNavKey
+import dagger.assisted.Assisted
+import dagger.assisted.AssistedFactory
+import dagger.assisted.AssistedInject
+import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.flow.SharingStarted
+import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.combine
+import kotlinx.coroutines.flow.stateIn
+import kotlinx.coroutines.launch
+
+@HiltViewModel(assistedFactory = InterestsViewModel.Factory::class)
+class InterestsViewModel @AssistedInject constructor(
+    private val savedStateHandle: SavedStateHandle,
+    val userDataRepository: UserDataRepository,
+    getFollowableTopics: GetFollowableTopicsUseCase,
+    // TODO: see comment below
+    @Assisted val key: InterestsNavKey,
+) : ViewModel() {
+
+    // TODO: this should no longer be necessary, the currently selected topic should be
+    //  available through the navigation state
+    // Key used to save and retrieve the currently selected topic id from saved state.
+    private val selectedTopicIdKey = "selectedTopicIdKey"
+
+    private val selectedTopicId = savedStateHandle.getStateFlow(
+        key = selectedTopicIdKey,
+        initialValue = key.initialTopicId,
+    )
+
+    val uiState: StateFlow<InterestsUiState> = combine(
+        selectedTopicId,
+        getFollowableTopics(sortBy = TopicSortField.NAME),
+        InterestsUiState::Interests,
+    ).stateIn(
+        scope = viewModelScope,
+        started = SharingStarted.WhileSubscribed(5_000),
+        initialValue = InterestsUiState.Loading,
+    )
+
+    fun followTopic(followedTopicId: String, followed: Boolean) {
+        viewModelScope.launch {
+            userDataRepository.setTopicIdFollowed(followedTopicId, followed)
+        }
+    }
+
+    fun onTopicClick(topicId: String?) {
+        // TODO: This should modify the navigation state directly rather than just updating the
+        //  savedStateHandle
+        savedStateHandle[selectedTopicIdKey] = topicId
+    }
+
+    @AssistedFactory
+    interface Factory {
+        fun create(key: InterestsNavKey): InterestsViewModel
+    }
+}
+
+sealed interface InterestsUiState {
+    data object Loading : InterestsUiState
+
+    data class Interests(
+        val selectedTopicId: String?,
+        val topics: List<FollowableTopic>,
+    ) : InterestsUiState
+
+    data object Empty : InterestsUiState
+}

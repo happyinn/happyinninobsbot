@@ -5,7 +5,7 @@ import androidx.compose.runtime.Stable
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.navigation3.runtime.NavKey
-import com.obsbot.happyinn.apps.happyinninobsbot.core.data.repository.UserVideosResourceRepository
+import com.obsbot.happyinn.apps.happyinninobsbot.core.data.repository.UserNewsResourceRepository
 import com.obsbot.happyinn.apps.happyinninobsbot.core.data.util.NetworkMonitor
 import com.obsbot.happyinn.apps.happyinninobsbot.core.data.util.TimeZoneMonitor
 import com.obsbot.happyinn.apps.happyinninobsbot.core.navigation.NavigationState
@@ -23,10 +23,10 @@ import kotlinx.datetime.TimeZone
 import kotlin.toString
 
 /**
- * 记住并创建 HioAppState 实例的 Composable 函数
+ * 记住并创�?HioAppState 实例�?Composable 函数
  *
- * @param networkMonitor 网络监控器，用于监控网络连接状态
- * @param userVideosResourceRepository 用户新闻资源仓库，用于获取用户相关的新闻内容
+ * @param networkMonitor 网络监控器，用于监控网络连接状�?
+ * @param userNewsResourceRepository 用户新闻资源仓库，用于获取用户相关的新闻内容
  * @param timeZoneMonitor 时区监控器，用于监控时区变化
  * @param coroutineScope 协程作用域，默认使用 rememberCoroutineScope()
  * @return HioAppState 实例
@@ -34,54 +34,54 @@ import kotlin.toString
 @Composable
 fun rememberHioAppState(
     networkMonitor: NetworkMonitor,
-    userVideosResourceRepository: UserVideosResourceRepository,
+    userNewsResourceRepository: UserNewsResourceRepository,
     timeZoneMonitor: TimeZoneMonitor,
     coroutineScope: CoroutineScope = rememberCoroutineScope(),
 ): HioAppState {
-    // 记住导航状态，初始页面为 ForYouNavKey
+    // 记住导航状态，初始页面�?ForYouNavKey
     val navigationState = rememberNavigationState(ForYouNavKey, TOP_LEVEL_NAV_ITEMS.keys)
 
     // 导航跟踪副作用，用于性能监控
 //    NavigationTrackingSideEffect(navigationState)
 
-    // 记住并返回 HioAppState 实例
+    // 记住并返�?HioAppState 实例
     return remember(
         navigationState,
         coroutineScope,
         networkMonitor,
-        userVideosResourceRepository,
+        userNewsResourceRepository,
         timeZoneMonitor,
     ) {
         HioAppState(
             navigationState = navigationState,
             coroutineScope = coroutineScope,
             networkMonitor = networkMonitor,
-            userVideosResourceRepository = userVideosResourceRepository,
+            userNewsResourceRepository = userNewsResourceRepository,
             timeZoneMonitor = timeZoneMonitor,
         )
     }
 }
 
 /**
- * Now in Android 应用状态类，包含应用的各种状态信息
+ * Now in Android 应用状态类，包含应用的各种状态信�?
  *
- * @param navigationState 导航状态
- * @param coroutineScope 协程作用域
- * @param networkMonitor 网络监控器
- * @param userVideosResourceRepository 用户新闻资源仓库
- * @param timeZoneMonitor 时区监控器
+ * @param navigationState 导航状�?
+ * @param coroutineScope 协程作用�?
+ * @param networkMonitor 网络监控�?
+ * @param userNewsResourceRepository 用户新闻资源仓库
+ * @param timeZoneMonitor 时区监控�?
  */
 @Stable
 class HioAppState(
     val navigationState: NavigationState,
     coroutineScope: CoroutineScope,
     networkMonitor: NetworkMonitor,
-    userVideosResourceRepository: UserVideosResourceRepository,
+    userNewsResourceRepository: UserNewsResourceRepository,
     timeZoneMonitor: TimeZoneMonitor,
 ) {
     /**
      * 网络离线状态流
-     * 将网络在线状态取反得到离线状态，并在协程作用域内共享状态
+     * 将网络在线状态取反得到离线状态，并在协程作用域内共享状�?
      */
     val isOffline = networkMonitor.isOnline
         .map(Boolean::not)
@@ -96,13 +96,13 @@ class HioAppState(
      * 结合关注主题的新闻资源和已收藏的新闻资源，判断哪些顶级导航页面有未读内容
      */
     val topLevelNavKeysWithUnreadResources: StateFlow<Set<NavKey>> =
-        userVideosResourceRepository.observeAllForFollowedTopics()
-            .combine(userVideosResourceRepository.observeAllBookmarked()) { forYouVideosResources, bookmarkedVideosResources ->
+        userNewsResourceRepository.observeAllForFollowedTopics()
+            .combine(userNewsResourceRepository.observeAllBookmarked()) { forYouNewsResources, bookmarkedNewsResources ->
                 setOfNotNull(
-                    // 如果为你推荐页面有任何未查看的新闻资源，则包含 ForYouNavKey
-                    ForYouNavKey.takeIf { forYouVideosResources.any { !it.hasBeenViewed } },
-                    // 如果书签页面有任何未查看的新闻资源，则包含 BookmarksNavKey
-                    BookmarksNavKey.takeIf { bookmarkedVideosResources.any { !it.hasBeenViewed } },
+                    // 如果为你推荐页面有任何未查看的新闻资源，则包�?ForYouNavKey
+                    ForYouNavKey.takeIf { forYouNewsResources.any { !it.hasBeenViewed } },
+                    // 如果书签页面有任何未查看的新闻资源，则包�?BookmarksNavKey
+                    BookmarksNavKey.takeIf { bookmarkedNewsResources.any { !it.hasBeenViewed } },
                 )
             }
             .stateIn(
@@ -113,7 +113,7 @@ class HioAppState(
 
     /**
      * 当前时区状态流
-     * 监控时区变化并在协程作用域内共享状态
+     * 监控时区变化并在协程作用域内共享状�?
      */
     val currentTimeZone = timeZoneMonitor.currentTimeZone
         .stateIn(
@@ -125,9 +125,9 @@ class HioAppState(
 
 
 /**
- * 导航跟踪副作用函数，用于与 JankStats 配合使用存储导航事件信息
+ * 导航跟踪副作用函数，用于�?JankStats 配合使用存储导航事件信息
  *
- * @param navigationState 导航状态
+ * @param navigationState 导航状�?
  */
 /*
 @Composable
@@ -137,3 +137,4 @@ private fun NavigationTrackingSideEffect(navigationState: NavigationState) {
         onDispose {}
     }
 }*/
+

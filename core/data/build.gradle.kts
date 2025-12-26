@@ -1,3 +1,4 @@
+
 plugins {
     alias(libs.plugins.happyinninobsbot.android.library)
     alias(libs.plugins.happyinninobsbot.android.library.jacoco)
@@ -6,7 +7,7 @@ plugins {
 }
 
 android {
-    namespace = "com.obsbot.happyinn.apps.happyinninobsbot.core.data"
+    namespace = "com.google.samples.apps.happyinninobsbot.core.data"
     testOptions.unitTests.isIncludeAndroidResources = true
 }
 
@@ -16,8 +17,8 @@ dependencies {
     api(projects.core.datastore)
     api(projects.core.network)
 
-//    implementation(projects.core.analytics)
-//    implementation(projects.core.notifications)
+    implementation(projects.core.analytics)
+    implementation(projects.core.notifications)
 
     testImplementation(libs.kotlinx.coroutines.test)
     testImplementation(libs.kotlinx.serialization.json)

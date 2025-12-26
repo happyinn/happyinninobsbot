@@ -59,8 +59,10 @@ import com.obsbot.happyinn.apps.happyinninobsbot.core.designsystem.theme.Gradien
 import com.obsbot.happyinn.apps.happyinninobsbot.core.designsystem.theme.LocalGradientColors
 import com.obsbot.happyinn.apps.happyinninobsbot.core.navigation.Navigator
 import com.obsbot.happyinn.apps.happyinninobsbot.core.navigation.toEntries
+import com.obsbot.happyinn.apps.happyinninobsbot.feature.bookmarks.impl.navigation.bookmarksEntry
 import com.obsbot.happyinn.apps.happyinninobsbot.feature.foryou.api.navigation.ForYouNavKey
 import com.obsbot.happyinn.apps.happyinninobsbot.feature.foryou.impl.navigation.forYouEntry
+import com.obsbot.happyinn.apps.happyinninobsbot.feature.interests.impl.navigation.interestsEntry
 import com.obsbot.happyinn.apps.happyinninobsbot.feature.search.api.navigation.SearchNavKey
 import com.obsbot.happyinn.apps.happyinninobsbot.feature.settings.impl.SettingsDialog
 import com.obsbot.happyinn.apps.happyinninobsbot.navigation.TOP_LEVEL_NAV_ITEMS
@@ -317,9 +319,9 @@ internal fun HioAppContent(
                     // 导航条目提供器
                     val entryProvider = entryProvider {
                         forYouEntry(navigator)
-                        /*bookmarksEntry(navigator)
+                        bookmarksEntry(navigator)
                         interestsEntry(navigator)
-                        topicEntry(navigator)
+                        /*topicEntry(navigator)
                         searchEntry(navigator)*/
                     }
 

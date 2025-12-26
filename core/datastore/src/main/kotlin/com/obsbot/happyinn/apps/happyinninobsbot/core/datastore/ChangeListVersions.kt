@@ -18,5 +18,6 @@ package com.obsbot.happyinn.apps.happyinninobsbot.core.datastore
 
 data class ChangeListVersions(
     val topicVersion: Int = -1,
-    val videosResourceVersion: Int = -1,
+    val newsResourceVersion: Int = -1,
 )
+

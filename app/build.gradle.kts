@@ -11,10 +11,10 @@ plugins {
 //    alias(libs.plugins.happyinninobsbot.android.application.firebase)
     alias(libs.plugins.happyinninobsbot.hilt)
 
-//    alias(libs.plugins.google.osslicenses)
+    alias(libs.plugins.google.osslicenses)
     alias(libs.plugins.baselineprofile)
-//    alias(libs.plugins.roborazzi)
-//    alias(libs.plugins.kotlin.serialization)
+    alias(libs.plugins.roborazzi)
+    alias(libs.plugins.kotlin.serialization)
 }
 
 android {
@@ -68,25 +68,6 @@ android {
     }
 }
 
-/*
-dependencies {
-    implementation(libs.androidx.core.ktx)
-    implementation(libs.androidx.lifecycle.runtime.ktx)
-    implementation(libs.androidx.activity.compose)
-    implementation(platform(libs.androidx.compose.bom))
-    implementation(libs.androidx.compose.ui)
-    implementation(libs.androidx.compose.ui.graphics)
-    implementation(libs.androidx.compose.ui.tooling.preview)
-    implementation(libs.androidx.compose.material3)
-    testImplementation(libs.junit)
-    androidTestImplementation(libs.androidx.junit)
-    androidTestImplementation(libs.androidx.espresso.core)
-    androidTestImplementation(platform(libs.androidx.compose.bom))
-    androidTestImplementation(libs.androidx.compose.ui.test.junit4)
-    debugImplementation(libs.androidx.compose.ui.tooling)
-    debugImplementation(libs.androidx.compose.ui.testManifest)
-}*/
-
 
 dependencies {
     implementation(projects.feature.interests.api)
@@ -101,9 +82,9 @@ dependencies {
     implementation(projects.feature.search.impl)
     implementation(projects.feature.settings.impl)
 
-//    implementation(projects.core.ui)
-//    implementation(projects.core.analytics)
-//    implementation(projects.sync.work)
+    implementation(projects.core.ui)
+    implementation(projects.core.analytics)
+    implementation(projects.sync.work)
     implementation(projects.core.designsystem)
     implementation(projects.core.network)
     implementation(projects.core.common)

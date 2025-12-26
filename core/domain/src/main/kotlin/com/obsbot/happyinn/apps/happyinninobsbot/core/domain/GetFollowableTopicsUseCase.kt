@@ -10,7 +10,6 @@ import kotlin.collections.map
 import kotlin.collections.sortedBy
 import com.obsbot.happyinn.apps.happyinninobsbot.core.domain.TopicSortField.NONE
 import com.obsbot.happyinn.apps.happyinninobsbot.core.domain.TopicSortField.NAME
-import com.obsbot.happyinn.apps.happyinninobsbot.core.domain.TopicSortField.entries
 
 
 /**

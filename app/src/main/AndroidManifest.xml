@@ -2,31 +2,59 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
 
-    // 网络权限
-    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
-    
+    <uses-permission android:name="android.permission.INTERNET" />
+
+    <!--
+    以下三个权限注释说明了应用的权限管理策略：
+    Firebase会自动添加AD_ID和ADSERVICES相关权限，即使我们不使用它们。
+    如果使用这些权限，必须在Google Play上声明使用方式，否则应用发布时会被拒绝。
+    为避免这种情况，我们通过tools:node="remove"属性完全移除这些权限。
+    -->
+    <uses-permission android:name="com.google.android.gms.permission.AD_ID" tools:node="remove"/>
+    <uses-permission android:name="android.permission.ACCESS_ADSERVICES_ATTRIBUTION" tools:node="remove"/>
+    <uses-permission android:name="android.permission.ACCESS_ADSERVICES_AD_ID" tools:node="remove"/>
+
+
     <application
         android:name=".HioApplication"
         android:allowBackup="true"
-        android:dataExtractionRules="@xml/data_extraction_rules"
-        android:fullBackupContent="@xml/backup_rules"
+        android:enableOnBackInvokedCallback="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.Happyinninobsbot">
+        android:theme="@style/Theme.Hio.Splash">
         <profileable android:shell="true" tools:targetApi="q" />
         
         <activity
             android:name=".MainActivity"
-            android:exported="true"
-            android:label="@string/app_name"
-            android:theme="@style/Theme.Happyinninobsbot">
+            android:configChanges="uiMode"
+            android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+            <!-- 深度链接处理，允许通过网页URL打开应用 -->
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />  <!-- 查看操作 -->
+
+                <category android:name="android.intent.category.DEFAULT" />  <!-- 默认类别 -->
+                <category android:name="android.intent.category.BROWSABLE" />  <!-- 可通过浏览器启动 -->
+
+                <data android:scheme="https" />  <!-- 支持HTTPS协议 -->
+<!--                <data android:host="www.nowinandroid.apps.samples.google.com" />  &lt;!&ndash; 匹配的域名 &ndash;&gt;-->
+            </intent-filter>
         </activity>
+
+
+        <!-- 默认禁用Firebase分析。此设置在`prod`产品风味中会被覆盖 -->
+        <meta-data android:name="firebase_analytics_collection_deactivated" android:value="true" />
+        <!-- 对所有构建变体禁用AD_ID收集 -->
+        <meta-data android:name="google_analytics_adid_collection_enabled" android:value="false" />
+        <!-- Firebase自动添加了以下属性，我们不使用它，所以移除 -->
+        <property
+            android:name="android.adservices.AD_SERVICES_CONFIG"
+            tools:node="remove" />
     </application>
 
 </manifest>

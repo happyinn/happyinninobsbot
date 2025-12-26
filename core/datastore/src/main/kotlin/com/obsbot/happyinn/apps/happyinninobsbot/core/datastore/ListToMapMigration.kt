@@ -19,56 +19,57 @@ import androidx.datastore.core.DataMigration
 import kotlin.collections.associateWith
 
 /**
- * 将用户数据从使用列表(list)迁移到使用映射(map)的数据迁移对象
+ * 将用户数据从使用列表(list)迁移到使用映�?map)的数据迁移对�?
  */
 internal object ListToMapMigration : DataMigration<UserPreferences> {
 
     /**
-     * 清理操作，在迁移完成后调用
+     * 清理操作，在迁移完成后调�?
      * 此迁移不需要清理操作，所以返回Unit
      */
     override suspend fun cleanUp() = Unit
 
     /**
-     * 执行数据迁移的核心方法
+     * 执行数据迁移的核心方�?
      * 将用户偏好设置中的列表数据结构转换为映射数据结构
      *
-     * @param currentData 当前的用户偏好设置数据
+     * @param currentData 当前的用户偏好设置数�?
      * @return UserPreferences 迁移后的用户偏好设置数据
      */
     override suspend fun migrate(currentData: UserPreferences): UserPreferences =
         currentData.copy {
-            // 迁移关注的话题ID列表到映射
+            // 迁移关注的话题ID列表到映�?
             followedTopicIds.clear()
             followedTopicIds.putAll(
                 currentData.deprecatedFollowedTopicIdsList.associateWith { true },
             )
             deprecatedFollowedTopicIds.clear()
 
-            // 迁移关注的作者ID列表到映射
+            // 迁移关注的作者ID列表到映�?
             followedAuthorIds.clear()
             followedAuthorIds.putAll(
                 currentData.deprecatedFollowedAuthorIdsList.associateWith { true },
             )
             deprecatedFollowedAuthorIds.clear()
 
-            // 迁移书签新闻资源ID列表到映射
-            bookmarkedVideosResourceIds.clear()
-            bookmarkedVideosResourceIds.putAll(
-                currentData.deprecatedBookmarkedVideosResourceIdsList.associateWith { true },
+            // 迁移书签新闻资源ID列表到映�?
+            bookmarkedNewsResourceIds.clear()
+            bookmarkedNewsResourceIds.putAll(
+                currentData.deprecatedBookmarkedNewsResourceIdsList.associateWith { true },
             )
-            deprecatedBookmarkedVideosResourceIds.clear()
+            deprecatedBookmarkedNewsResourceIds.clear()
 
-            // 标记迁移已完成
+            // 标记迁移已完�?
             hasDoneListToMapMigration = true
         }
 
     /**
-     * 判断是否需要执行迁移
+     * 判断是否需要执行迁�?
      *
-     * @param currentData 当前的用户偏好设置数据
+     * @param currentData 当前的用户偏好设置数�?
      * @return Boolean 如果尚未完成列表到映射的迁移则返回true，否则返回false
      */
     override suspend fun shouldMigrate(currentData: UserPreferences): Boolean =
         !currentData.hasDoneListToMapMigration
 }
+

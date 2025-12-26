@@ -40,14 +40,14 @@ interface UserDataRepository {
     suspend fun setTopicIdFollowed(followedTopicId: String, followed: Boolean)
 
     /**
-     * Updates the bookmarked status for a videos resource
+     * Updates the bookmarked status for a News resource
      */
-    suspend fun setVideosResourceBookmarked(videosResourceId: String, bookmarked: Boolean)
+    suspend fun setNewsResourceBookmarked(NewsResourceId: String, bookmarked: Boolean)
 
     /**
-     * Updates the viewed status for a videos resource
+     * Updates the viewed status for a News resource
      */
-    suspend fun setVideosResourceViewed(videosResourceId: String, viewed: Boolean)
+    suspend fun setNewsResourceViewed(NewsResourceId: String, viewed: Boolean)
 
     /**
      * Sets the desired theme brand.
@@ -69,3 +69,4 @@ interface UserDataRepository {
      */
     suspend fun setShouldHideOnboarding(shouldHideOnboarding: Boolean)
 }
+

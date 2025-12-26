@@ -66,13 +66,7 @@ internal object NetworkModule {
             .build()
     }
 
-    /**
-     * Since we're displaying SVGs in the app, Coil needs an ImageLoader which supports this
-     * format. During Coil's initialization it will call `applicationContext.newImageLoader()` to
-     * obtain an ImageLoader.
-     *
-     * @see <a href="https://github.com/coil-kt/coil/blob/main/coil-singleton/src/main/java/coil/Coil.kt">Coil</a>
-     */
+
     /**
      * 提供图片加载器 ImageLoader
      * 支持 SVG 格式图片解码

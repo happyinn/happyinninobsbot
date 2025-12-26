@@ -1,17 +1,3 @@
-/*
- * 版权所有 2022 The Android Open Source Project
- *
- * 根据 Apache 许可证 2.0 版（"许可证"）授权；
- * 除非符合许可证要求，否则您不得使用此文件。
- * 您可以在以下位置获得许可证副本：
- *
- *     https://www.apache.org/licenses/LICENSE-2.0
- *
- * 除非适用法律要求或书面同意，根据许可证分发的软件
- * 是基于"按原样"的基础上分发的，不附带任何明示或暗示的担保条件。
- * 请参阅许可证了解特定语言 governing permissions 和 limitations。
- */
-
 package com.obsbot.happyinn.apps.happyinninobsbot.core.network
 
 import com.obsbot.happyinn.apps.happyinninobsbot.core.network.model.NetworkChangeList

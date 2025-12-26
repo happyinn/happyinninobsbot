@@ -16,11 +16,16 @@
 
 package com.obsbot.happyinn.apps.happyinninobsbot.core.data.repository
 
+import com.google.samples.apps.nowinandroid.core.data.model.asEntity
 import com.obsbot.happyinn.apps.happyinninobsbot.core.data.Synchronizer
 import com.obsbot.happyinn.apps.happyinninobsbot.core.data.changeListSync
+import com.obsbot.happyinn.apps.happyinninobsbot.core.database.dao.TopicDao
+import com.obsbot.happyinn.apps.happyinninobsbot.core.database.model.TopicEntity
+import com.obsbot.happyinn.apps.happyinninobsbot.core.database.model.asExternalModel
 import com.obsbot.happyinn.apps.happyinninobsbot.core.datastore.ChangeListVersions
 import com.obsbot.happyinn.apps.happyinninobsbot.core.model.data.Topic
 import com.obsbot.happyinn.apps.happyinninobsbot.core.network.HioNetworkDataSource
+import com.obsbot.happyinn.apps.happyinninobsbot.core.network.model.NetworkTopic
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
 import javax.inject.Inject
@@ -35,9 +40,11 @@ internal class OfflineFirstTopicsRepository @Inject constructor(
     private val network: HioNetworkDataSource,
 ) : TopicsRepository {
 
-    override fun getTopics(): Flow<List<Topic>> =
-        topicDao.getTopicEntities()
+    override fun getTopics(): Flow<List<Topic>> {
+        val topicEntities = topicDao.getTopicEntities()
+        return topicEntities
             .map { it.map(TopicEntity::asExternalModel) }
+    }
 
     override fun getTopic(id: String): Flow<Topic> =
         topicDao.getTopicEntity(id).map { it.asExternalModel() }

@@ -25,16 +25,16 @@ internal class OfflineFirstUserDataRepository @Inject constructor(
 //        analyticsHelper.logTopicFollowToggled(followedTopicId, followed)
     }
 
-    override suspend fun setVideosResourceBookmarked(videosResourceId: String, bookmarked: Boolean) {
-        hioPreferencesDataSource.setvideosResourceBookmarked(videosResourceId, bookmarked)
-        /*analyticsHelper.logvideosResourceBookmarkToggled(
-            videosResourceId = videosResourceId,
+    override suspend fun setNewsResourceBookmarked(NewsResourceId: String, bookmarked: Boolean) {
+        hioPreferencesDataSource.setNewsResourceBookmarked(NewsResourceId, bookmarked)
+        /*analyticsHelper.logNewsResourceBookmarkToggled(
+            NewsResourceId = NewsResourceId,
             isBookmarked = bookmarked,
         )*/
     }
 
-    override suspend fun setVideosResourceViewed(videosResourceId: String, viewed: Boolean) =
-        hioPreferencesDataSource.setvideosResourceViewed(videosResourceId, viewed)
+    override suspend fun setNewsResourceViewed(NewsResourceId: String, viewed: Boolean) =
+        hioPreferencesDataSource.setNewsResourceViewed(NewsResourceId, viewed)
 
     override suspend fun setThemeBrand(themeBrand: ThemeBrand) {
         hioPreferencesDataSource.setThemeBrand(themeBrand)
@@ -56,3 +56,4 @@ internal class OfflineFirstUserDataRepository @Inject constructor(
 //        analyticsHelper.logOnboardingStateChanged(shouldHideOnboarding)
     }
 }
+

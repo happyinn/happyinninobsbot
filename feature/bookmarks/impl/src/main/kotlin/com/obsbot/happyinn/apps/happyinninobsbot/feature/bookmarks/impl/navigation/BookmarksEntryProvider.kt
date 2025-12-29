@@ -38,9 +38,7 @@ fun EntryProviderScope<NavKey>.bookmarksEntry(navigator: Navigator) {
             },
         )
     }
-}
-
-// TODO: Why is this here?
+}// TODO: Why is this here?
 
 /**
  * 本地 SnackbarHostState 组合值
@@ -49,3 +47,5 @@ fun EntryProviderScope<NavKey>.bookmarksEntry(navigator: Navigator) {
 val LocalSnackbarHostState = compositionLocalOf<SnackbarHostState> {
     error("SnackbarHostState state should be initialized at runtime")
 }
+
+

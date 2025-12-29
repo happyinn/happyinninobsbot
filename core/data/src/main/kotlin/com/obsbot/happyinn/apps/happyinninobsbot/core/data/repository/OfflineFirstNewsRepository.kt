@@ -29,12 +29,12 @@ import kotlin.collections.map
 import kotlin.collections.minus
 import kotlin.collections.toSet
 
-// 启发式值，用于优化客户端和服务器上每个新闻资源批次的序列化和反序列化成�?
+// 启发式值，用于优化客户端和服务器上每个新闻资源批次的序列化和反序列化成本
 private const val SYNC_BATCH_SIZE = 40
 
 /**
- * 基于磁盘存储�?[NewsRepository] 实现�?
- * 读取操作完全来自本地存储，以支持离线访问�?
+ * 基于磁盘存储本[NewsRepository] 实现本
+ * 读取操作完全来自本地存储，以支持离线访问本
  */
 internal class OfflineFirstNewsRepository @Inject constructor(
     // Hio偏好设置数据源，用于获取用户数据
@@ -53,7 +53,7 @@ internal class OfflineFirstNewsRepository @Inject constructor(
      * 根据查询条件获取新闻资源列表
      *
      * @param query 新闻资源查询条件
-     * @return 包含新闻资源列表�?Flow
+     * @return 包含新闻资源列表本Flow
      */
     override fun getNewsResources(
         query: NewsResourceQuery,
@@ -68,7 +68,7 @@ internal class OfflineFirstNewsRepository @Inject constructor(
     /**
      * 与同步器同步数据
      *
-     * @param synchronizer 数据同步�?
+     * @param synchronizer 数据同步本
      * @return 同步是否成功
      */
     override suspend fun syncWith(synchronizer: Synchronizer): Boolean {
@@ -77,12 +77,12 @@ internal class OfflineFirstNewsRepository @Inject constructor(
         return synchronizer.changeListSync(
             // 版本读取器，用于获取新闻资源版本
             versionReader = ChangeListVersions::newsResourceVersion,
-            // 变更列表获取器，用于从网络获取变更列�?
+            // 变更列表获取器，用于从网络获取变更列本
             changeListFetcher = { currentVersion ->
                 isFirstSync = currentVersion <= 0
                 network.getNewsResourceChangeList(after = currentVersion)
             },
-            // 版本更新器，用于更新最新版�?
+            // 版本更新器，用于更新最新版本
             versionUpdater = { latestVersion ->
                 copy(newsResourceVersion = latestVersion)
             },
@@ -96,7 +96,7 @@ internal class OfflineFirstNewsRepository @Inject constructor(
                 val followedTopicIds = userData.followedTopics
 
                 // 获取已更改的现有新闻资源ID
-                val existingNewsResourceIdsThatHaveChanged = when {
+                val existingNewsResourceIdsThatHaveChanged : Set<String> = when {
                     hasOnboarded -> newsResourceDao.getNewsResourceIds(
                         useFilterTopicIds = true,
                         filterTopicIds = followedTopicIds,
@@ -105,11 +105,12 @@ internal class OfflineFirstNewsRepository @Inject constructor(
                     )
                         .first()
                         .toSet()
-                    // 如果不发送通知，则无需检索任何内�?
+                    // 如果不发送通知，则无需检索任何内本
                     else -> emptySet()
                 }
 
-                // 如果是首次同步，将所有新闻标记为已查看，避免被历史新闻淹�?
+                // 如果是首次同步，将所有新闻标记为已查看，避免被历史新闻淹本
+                //为了避免用户被大量历史新闻通知突然淹没，提升首次使用体验
                 if (isFirstSync) {
                     hioPreferencesDataSource.setNewsResourcesViewed(changedIds, true)
                 }
@@ -120,25 +121,25 @@ internal class OfflineFirstNewsRepository @Inject constructor(
 
                     // 调用顺序很重要，需要满足ID和外键约束！
 
-                    // 插入或忽略主题实�?
+                    // 插入或忽略主题实本
                     topicDao.insertOrIgnoreTopics(
                         topicEntities = networkNewsResources
                             .map(NetworkNewsResource::topicEntityShells)
                             .flatten()
                             .distinctBy(TopicEntity::id),
                     )
-                    // 更新或插入新闻资源实�?
+                    // 更新或插入新闻资源实本
                     newsResourceDao.upsertNewsResources(
                         newsResourceEntities = networkNewsResources.map(
                             NetworkNewsResource::asEntity,
                         ),
                     )
-                    // 插入或忽略主题交叉引用实�?
+                    // 插入或忽略主题交叉引用实本
                     newsResourceDao.insertOrIgnoreTopicCrossRefEntities(
                         newsResourceTopicCrossReferences = networkNewsResources
-                            .map(NetworkNewsResource::topicCrossReferences)
-                            .distinct()
-                            .flatten(),
+                            .map(NetworkNewsResource::topicCrossReferences) //集合转换函数，将每个元素映射到新的值
+                            .distinct()   //去重函数，根据指定属性值去重
+                            .flatten(),  //将嵌套集合扁平化为单个集合
                     )
                 }
 

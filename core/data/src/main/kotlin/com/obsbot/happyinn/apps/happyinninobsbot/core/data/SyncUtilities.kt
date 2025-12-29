@@ -108,6 +108,7 @@ suspend fun Synchronizer.changeListSync(
 
     // 更新最后同步的版本（类似于更新本地git HEAD）
     val latestVersion = changeList.last().changeListVersion
+
     updateChangeListVersions {
         versionUpdater(latestVersion)
     }

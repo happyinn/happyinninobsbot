@@ -15,7 +15,7 @@ import kotlin.collections.forEach
 /**
  * HIO偏好设置数据源，负责管理用户偏好设置的读取和更新
  *
- * @param userPreferences 用户偏好设置的数据存�?
+ * @param userPreferences 用户偏好设置的数据存态
  */
 class HioPreferencesDataSource @Inject constructor(
     private val userPreferences: DataStore<UserPreferences>,
@@ -56,7 +56,7 @@ class HioPreferencesDataSource @Inject constructor(
 
                     DarkThemeConfigProto.DARK_THEME_CONFIG_DARK -> DarkThemeConfig.DARK
                 },
-                // 是否使用动态颜�?
+                // 是否使用动态颜态
                 useDynamicColor = it.useDynamicColor,
                 // 是否隐藏引导页面
                 shouldHideOnboarding = it.shouldHideOnboarding,
@@ -83,7 +83,7 @@ class HioPreferencesDataSource @Inject constructor(
     }
 
     /**
-     * 设置单个主题的关注状�?
+     * 设置单个主题的关注状态
      *
      * @param topicId 主题ID
      * @param followed 是否关注
@@ -122,9 +122,9 @@ class HioPreferencesDataSource @Inject constructor(
     }
 
     /**
-     * 设置动态颜色偏�?
+     * 设置动态颜色偏态
      *
-     * @param useDynamicColor 是否使用动态颜�?
+     * @param useDynamicColor 是否使用动态颜态
      */
     suspend fun setDynamicColorPreference(useDynamicColor: Boolean) {
         userPreferences.updateData {
@@ -151,7 +151,7 @@ class HioPreferencesDataSource @Inject constructor(
     }
 
     /**
-     * 设置视频资源的书签状�?
+     * 设置视频资源的书签状态
      *
      * @param newsResourceId 视频资源ID
      * @param bookmarked 是否添加书签
@@ -173,20 +173,20 @@ class HioPreferencesDataSource @Inject constructor(
     }
 
     /**
-     * 设置单个视频资源的查看状�?
+     * 设置单个视频资源的查看状态
      *
      * @param newsResourceId 视频资源ID
-     * @param viewed 是否已查�?
+     * @param viewed 是否已查态
      */
     suspend fun setNewsResourceViewed(newsResourceId: String, viewed: Boolean) {
         setNewsResourcesViewed(listOf(newsResourceId), viewed)
     }
 
     /**
-     * 设置多个视频资源的查看状�?
+     * 设置多个视频资源的查看状态
      *
      * @param newsResourceIds 视频资源ID列表
-     * @param viewed 是否已查�?
+     * @param viewed 是否已查态
      */
     suspend fun setNewsResourcesViewed(newsResourceIds: List<String>, viewed: Boolean) {
         userPreferences.updateData { prefs ->
@@ -254,8 +254,8 @@ class HioPreferencesDataSource @Inject constructor(
 }
 
 /**
- * 更新是否隐藏引导页面的辅助函�?
- * 如果没有关注任何主题和作者，则不应隐藏引导页�?
+ * 更新是否隐藏引导页面的辅助函态
+ * 如果没有关注任何主题和作者，则不应隐藏引导页态
  */
 private fun UserPreferencesKt.Dsl.updateShouldHideOnboardingIfNecessary() {
     if (followedTopicIds.isEmpty() && followedAuthorIds.isEmpty()) {

@@ -65,12 +65,12 @@ internal class SystemTrayNotifier @Inject constructor(
     override fun postNewsNotifications(
         newsResources: List<NewsResource>,
     ) = with(context) {
-        // 检查是否有发布通知的权�?
+        // 检查是否有发布通知的权限
         if (checkSelfPermission(this, permission.POST_NOTIFICATIONS) != PERMISSION_GRANTED) {
             return
         }
 
-        // 限制通知数量，只取前MAX_NUM_NOTIFICATIONS个新闻资�?
+        // 限制通知数量，只取前MAX_NUM_NOTIFICATIONS个新闻资源
         val truncatedNewsResources = newsResources.take(MAX_NUM_NOTIFICATIONS)
 
         // 为每个新闻资源创建对应的通知
@@ -80,7 +80,7 @@ internal class SystemTrayNotifier @Inject constructor(
                 setSmallIcon(R.drawable.core_notifications_ic_nia_notification)
                 // 设置通知标题为新闻标�?
                 .setContentTitle(newsResource.title)
-                // 设置通知内容为新闻内容摘�?
+                // 设置通知内容为新闻内容摘要
                 .setContentText(newsResource.content)
                 // 设置点击通知后的跳转意图
                 .setContentIntent(newsPendingIntent(newsResource))
@@ -135,7 +135,7 @@ internal class SystemTrayNotifier @Inject constructor(
     ): InboxStyle = newsResources
         // 将所有新闻标题添加到收件箱样式中
         .fold(InboxStyle()) { inboxStyle, newsResource -> inboxStyle.addLine(newsResource.title) }
-        // 设置大内容标�?
+        // 设置大内容标题
         .setBigContentTitle(title)
         // 设置摘要文本
         .setSummaryText(title)
@@ -150,7 +150,7 @@ internal class SystemTrayNotifier @Inject constructor(
 private fun Context.createNewsNotification(
     block: NotificationCompat.Builder.() -> Unit,
 ): Notification {
-    // 确保通知渠道存在（Android 8.0+要求�?
+    // 确保通知渠道存在（Android 8.0+要求)
     ensureNotificationChannelExists()
     return NotificationCompat.Builder(
         this,

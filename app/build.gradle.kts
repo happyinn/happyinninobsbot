@@ -7,8 +7,8 @@ plugins {
     alias(libs.plugins.happyinninobsbot.android.application)
     alias(libs.plugins.happyinninobsbot.android.application.compose)
     alias(libs.plugins.happyinninobsbot.android.application.flavors)
-//    alias(libs.plugins.happyinninobsbot.android.application.jacoco)
-//    alias(libs.plugins.happyinninobsbot.android.application.firebase)
+    alias(libs.plugins.happyinninobsbot.android.application.jacoco)
+    alias(libs.plugins.happyinninobsbot.android.application.firebase)
     alias(libs.plugins.happyinninobsbot.hilt)
 
     alias(libs.plugins.google.osslicenses)

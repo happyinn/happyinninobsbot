@@ -1,4 +1,3 @@
-
 package com.obsbot.happyinn.apps.happyinninobsbot.core.database.dao
 
 import androidx.room.Dao

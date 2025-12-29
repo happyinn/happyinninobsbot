@@ -67,7 +67,6 @@ import com.obsbot.happyinn.apps.happyinninobsbot.feature.search.api.navigation.S
 import com.obsbot.happyinn.apps.happyinninobsbot.feature.settings.impl.SettingsDialog
 import com.obsbot.happyinn.apps.happyinninobsbot.navigation.TOP_LEVEL_NAV_ITEMS
 import com.obsbot.happyinn.apps.happyinninobsbot.feature.settings.impl.R as settingsR
-import kotlin.text.get
 
 /**
  * 外部 HioApp：负责全局设置、状态管理和环境配置 内部 HioAppContent：专注于实际 UI 组件的构建和导航逻辑

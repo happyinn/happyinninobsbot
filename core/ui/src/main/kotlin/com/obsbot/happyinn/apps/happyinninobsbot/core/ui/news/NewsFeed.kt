@@ -1,4 +1,4 @@
-package com.obsbot.happyinn.apps.happyinninobsbot.core.ui
+package com.obsbot.happyinn.apps.happyinninobsbot.core.ui.news
 
 import android.content.Context
 import android.net.Uri
@@ -22,16 +22,17 @@ import androidx.compose.ui.unit.dp
 import com.obsbot.happyinn.apps.happyinninobsbot.core.analytics.LocalAnalyticsHelper
 import com.obsbot.happyinn.apps.happyinninobsbot.core.designsystem.theme.HioTheme
 import com.obsbot.happyinn.apps.happyinninobsbot.core.model.data.UserNewsResource
+import com.obsbot.happyinn.apps.happyinninobsbot.core.ui.logNewsResourceOpened
 
 /**
- * LazyStaggeredGridScope的扩展函数，用于定义视频资源的推荐流
- * 根据[feedState]状态，此函数可能不会渲染任何项�?
+ * LazyStaggeredGridScope的扩展函数，用于定义新闻资源的推荐流
+ * 根据[feedState]状态，此函数可能不会渲染任何项
  *
- * @param feedState 视频流的当前状态（加载中或加载成功�?
- * @param onNewsResourcesCheckedChanged 当视频资源的收藏状态改变时调用的回调函�?
- * @param onNewsResourceViewed 当视频资源被查看时调用的回调函数
- * @param onTopicClick 当视频中的主题标签被点击时调用的回调函数
- * @param onExpandedCardClick 当展开的视频卡片被点击时调用的可选回调函�?
+ * @param feedState 新闻流的当前状态（加载中或加载成功)
+ * @param onNewsResourcesCheckedChanged 当新闻资源的收藏状态改变时调用的回调函数
+ * @param onNewsResourceViewed 当新闻资源被查看时调用的回调函数
+ * @param onTopicClick 当新闻中的主题标签被点击时调用的回调函数
+ * @param onExpandedCardClick 当展开的新闻卡片被点击时调用的可选回调函数
  */
 fun LazyStaggeredGridScope.newsFeed(
     feedState: NewsFeedUiState,
@@ -43,7 +44,7 @@ fun LazyStaggeredGridScope.newsFeed(
     when (feedState) {
         // 加载状态下不显示任何内�?
         NewsFeedUiState.Loading -> Unit
-        // 加载成功状态下，显示视频列�?
+        // 加载成功状态下，显示新闻列�?
         is NewsFeedUiState.Success -> {
             items(
                 items = feedState.feed,
@@ -55,25 +56,29 @@ fun LazyStaggeredGridScope.newsFeed(
                 val analyticsHelper = LocalAnalyticsHelper.current
                 val backgroundColor = MaterialTheme.colorScheme.background.toArgb()
 
-                // 渲染视频资源卡片
+                // 渲染新闻资源卡片
                 NewsResourceCardExpanded(
                     userNewsResource = userNewsResource,
                     isBookmarked = userNewsResource.isSaved,
                     onClick = {
                         onExpandedCardClick()
-                        // 记录视频资源打开事件
+                        // 记录新闻资源打开事件
                         analyticsHelper.logNewsResourceOpened(
                             newsResourceId = userNewsResource.id,
                         )
-                        // 使用自定义Chrome标签打开视频URL
-                        launchCustomChromeTab(context, Uri.parse(userNewsResource.url), backgroundColor)
+                        // 使用自定义Chrome标签打开新闻URL
+                        launchCustomChromeTab(
+                            context,
+                            Uri.parse(userNewsResource.url),
+                            backgroundColor
+                        )
 
-                        // 更新视频资源的已观看状�?
+                        // 更新新闻资源的已观看状�?
                         onNewsResourceViewed(userNewsResource.id)
                     },
                     hasBeenViewed = userNewsResource.hasBeenViewed,
                     onToggleBookmark = {
-                        // 更新视频资源的收藏状�?
+                        // 更新新闻资源的收藏状�?
                         onNewsResourcesCheckedChanged(
                             userNewsResource.id,
                             !userNewsResource.isSaved,
@@ -110,30 +115,30 @@ fun launchCustomChromeTab(context: Context, uri: Uri, @ColorInt toolbarColor: In
 }
 
 /**
- * 描述视频资源推荐流状态的密封接口
+ * 描述新闻资源推荐流状态的密封接口
  * 提供不同状态下的UI表示
  */
 sealed interface NewsFeedUiState {
     /**
-     * 视频流正在加载中
+     * 新闻流正在加载中
      * 表示数据尚未准备好显�?
      */
     data object Loading : NewsFeedUiState
 
     /**
-     * 视频流加载成�?
-     * 包含已加载的视频资源列表
+     * 新闻流加载成�?
+     * 包含已加载的新闻资源列表
      */
     data class Success(
         /**
-         * 此推荐流中包含的视频资源列表
+         * 此推荐流中包含的新闻资源列表
          */
         val feed: List<UserNewsResource>,
     ) : NewsFeedUiState
 }
 
 /**
- * 视频流加载状态的预览组件
+ * 新闻流加载状态的预览组件
  * 用于在Compose预览中展示加载状态的UI
  */
 @Preview
@@ -152,14 +157,14 @@ private fun NewsFeedLoadingPreview() {
 }
 
 /**
- * 视频流内容的预览组件
+ * 新闻流内容的预览组件
  * 用于在Compose预览中展示加载成功状态的UI，支持手机和平板设备预览
  */
 @Preview
 @Preview(device = Devices.TABLET)
 @Composable
 private fun NewsFeedContentPreview(
-    @PreviewParameter(UserNewsResourcePreviewParameterProvider::class)
+    @PreviewParameter(_root_ide_package_.com.obsbot.happyinn.apps.happyinninobsbot.core.ui.UserNewsResourcePreviewParameterProvider::class)
     userNewsResources: List<UserNewsResource>,
 ) {
     HioTheme {

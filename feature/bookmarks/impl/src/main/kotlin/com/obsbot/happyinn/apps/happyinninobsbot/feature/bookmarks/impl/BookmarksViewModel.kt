@@ -24,7 +24,7 @@ import androidx.lifecycle.viewModelScope
 import com.obsbot.happyinn.apps.happyinninobsbot.core.data.repository.UserDataRepository
 import com.obsbot.happyinn.apps.happyinninobsbot.core.data.repository.UserNewsResourceRepository
 import com.obsbot.happyinn.apps.happyinninobsbot.core.model.data.UserNewsResource
-import com.obsbot.happyinn.apps.happyinninobsbot.core.ui.NewsFeedUiState
+import com.obsbot.happyinn.apps.happyinninobsbot.core.ui.news.NewsFeedUiState
 
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.SharingStarted

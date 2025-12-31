@@ -96,9 +96,9 @@ import com.obsbot.happyinn.apps.happyinninobsbot.core.model.data.UserNewsResourc
 import com.obsbot.happyinn.apps.happyinninobsbot.core.ui.DevicePreviews
 import com.obsbot.happyinn.apps.happyinninobsbot.core.ui.TrackScreenViewEvent
 import com.obsbot.happyinn.apps.happyinninobsbot.core.ui.UserNewsResourcePreviewParameterProvider
-import com.obsbot.happyinn.apps.happyinninobsbot.core.ui.NewsFeedUiState
-import com.obsbot.happyinn.apps.happyinninobsbot.core.ui.launchCustomChromeTab
-import com.obsbot.happyinn.apps.happyinninobsbot.core.ui.newsFeed
+import com.obsbot.happyinn.apps.happyinninobsbot.core.ui.news.NewsFeedUiState
+import com.obsbot.happyinn.apps.happyinninobsbot.core.ui.news.launchCustomChromeTab
+import com.obsbot.happyinn.apps.happyinninobsbot.core.ui.news.newsFeed
 import kotlin.collections.distinctBy
 import kotlin.collections.flatMap
 import com.obsbot.happyinn.apps.happyinninobsbot.feature.foryou.api.R

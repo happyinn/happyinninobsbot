@@ -59,12 +59,14 @@ import com.obsbot.happyinn.apps.happyinninobsbot.core.designsystem.theme.Gradien
 import com.obsbot.happyinn.apps.happyinninobsbot.core.designsystem.theme.LocalGradientColors
 import com.obsbot.happyinn.apps.happyinninobsbot.core.navigation.Navigator
 import com.obsbot.happyinn.apps.happyinninobsbot.core.navigation.toEntries
+import com.obsbot.happyinn.apps.happyinninobsbot.feature.bookmarks.impl.navigation.LocalSnackbarHostState
 import com.obsbot.happyinn.apps.happyinninobsbot.feature.bookmarks.impl.navigation.bookmarksEntry
 import com.obsbot.happyinn.apps.happyinninobsbot.feature.foryou.api.navigation.ForYouNavKey
 import com.obsbot.happyinn.apps.happyinninobsbot.feature.foryou.impl.navigation.forYouEntry
 import com.obsbot.happyinn.apps.happyinninobsbot.feature.interests.impl.navigation.interestsEntry
 import com.obsbot.happyinn.apps.happyinninobsbot.feature.search.api.navigation.SearchNavKey
 import com.obsbot.happyinn.apps.happyinninobsbot.feature.settings.impl.SettingsDialog
+import com.obsbot.happyinn.apps.happyinninobsbot.feature.videos.impl.navigation.videosEntry
 import com.obsbot.happyinn.apps.happyinninobsbot.navigation.TOP_LEVEL_NAV_ITEMS
 import com.obsbot.happyinn.apps.happyinninobsbot.feature.settings.impl.R as settingsR
 
@@ -320,6 +322,7 @@ internal fun HioAppContent(
                         forYouEntry(navigator)
                         bookmarksEntry(navigator)
                         interestsEntry(navigator)
+                        videosEntry(navigator)
                         /*topicEntry(navigator)
                         searchEntry(navigator)*/
                     }
@@ -361,12 +364,3 @@ private fun Modifier.notificationDot(): Modifier =
     }
 
 
-// TODO: Why is this here?
-
-/**
- * 本地 SnackbarHostState 组合值
- * 用于在 Compose 组件树中传递 SnackbarHostState 实例
- */
-val LocalSnackbarHostState = compositionLocalOf<SnackbarHostState> {
-    error("SnackbarHostState state should be initialized at runtime")
-}

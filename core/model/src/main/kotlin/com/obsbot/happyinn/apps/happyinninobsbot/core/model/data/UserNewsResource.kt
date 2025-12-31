@@ -23,7 +23,7 @@ import kotlin.collections.map
  * 用户新闻资源数据�?
  *
  * 包含新闻资源的基本信息以及用户的个性化信息，如用户是否关注了该新闻资源的话题，
- * 以及用户是否收藏（书签）了这个新闻资�?
+ * 以及用户是否收藏（书签）了这个新闻资源
  */
 data class UserNewsResource internal constructor(
     /**
@@ -82,18 +82,18 @@ data class UserNewsResource internal constructor(
     /**
      * 构造函数：根据新闻资源和用户数据创建用户新闻资源对�?
      *
-     * @param NewsResource 基础新闻资源对象
+     * @param newsResource 基础新闻资源对象
      * @param userData 用户数据，包含用户的关注话题、收藏新闻等信息
      */
-    constructor(NewsResource: NewsResource, userData: UserData) : this(
-        id = NewsResource.id,
-        title = NewsResource.title,
-        content = NewsResource.content,
-        url = NewsResource.url,
-        headerImageUrl = NewsResource.headerImageUrl,
-        publishDate = NewsResource.publishDate,
-        type = NewsResource.type,
-        followableTopics = NewsResource.topics.map { topic ->
+    constructor(newsResource: NewsResource, userData: UserData) : this(
+        id = newsResource.id,
+        title = newsResource.title,
+        content = newsResource.content,
+        url = newsResource.url,
+        headerImageUrl = newsResource.headerImageUrl,
+        publishDate = newsResource.publishDate,
+        type = newsResource.type,
+        followableTopics = newsResource.topics.map { topic ->
             // 将每个话题转换为可关注话题，并检查用户是否已关注该话�?
             FollowableTopic(
                 topic = topic,
@@ -101,9 +101,9 @@ data class UserNewsResource internal constructor(
             )
         },
         // 检查该新闻是否在用户的收藏列表�?
-        isSaved = NewsResource.id in userData.bookmarkedNewsResources,
+        isSaved = newsResource.id in userData.bookmarkedNewsResources,
         // 检查该新闻是否在用户已观看的新闻列表中
-        hasBeenViewed = NewsResource.id in userData.viewedNewsResources,
+        hasBeenViewed = newsResource.id in userData.viewedNewsResources,
     )
 }
 

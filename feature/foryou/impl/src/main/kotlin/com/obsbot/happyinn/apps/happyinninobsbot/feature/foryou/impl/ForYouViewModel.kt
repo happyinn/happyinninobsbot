@@ -12,7 +12,7 @@ import com.obsbot.happyinn.apps.happyinninobsbot.core.data.repository.UserNewsRe
 import com.obsbot.happyinn.apps.happyinninobsbot.core.data.repository.NewsResourceQuery
 import com.obsbot.happyinn.apps.happyinninobsbot.core.domain.GetFollowableTopicsUseCase
 import com.obsbot.happyinn.apps.happyinninobsbot.core.notifications.DEEP_LINK_News_RESOURCE_ID_KEY
-import com.obsbot.happyinn.apps.happyinninobsbot.core.ui.NewsFeedUiState
+import com.obsbot.happyinn.apps.happyinninobsbot.core.ui.news.NewsFeedUiState
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.SharingStarted

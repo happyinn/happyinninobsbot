@@ -66,7 +66,7 @@ object PreviewParameterData {
 
     val NewsResources = listOf(
         UserNewsResource(
-            NewsResource = NewsResource(
+            newsResource = NewsResource(
                 id = "1",
                 title = "Android Basics with Compose",
                 content = "We released the first two units of Android Basics with Compose, our first free course that teaches Android Development with Jetpack Compose to anyone; you do not need any prior programming experience other than basic computer literacy to get started. You'll learn the fundamentals of programming in Kotlin while building Android apps using Jetpack Compose, Android's modern toolkit that simplifies and accelerates native UI development. These two units are just the beginning; more will be coming soon. Check out Android Basics with Compose to get started on your Android development journey",
@@ -87,7 +87,7 @@ object PreviewParameterData {
             userData = userData,
         ),
         UserNewsResource(
-            NewsResource = NewsResource(
+            newsResource = NewsResource(
                 id = "2",
                 title = "Thanks for helping us reach 1M YouTube Subscribers",
                 content = "Thank you everyone for following the Now in Android series and everything the " +
@@ -103,7 +103,7 @@ object PreviewParameterData {
             userData = userData,
         ),
         UserNewsResource(
-            NewsResource = NewsResource(
+            newsResource = NewsResource(
                 id = "3",
                 title = "Transformations and customisations in the Paging Library",
                 content = "A demonstration of different operations that can be performed " +

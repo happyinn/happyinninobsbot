@@ -41,4 +41,6 @@ object HioIcons {
     val Upcoming = Icons.Rounded.Upcoming
     val UpcomingBorder = Icons.Outlined.Upcoming
     val ViewDay = Icons.Rounded.ViewDay
+
+    val Video = Icons.Rounded.ViewDay
 }

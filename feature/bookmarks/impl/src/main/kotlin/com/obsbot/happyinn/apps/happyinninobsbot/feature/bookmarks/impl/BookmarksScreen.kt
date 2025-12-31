@@ -52,10 +52,10 @@ import com.obsbot.happyinn.apps.happyinninobsbot.core.designsystem.component.scr
 import com.obsbot.happyinn.apps.happyinninobsbot.core.designsystem.theme.HioTheme
 import com.obsbot.happyinn.apps.happyinninobsbot.core.designsystem.theme.LocalTintTheme
 import com.obsbot.happyinn.apps.happyinninobsbot.core.model.data.UserNewsResource
-import com.obsbot.happyinn.apps.happyinninobsbot.core.ui.NewsFeedUiState
+import com.obsbot.happyinn.apps.happyinninobsbot.core.ui.news.NewsFeedUiState
 import com.obsbot.happyinn.apps.happyinninobsbot.core.ui.TrackScreenViewEvent
 import com.obsbot.happyinn.apps.happyinninobsbot.core.ui.UserNewsResourcePreviewParameterProvider
-import com.obsbot.happyinn.apps.happyinninobsbot.core.ui.newsFeed
+import com.obsbot.happyinn.apps.happyinninobsbot.core.ui.news.newsFeed
 import com.obsbot.happyinn.apps.happyinninobsbot.feature.bookmarks.api.R
 
 @Composable

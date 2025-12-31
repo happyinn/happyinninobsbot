@@ -20,10 +20,13 @@ import com.obsbot.happyinn.apps.happyinninobsbot.core.designsystem.icon.HioIcons
 import com.obsbot.happyinn.apps.happyinninobsbot.feature.bookmarks.api.navigation.BookmarksNavKey
 import com.obsbot.happyinn.apps.happyinninobsbot.feature.foryou.api.navigation.ForYouNavKey
 import com.obsbot.happyinn.apps.happyinninobsbot.feature.interests.api.navigation.InterestsNavKey
+import com.obsbot.happyinn.apps.happyinninobsbot.feature.videos.api.navigation.VideosNavKey
 
 import com.obsbot.happyinn.apps.happyinninobsbot.feature.bookmarks.api.R as bookmarksR
 import com.obsbot.happyinn.apps.happyinninobsbot.feature.foryou.api.R as forYouR
 import com.obsbot.happyinn.apps.happyinninobsbot.feature.search.api.R as searchR
+import com.obsbot.happyinn.apps.happyinninobsbot.feature.videos.api.R as videosR
+
 /**
  * 应用程序顶级导航项的数据类型。包含有关当前路由的UI信息，
  * 这些信息用于顶部应用栏和通用导航UI中。
@@ -62,6 +65,18 @@ val BOOKMARKS = TopLevelNavItem(
     titleTextId = bookmarksR.string.feature_bookmarks_api_title,
 )
 
+
+/**
+ * "兴趣"导航项
+ * 使用 Grid3x3 图标，图标文本和标题都显示为"兴趣"
+ */
+val VIDEOS = TopLevelNavItem(
+    selectedIcon = HioIcons.Video,
+    unselectedIcon = HioIcons.Video,
+    iconTextId = videosR.string.feature_videos_api_title,
+    titleTextId = videosR.string.feature_videos_api_title,
+)
+
 /**
  * "兴趣"导航项
  * 使用 Grid3x3 图标，图标文本和标题都显示为"兴趣"
@@ -73,6 +88,9 @@ val INTERESTS = TopLevelNavItem(
     titleTextId = searchR.string.feature_search_api_interests,
 )
 
+
+
+
 /**
  * 顶级导航项映射表
  * 将导航键与对应的导航项进行映射关联
@@ -81,4 +99,5 @@ val TOP_LEVEL_NAV_ITEMS = mapOf(
     ForYouNavKey to FOR_YOU,
     BookmarksNavKey to BOOKMARKS,
     InterestsNavKey(null) to INTERESTS,
+    VideosNavKey to VIDEOS
 )

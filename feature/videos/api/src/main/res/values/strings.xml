@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="feature_videos_api_title">视频</string>
+    <string name="feature_videos_api_done">完成</string>
+    <string name="feature_videos_api_loading">加载中…</string>
+    <string name="feature_videos_api_navigate_up">向上导航</string>
+</resources>

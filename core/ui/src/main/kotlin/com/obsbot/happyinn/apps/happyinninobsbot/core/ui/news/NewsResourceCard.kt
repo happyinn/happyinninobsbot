@@ -1,4 +1,4 @@
-package com.obsbot.happyinn.apps.happyinninobsbot.core.ui
+package com.obsbot.happyinn.apps.happyinninobsbot.core.ui.news
 
 import android.content.ClipData
 import android.os.Build.VERSION
@@ -66,6 +66,9 @@ import kotlin.text.isNotBlank
 import kotlin.text.isNullOrEmpty
 import kotlin.text.uppercase
 import com.obsbot.happyinn.apps.happyinninobsbot.core.designsystem.R.drawable
+import com.obsbot.happyinn.apps.happyinninobsbot.core.ui.LocalTimeZone
+import com.obsbot.happyinn.apps.happyinninobsbot.core.ui.R
+import com.obsbot.happyinn.apps.happyinninobsbot.core.ui.UserNewsResourcePreviewParameterProvider
 
 /**
  * 新闻资源卡片组件文件
@@ -78,15 +81,15 @@ import com.obsbot.happyinn.apps.happyinninobsbot.core.designsystem.R.drawable
 /**
  * 展开式新闻资源卡片组�?
  * 
- * 显示一个包含完整新闻资源信息的卡片，包括标题、头部图片、书签按钮、元数据�?
- * 简短描述和主题标签。支持点击操作、书签切换和拖拽分享功能�?
+ * 显示一个包含完整新闻资源信息的卡片，包括标题、头部图片、书签按钮、元数据
+ * 简短描述和主题标签。支持点击操作、书签切换和拖拽分享功能
  * 
- * @param userNewsResource 包含新闻资源数据的用户新闻资源对�?
+ * @param userNewsResource 包含新闻资源数据的用户新闻资源对
  * @param isBookmarked 是否已添加书�?
  * @param hasBeenViewed 是否已查�?
  * @param onToggleBookmark 切换书签状态的回调函数
  * @param onClick 点击卡片的回调函�?
- * @param onTopicClick 点击主题标签的回调函�?
+ * @param onTopicClick 点击主题标签的回调函数
  * @param modifier 修饰�?
  */
 @OptIn(ExperimentalFoundationApi::class)

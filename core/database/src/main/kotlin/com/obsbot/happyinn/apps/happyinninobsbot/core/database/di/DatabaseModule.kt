@@ -29,6 +29,6 @@ internal object DatabaseModule {
     ): HioDatabase = Room.databaseBuilder(
         context,
         HioDatabase::class.java,
-        "nia-database",
+        "hio-database",
     ).build()
 }

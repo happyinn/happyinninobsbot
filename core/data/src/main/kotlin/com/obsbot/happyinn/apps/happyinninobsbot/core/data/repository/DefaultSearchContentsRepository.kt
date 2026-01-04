@@ -14,13 +14,13 @@
 
 package com.obsbot.happyinn.apps.happyinninobsbot.core.data.repository
 
-import com.obsbot.happyinn.apps.happyinninobsbot.core.database.dao.NewsResourceDao
-import com.obsbot.happyinn.apps.happyinninobsbot.core.database.dao.NewsResourceFtsDao
-import com.obsbot.happyinn.apps.happyinninobsbot.core.database.dao.TopicDao
-import com.obsbot.happyinn.apps.happyinninobsbot.core.database.dao.TopicFtsDao
-import com.obsbot.happyinn.apps.happyinninobsbot.core.database.model.PopulatedNewsResource
-import com.obsbot.happyinn.apps.happyinninobsbot.core.database.model.asExternalModel
-import com.obsbot.happyinn.apps.happyinninobsbot.core.database.model.asFtsEntity
+import com.obsbot.happyinn.apps.happyinninobsbot.core.database.dao.news.NewsResourceDao
+import com.obsbot.happyinn.apps.happyinninobsbot.core.database.dao.news.NewsResourceFtsDao
+import com.obsbot.happyinn.apps.happyinninobsbot.core.database.dao.news.TopicDao
+import com.obsbot.happyinn.apps.happyinninobsbot.core.database.dao.news.TopicFtsDao
+import com.obsbot.happyinn.apps.happyinninobsbot.core.database.entities.news.PopulatedNewsResource
+import com.obsbot.happyinn.apps.happyinninobsbot.core.database.entities.news.asExternalModel
+import com.obsbot.happyinn.apps.happyinninobsbot.core.database.entities.news.asFtsEntity
 import com.obsbot.happyinn.apps.happyinninobsbot.core.model.data.SearchResult
 import com.obsbot.happyinn.apps.happyinninobsbot.network.Dispatcher
 import com.obsbot.happyinn.apps.happyinninobsbot.network.HioDispatchers.IO

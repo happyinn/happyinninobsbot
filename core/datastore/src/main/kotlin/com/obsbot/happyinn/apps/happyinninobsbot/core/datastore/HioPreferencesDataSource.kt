@@ -5,6 +5,9 @@ import androidx.datastore.core.DataStore
 import com.obsbot.happyinn.apps.happyinninobsbot.core.model.data.DarkThemeConfig
 import com.obsbot.happyinn.apps.happyinninobsbot.core.model.data.ThemeBrand
 import com.obsbot.happyinn.apps.happyinninobsbot.core.model.data.UserData
+import com.obsbot.happyinn.apps.happyinninobsbot.core.model.data.media.MediaLayoutMode
+import com.obsbot.happyinn.apps.happyinninobsbot.core.model.data.media.MediaViewMode
+import com.obsbot.happyinn.apps.happyinninobsbot.core.model.data.media.Sort
 import kotlinx.coroutines.flow.firstOrNull
 import kotlinx.coroutines.flow.map
 import java.io.IOException
@@ -60,6 +63,70 @@ class HioPreferencesDataSource @Inject constructor(
                 useDynamicColor = it.useDynamicColor,
                 // 是否隐藏引导页面
                 shouldHideOnboarding = it.shouldHideOnboarding,
+                // 排序方式
+                sortBy = when (it.sortBy) {
+                    null,
+                    SortByProto.SORT_BY_UNSPECIFIED,
+                    SortByProto.UNRECOGNIZED,
+                        -> Sort.By.TITLE
+
+                    SortByProto.SORT_BY_TITLE -> Sort.By.TITLE
+                    SortByProto.SORT_BY_LENGTH -> Sort.By.LENGTH
+                    SortByProto.SORT_BY_PATH -> Sort.By.PATH
+                    SortByProto.SORT_BY_SIZE -> Sort.By.SIZE
+                    SortByProto.SORT_BY_DATE -> Sort.By.DATE
+                },
+                // 排序顺序
+                sortOrder = when (it.sortOrder) {
+                    null,
+                    SortOrderProto.SORT_ORDER_UNSPECIFIED,
+                    SortOrderProto.UNRECOGNIZED,
+                        -> Sort.Order.ASCENDING
+
+                    SortOrderProto.SORT_ORDER_ASCENDING -> Sort.Order.ASCENDING
+                    SortOrderProto.SORT_ORDER_DESCENDING -> Sort.Order.DESCENDING
+                },
+                // 标记最后播放的媒体
+                markLastPlayedMedia = it.markLastPlayedMedia,
+                // 显示浮动播放按钮
+                showFloatingPlayButton = it.showFloatingPlayButton,
+                // 排除的文件夹
+                excludeFolders = it.excludeFoldersList,
+                // 媒体查看模式
+                mediaViewMode = when (it.mediaViewMode) {
+                    null,
+                    MediaViewModeProto.MEDIA_VIEW_MODE_UNSPECIFIED,
+                    MediaViewModeProto.UNRECOGNIZED,
+                        -> MediaViewMode.FOLDERS
+
+                    MediaViewModeProto.MEDIA_VIEW_MODE_FOLDER_TREE -> MediaViewMode.FOLDER_TREE
+                    MediaViewModeProto.MEDIA_VIEW_MODE_FOLDERS -> MediaViewMode.FOLDERS
+                    MediaViewModeProto.MEDIA_VIEW_MODE_VIDEOS -> MediaViewMode.VIDEOS
+                },
+                // 媒体布局模式
+                mediaLayoutMode = when (it.mediaLayoutMode) {
+                    null,
+                    MediaLayoutModeProto.MEDIA_LAYOUT_MODE_UNSPECIFIED,
+                    MediaLayoutModeProto.UNRECOGNIZED,
+                        -> MediaLayoutMode.LIST
+
+                    MediaLayoutModeProto.MEDIA_LAYOUT_MODE_LIST -> MediaLayoutMode.LIST
+                    MediaLayoutModeProto.MEDIA_LAYOUT_MODE_GRID -> MediaLayoutMode.GRID
+                },
+                // 显示时长字段
+                showDurationField = it.showDurationField,
+                // 显示扩展名字段
+                showExtensionField = it.showExtensionField,
+                // 显示路径字段
+                showPathField = it.showPathField,
+                // 显示分辨率字段
+                showResolutionField = it.showResolutionField,
+                // 显示大小字段
+                showSizeField = it.showSizeField,
+                // 显示缩略图字段
+                showThumbnailField = it.showThumbnailField,
+                // 显示播放进度
+                showPlayedProgress = it.showPlayedProgress,
             )
         }
 
@@ -249,6 +316,117 @@ class HioPreferencesDataSource @Inject constructor(
     suspend fun setShouldHideOnboarding(shouldHideOnboarding: Boolean) {
         userPreferences.updateData {
             it.copy { this.shouldHideOnboarding = shouldHideOnboarding }
+        }
+    }
+
+    suspend fun setSortBy(sortBy: Sort.By) {
+        userPreferences.updateData {
+            it.copy {
+                this.sortBy = when (sortBy) {
+                    Sort.By.TITLE -> SortByProto.SORT_BY_TITLE
+                    Sort.By.LENGTH -> SortByProto.SORT_BY_LENGTH
+                    Sort.By.PATH -> SortByProto.SORT_BY_PATH
+                    Sort.By.SIZE -> SortByProto.SORT_BY_SIZE
+                    Sort.By.DATE -> SortByProto.SORT_BY_DATE
+                }
+            }
+        }
+    }
+
+    suspend fun setSortOrder(sortOrder: Sort.Order) {
+        userPreferences.updateData {
+            it.copy {
+                this.sortOrder = when (sortOrder) {
+                    Sort.Order.ASCENDING -> SortOrderProto.SORT_ORDER_ASCENDING
+                    Sort.Order.DESCENDING -> SortOrderProto.SORT_ORDER_DESCENDING
+                }
+            }
+        }
+    }
+
+    suspend fun setMarkLastPlayedMedia(markLastPlayedMedia: Boolean) {
+        userPreferences.updateData {
+            it.copy { this.markLastPlayedMedia = markLastPlayedMedia }
+        }
+    }
+
+    suspend fun setShowFloatingPlayButton(showFloatingPlayButton: Boolean) {
+        userPreferences.updateData {
+            it.copy { this.showFloatingPlayButton = showFloatingPlayButton }
+        }
+    }
+
+    suspend fun setExcludeFolders(excludeFolders: List<String>) {
+        userPreferences.updateData {
+            it.copy {
+                this.excludeFolders.clear()
+                this.excludeFolders.addAll(excludeFolders)
+            }
+        }
+    }
+
+    suspend fun setMediaViewMode(mediaViewMode: MediaViewMode) {
+        userPreferences.updateData {
+            it.copy {
+                this.mediaViewMode = when (mediaViewMode) {
+                    MediaViewMode.FOLDER_TREE -> MediaViewModeProto.MEDIA_VIEW_MODE_FOLDER_TREE
+                    MediaViewMode.FOLDERS -> MediaViewModeProto.MEDIA_VIEW_MODE_FOLDERS
+                    MediaViewMode.VIDEOS -> MediaViewModeProto.MEDIA_VIEW_MODE_VIDEOS
+                }
+            }
+        }
+    }
+
+    suspend fun setMediaLayoutMode(mediaLayoutMode: MediaLayoutMode) {
+        userPreferences.updateData {
+            it.copy {
+                this.mediaLayoutMode = when (mediaLayoutMode) {
+                    MediaLayoutMode.LIST -> MediaLayoutModeProto.MEDIA_LAYOUT_MODE_LIST
+                    MediaLayoutMode.GRID -> MediaLayoutModeProto.MEDIA_LAYOUT_MODE_GRID
+                }
+            }
+        }
+    }
+
+    suspend fun setShowDurationField(showDurationField: Boolean) {
+        userPreferences.updateData {
+            it.copy { this.showDurationField = showDurationField }
+        }
+    }
+
+    suspend fun setShowExtensionField(showExtensionField: Boolean) {
+        userPreferences.updateData {
+            it.copy { this.showExtensionField = showExtensionField }
+        }
+    }
+
+    suspend fun setShowPathField(showPathField: Boolean) {
+        userPreferences.updateData {
+            it.copy { this.showPathField = showPathField }
+        }
+    }
+
+    suspend fun setShowResolutionField(showResolutionField: Boolean) {
+        userPreferences.updateData {
+            it.copy { this.showResolutionField = showResolutionField }
+        }
+    }
+
+    suspend fun setShowSizeField(showSizeField: Boolean) {
+        userPreferences.updateData {
+            it.copy { this.showSizeField = showSizeField }
+        }
+    }
+
+    suspend fun setShowThumbnailField(showThumbnailField: Boolean) {
+        userPreferences.updateData {
+            it.copy { this.showThumbnailField = showThumbnailField }
+        }
+    }
+
+    suspend fun setShowPlayedProgress(showPlayedProgress: Boolean) {
+        userPreferences.updateData {
+            it.copy { this.showPlayedProgress = showPlayedProgress }
         }
     }
 }

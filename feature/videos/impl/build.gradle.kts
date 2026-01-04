@@ -12,10 +12,15 @@ android {
 dependencies {
     implementation(projects.core.domain)
     implementation(projects.core.notifications)
+    implementation(projects.core.designsystem)
     implementation(projects.feature.videos.api)
     implementation(projects.feature.topic.api)
     implementation(libs.androidx.activity.compose)
     implementation(libs.accompanist.permissions)
+    implementation(projects.core.service)
+    implementation(projects.sync.work)
+    implementation(libs.coil.kt.compose)
+
 
 
     testImplementation(libs.hilt.android.testing)

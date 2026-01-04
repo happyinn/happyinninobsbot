@@ -58,14 +58,15 @@ android {
             baselineProfile.automaticGenerationDuringBuild = true
         }
     }
-    compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_11
-        targetCompatibility = JavaVersion.VERSION_11
-    }
 
-    buildFeatures {
-        compose = true
+    packaging {
+        resources {
+            excludes.add("/META-INF/{AL2.0,LGPL2.1}")
+        }
     }
+    testOptions.unitTests.isIncludeAndroidResources = true
+    namespace = "com.obsbot.happyinn.apps.happyinninobsbot"
+
 }
 
 
@@ -92,6 +93,10 @@ dependencies {
     implementation(projects.core.common)
     implementation(projects.core.model)
     implementation(projects.core.data)
+    implementation(projects.core.service)
+
+    //storage permissions
+    implementation(libs.accompanist.permissions)
 
 
     implementation(projects.core.designsystem)

@@ -1,9 +1,9 @@
 package com.obsbot.happyinn.apps.happyinninobsbot.core.data.model
 
 
-import com.obsbot.happyinn.apps.happyinninobsbot.core.database.model.NewsResourceEntity
-import com.obsbot.happyinn.apps.happyinninobsbot.core.database.model.NewsResourceTopicCrossRef
-import com.obsbot.happyinn.apps.happyinninobsbot.core.database.model.TopicEntity
+import com.obsbot.happyinn.apps.happyinninobsbot.core.database.entities.news.NewsResourceEntity
+import com.obsbot.happyinn.apps.happyinninobsbot.core.database.entities.news.NewsResourceTopicCrossRef
+import com.obsbot.happyinn.apps.happyinninobsbot.core.database.entities.news.TopicEntity
 import com.obsbot.happyinn.apps.happyinninobsbot.core.model.data.NewsResource
 import com.obsbot.happyinn.apps.happyinninobsbot.core.network.model.NetworkNewsResource
 import com.obsbot.happyinn.apps.happyinninobsbot.core.network.model.NetworkTopic

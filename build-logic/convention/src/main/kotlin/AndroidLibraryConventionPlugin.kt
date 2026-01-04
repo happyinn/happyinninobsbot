@@ -68,6 +68,7 @@ class AndroidLibraryConventionPlugin : Plugin<Project> {
 
             // 配置依赖项
             dependencies {
+//                "implementation"(libs.findLibrary("androidx.core.ktx").get())
                 // 添加Android测试实现依赖
                 "androidTestImplementation"(libs.findLibrary("kotlin.test").get())
                 // 添加单元测试实现依赖

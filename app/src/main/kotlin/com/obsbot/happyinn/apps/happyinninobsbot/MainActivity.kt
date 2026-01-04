@@ -1,5 +1,4 @@
 package com.obsbot.happyinn.apps.happyinninobsbot
-
 import android.os.Bundle
 import android.util.Log
 import androidx.activity.ComponentActivity
@@ -7,15 +6,20 @@ import androidx.activity.SystemBarStyle
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import androidx.activity.viewModels
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.util.trace
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.compose.LifecycleEventEffect
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
+import com.google.accompanist.permissions.ExperimentalPermissionsApi
+import com.google.accompanist.permissions.isGranted
+import com.google.accompanist.permissions.rememberPermissionState
 import com.obsbot.happyinn.apps.happyinninobsbot.core.designsystem.theme.HioTheme
 import com.obsbot.happyinn.apps.happyinninobsbot.util.isSystemInDarkTheme
 import dagger.hilt.android.AndroidEntryPoint
@@ -23,6 +27,8 @@ import com.obsbot.happyinn.apps.happyinninobsbot.MainActivityUiState.Loading
 import com.obsbot.happyinn.apps.happyinninobsbot.core.data.repository.UserNewsResourceRepository
 import com.obsbot.happyinn.apps.happyinninobsbot.core.data.util.NetworkMonitor
 import com.obsbot.happyinn.apps.happyinninobsbot.core.data.util.TimeZoneMonitor
+import com.obsbot.happyinn.apps.happyinninobsbot.core.service.media.MediaService
+import com.obsbot.happyinn.apps.happyinninobsbot.sync.media.MediaSynchronizer
 import com.obsbot.happyinn.apps.happyinninobsbot.ui.HioApp
 import com.obsbot.happyinn.apps.happyinninobsbot.ui.rememberHioAppState
 import kotlinx.coroutines.flow.catch
@@ -69,14 +75,31 @@ class MainActivity : ComponentActivity() {
 
 
     /**
-     * �?Activity �?ViewModel，用于管�?UI 状�?
+     * 注入的媒体服务，用于管理媒体播放和控制
+     */
+    @Inject
+    lateinit var mediaService: MediaService
+
+    /**
+     * 注入的媒体同步器，用于同步设备上的媒体文件
+     */
+    @Inject
+    lateinit var synchronizer: MediaSynchronizer
+
+
+    /**
+     * Activity ViewModel，用于管理UI状态
      */
     private val viewModel: MainActivityViewModel by viewModels()
 
+    @OptIn(ExperimentalPermissionsApi::class)
     override fun onCreate(savedInstanceState: Bundle?) {
         // 安装启动画面
         val splashScreen = installSplashScreen()
         super.onCreate(savedInstanceState)
+
+        // 初始化媒体服务
+        mediaService.initialize(this@MainActivity)
 
         // 我们将其保持为可变状态，以便在组合中跟踪变化�?
         // 这允许我们对深色/浅色模式变化做出反应�?
@@ -140,7 +163,7 @@ class MainActivity : ComponentActivity() {
                         /**
                          * - trace ：使用AndroidX Tracing API标记代码块，用于性能分析和调�?
                          *
-                         * - 有助于在性能分析工具中识别和监控此代码块的执行情�?
+                         * - 有助于在性能分析工具中识别和监控此代码块的执行情况
                          * - enableEdgeToEdge ：启用边缘到边缘显示效果，允许内容延伸到系统UI区域（状态栏和导航栏�?
                          * - SystemBarStyle.auto ：根据条件自动选择合适的系统栏样�?
                          *
@@ -188,17 +211,35 @@ class MainActivity : ComponentActivity() {
                 timeZoneMonitor = timeZoneMonitor,
             )
 
-            // 收集当前时区状�?
+            // 收集当前时区状态
             val currentTimeZone by appState.currentTimeZone.collectAsStateWithLifecycle()
 
 
+            // 请求存储权限的状态
+            val storagePermissionState = rememberPermissionState(permission = storagePermission)
+
+            // 当生命周期事件为ON_START时，请求存储权限
+            LifecycleEventEffect(event = Lifecycle.Event.ON_START) {
+                storagePermissionState.launchPermissionRequest()
+            }
+
+            // 当存储权限状态变化时，如果已授予权限，则启动媒体同步
+            LaunchedEffect(key1 = storagePermissionState.status.isGranted) {
+                if (storagePermissionState.status.isGranted) {
+                    // 开始同步媒体文件
+                    synchronizer.startSync()
+                }
+            }
 
             HioTheme (
                 darkTheme = themeSettings.darkTheme,
                 androidTheme = themeSettings.androidTheme,
                 disableDynamicTheming = themeSettings.disableDynamicTheming,
             ){
-                // 显示主应用界�?
+
+
+
+                // 显示主应用界面
                 HioApp(appState)
             }
         }

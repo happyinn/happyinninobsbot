@@ -1,22 +1,39 @@
 package com.obsbot.happyinn.apps.happyinninobsbot.core.designsystem.component
 
 import androidx.compose.foundation.BorderStroke
+import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.PaddingValues
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.RowScope
+import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.sizeIn
+import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.selection.selectable
+import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedButton
+import androidx.compose.material3.RadioButton
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
+import androidx.compose.material3.surfaceColorAtElevation
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
+import androidx.compose.ui.graphics.vector.ImageVector
+import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.semantics.Role
 import androidx.compose.ui.unit.dp
+import com.obsbot.happyinn.apps.happyinninobsbot.core.designsystem.R
 import com.obsbot.happyinn.apps.happyinninobsbot.core.designsystem.icon.HioIcons
 import com.obsbot.happyinn.apps.happyinninobsbot.core.designsystem.theme.HioTheme
 
@@ -317,4 +334,89 @@ object HioButtonDefaults {
     // TODO: 提交 bug 报告
     // OutlinedButton 默认边框宽度未通过 ButtonDefaults 暴露出来
     val OutlinedButtonBorderWidth = 1.dp  // 描边按钮的边框宽度
+}
+
+
+@Composable
+fun DoneButton(
+    onClick: () -> Unit,
+    modifier: Modifier = Modifier,
+    enabled: Boolean = true,
+) {
+    TextButton(
+        enabled = enabled,
+        onClick = onClick,
+        modifier = modifier,
+    ) {
+        Text(text = stringResource(R.string.done))
+    }
+}
+
+@Composable
+fun CancelButton(
+    onClick: () -> Unit,
+    modifier: Modifier = Modifier,
+    enabled: Boolean = true,
+) {
+    TextButton(
+        enabled = enabled,
+        onClick = onClick,
+        modifier = modifier,
+    ) {
+        Text(text = stringResource(R.string.cancel))
+    }
+}
+
+
+@Composable
+fun RadioTextButton(
+    text: String,
+    selected: Boolean,
+    onClick: () -> Unit,
+    modifier: Modifier = Modifier,
+) {
+    Row(
+        modifier = modifier
+            .fillMaxWidth()
+            .selectable(
+                selected = selected,
+                onClick = onClick,
+                role = Role.RadioButton,
+            )
+            .padding(12.dp),
+        verticalAlignment = Alignment.CenterVertically,
+    ) {
+        RadioButton(
+            selected = selected,
+            onClick = null,
+        )
+        Spacer(modifier = Modifier.width(8.dp))
+        Text(text = text)
+    }
+}
+
+@Composable
+fun ShortcutChipButton(
+    text: String,
+    icon: ImageVector,
+    modifier: Modifier = Modifier,
+    onClick: () -> Unit,
+) {
+    Row(
+        verticalAlignment = Alignment.CenterVertically,
+        horizontalArrangement = Arrangement.spacedBy(8.dp),
+        modifier = modifier
+            .clip(CircleShape)
+            .clickable { onClick() }
+            .background(color = MaterialTheme.colorScheme.surfaceColorAtElevation(5.dp))
+            .padding(horizontal = 12.dp, vertical = 6.dp),
+    ) {
+        Icon(
+            imageVector = icon,
+            contentDescription = null,
+            modifier = Modifier.size(20.dp),
+            tint = MaterialTheme.colorScheme.secondary,
+        )
+        Text(text = text, style = MaterialTheme.typography.labelLarge)
+    }
 }

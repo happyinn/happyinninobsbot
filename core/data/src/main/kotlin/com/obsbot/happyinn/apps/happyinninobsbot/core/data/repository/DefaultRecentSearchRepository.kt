@@ -3,8 +3,8 @@ package com.obsbot.happyinn.apps.happyinninobsbot.core.data.repository
 
 import com.obsbot.happyinn.apps.happyinninobsbot.core.data.model.RecentSearchQuery
 import com.obsbot.happyinn.apps.happyinninobsbot.core.data.model.asExternalModel
-import com.obsbot.happyinn.apps.happyinninobsbot.core.database.dao.RecentSearchQueryDao
-import com.obsbot.happyinn.apps.happyinninobsbot.core.database.model.RecentSearchQueryEntity
+import com.obsbot.happyinn.apps.happyinninobsbot.core.database.dao.news.RecentSearchQueryDao
+import com.obsbot.happyinn.apps.happyinninobsbot.core.database.entities.news.RecentSearchQueryEntity
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
 import kotlinx.datetime.Clock

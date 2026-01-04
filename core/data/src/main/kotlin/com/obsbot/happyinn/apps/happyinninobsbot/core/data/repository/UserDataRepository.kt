@@ -20,6 +20,7 @@ package com.obsbot.happyinn.apps.happyinninobsbot.core.data.repository
 import com.obsbot.happyinn.apps.happyinninobsbot.core.model.data.DarkThemeConfig
 import com.obsbot.happyinn.apps.happyinninobsbot.core.model.data.ThemeBrand
 import com.obsbot.happyinn.apps.happyinninobsbot.core.model.data.UserData
+import com.obsbot.happyinn.apps.happyinninobsbot.core.model.data.media.MediaConfig
 import kotlinx.coroutines.flow.Flow
 
 interface UserDataRepository {
@@ -42,12 +43,12 @@ interface UserDataRepository {
     /**
      * Updates the bookmarked status for a News resource
      */
-    suspend fun setNewsResourceBookmarked(NewsResourceId: String, bookmarked: Boolean)
+    suspend fun setNewsResourceBookmarked(newsResourceId: String, bookmarked: Boolean)
 
     /**
      * Updates the viewed status for a News resource
      */
-    suspend fun setNewsResourceViewed(NewsResourceId: String, viewed: Boolean)
+    suspend fun setNewsResourceViewed(newsResourceId: String, viewed: Boolean)
 
     /**
      * Sets the desired theme brand.
@@ -68,5 +69,8 @@ interface UserDataRepository {
      * Sets whether the user has completed the onboarding process.
      */
     suspend fun setShouldHideOnboarding(shouldHideOnboarding: Boolean)
+
+
+    suspend fun updateMediaConfig(mediaConfig: MediaConfig)
 }
 

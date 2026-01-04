@@ -3,14 +3,13 @@ package com.obsbot.happyinn.apps.happyinninobsbot.core.data.repository
 import com.google.samples.apps.nowinandroid.core.data.model.asEntity
 import com.obsbot.happyinn.apps.happyinninobsbot.core.data.Synchronizer
 import com.obsbot.happyinn.apps.happyinninobsbot.core.data.changeListSync
-import com.obsbot.happyinn.apps.happyinninobsbot.core.database.dao.TopicDao
-import com.obsbot.happyinn.apps.happyinninobsbot.core.database.model.TopicEntity
-import com.obsbot.happyinn.apps.happyinninobsbot.core.database.model.asExternalModel
+import com.obsbot.happyinn.apps.happyinninobsbot.core.database.dao.news.TopicDao
+import com.obsbot.happyinn.apps.happyinninobsbot.core.database.entities.news.TopicEntity
+import com.obsbot.happyinn.apps.happyinninobsbot.core.database.entities.news.asExternalModel
 import com.obsbot.happyinn.apps.happyinninobsbot.core.datastore.ChangeListVersions
 import com.obsbot.happyinn.apps.happyinninobsbot.core.model.data.Topic
 import com.obsbot.happyinn.apps.happyinninobsbot.core.network.HioNetworkDataSource
 import com.obsbot.happyinn.apps.happyinninobsbot.core.network.model.NetworkChangeList
-import com.obsbot.happyinn.apps.happyinninobsbot.core.network.model.NetworkTopic
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
 import javax.inject.Inject

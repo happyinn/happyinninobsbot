@@ -1,11 +1,14 @@
 ﻿package com.obsbot.happyinn.apps.happyinninobsbot.core.database.di
 
 import com.obsbot.happyinn.apps.happyinninobsbot.core.database.HioDatabase
-import com.obsbot.happyinn.apps.happyinninobsbot.core.database.dao.NewsResourceDao
-import com.obsbot.happyinn.apps.happyinninobsbot.core.database.dao.NewsResourceFtsDao
-import com.obsbot.happyinn.apps.happyinninobsbot.core.database.dao.RecentSearchQueryDao
-import com.obsbot.happyinn.apps.happyinninobsbot.core.database.dao.TopicDao
-import com.obsbot.happyinn.apps.happyinninobsbot.core.database.dao.TopicFtsDao
+import com.obsbot.happyinn.apps.happyinninobsbot.core.database.dao.media.DirectoryDao
+import com.obsbot.happyinn.apps.happyinninobsbot.core.database.dao.media.MediumDao
+import com.obsbot.happyinn.apps.happyinninobsbot.core.database.dao.media.MediumStateDao
+import com.obsbot.happyinn.apps.happyinninobsbot.core.database.dao.news.NewsResourceDao
+import com.obsbot.happyinn.apps.happyinninobsbot.core.database.dao.news.NewsResourceFtsDao
+import com.obsbot.happyinn.apps.happyinninobsbot.core.database.dao.news.RecentSearchQueryDao
+import com.obsbot.happyinn.apps.happyinninobsbot.core.database.dao.news.TopicDao
+import com.obsbot.happyinn.apps.happyinninobsbot.core.database.dao.news.TopicFtsDao
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -71,5 +74,23 @@ internal object DaosModule {
     fun providesRecentSearchQueryDao(
         database: HioDatabase,
     ): RecentSearchQueryDao = database.recentSearchQueryDao()
+
+
+
+    @Provides
+    fun providesMediumDao(
+        database: HioDatabase,
+    ): MediumDao = database.mediumDao()
+
+    @Provides
+    fun providesDirectoryDao(
+        database: HioDatabase,
+    ): DirectoryDao = database.directoryDao()
+
+    @Provides
+    fun providesMediumStateDao(
+        database: HioDatabase,
+    ): MediumStateDao = database.mediumStateDao()
+
 }
 

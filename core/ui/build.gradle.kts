@@ -13,6 +13,7 @@ dependencies {
     api(projects.core.analytics)
     api(projects.core.designsystem)
     api(projects.core.model)
+    implementation(libs.androidx.compose.ui.tooling.preview)
 
     implementation(libs.androidx.browser)
     implementation(libs.coil.kt)

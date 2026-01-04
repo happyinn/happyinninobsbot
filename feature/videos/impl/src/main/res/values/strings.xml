@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="nav_name">视频播放</string>
+    <string name="settings">设置\n</string>
+    <string name="menu">菜单</string>
+    <string name="open_local_video">打开本地视频</string>
+    <string name="open_network_stream">打开网络</string>
+    <string name="no_videos_found">未找到视频</string>
+    <string name="delete">删除</string>
+</resources>

@@ -28,8 +28,24 @@ dependencies {
 
     implementation(libs.coil.kt.compose)
 
+
+
+    implementation(libs.androidx.core.ktx)
+    implementation(libs.androidx.appcompat)
+
+    implementation(platform(libs.androidx.compose.bom))
+    implementation(libs.androidx.compose.ui)
+    implementation(libs.androidx.compose.ui.tooling.preview)
+    implementation(libs.androidx.compose.material3)
+    implementation(libs.androidx.lifecycle.runtime.ktx)
+    implementation(libs.androidx.lifecycle.runtimeCompose)
+    implementation(libs.androidx.compose.material.iconsExtended)
+
+
     testImplementation(libs.androidx.compose.ui.test)
     testImplementation(libs.androidx.compose.ui.testManifest)
+
+
 
     testImplementation(libs.hilt.android.testing)
     testImplementation(libs.robolectric)

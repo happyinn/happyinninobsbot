@@ -1,22 +1,29 @@
 package com.obsbot.happyinn.apps.happyinninobsbot.core.database
 
-import androidx.room.AutoMigration
 import androidx.room.Database
 import androidx.room.RoomDatabase
 import androidx.room.TypeConverters
-import com.obsbot.happyinn.apps.happyinninobsbot.core.database.dao.NewsResourceDao
-import com.obsbot.happyinn.apps.happyinninobsbot.core.database.dao.NewsResourceFtsDao
-import com.obsbot.happyinn.apps.happyinninobsbot.core.database.dao.RecentSearchQueryDao
-import com.obsbot.happyinn.apps.happyinninobsbot.core.database.dao.TopicDao
-import com.obsbot.happyinn.apps.happyinninobsbot.core.database.dao.TopicFtsDao
-import com.obsbot.happyinn.apps.happyinninobsbot.core.database.model.NewsResourceEntity
-import com.obsbot.happyinn.apps.happyinninobsbot.core.database.model.NewsResourceFtsEntity
-import com.obsbot.happyinn.apps.happyinninobsbot.core.database.model.NewsResourceTopicCrossRef
-import com.obsbot.happyinn.apps.happyinninobsbot.core.database.model.RecentSearchQueryEntity
-import com.obsbot.happyinn.apps.happyinninobsbot.core.database.model.TopicEntity
-import com.obsbot.happyinn.apps.happyinninobsbot.core.database.model.TopicFtsEntity
+import com.obsbot.happyinn.apps.happyinninobsbot.core.database.dao.news.NewsResourceDao
+import com.obsbot.happyinn.apps.happyinninobsbot.core.database.dao.news.NewsResourceFtsDao
+import com.obsbot.happyinn.apps.happyinninobsbot.core.database.dao.news.RecentSearchQueryDao
+import com.obsbot.happyinn.apps.happyinninobsbot.core.database.dao.news.TopicDao
+import com.obsbot.happyinn.apps.happyinninobsbot.core.database.dao.news.TopicFtsDao
+import com.obsbot.happyinn.apps.happyinninobsbot.core.database.entities.news.NewsResourceEntity
+import com.obsbot.happyinn.apps.happyinninobsbot.core.database.entities.news.NewsResourceFtsEntity
+import com.obsbot.happyinn.apps.happyinninobsbot.core.database.entities.news.NewsResourceTopicCrossRef
+import com.obsbot.happyinn.apps.happyinninobsbot.core.database.entities.news.RecentSearchQueryEntity
+import com.obsbot.happyinn.apps.happyinninobsbot.core.database.entities.news.TopicEntity
+import com.obsbot.happyinn.apps.happyinninobsbot.core.database.entities.news.TopicFtsEntity
 import com.google.samples.apps.nowinandroid.core.database.util.InstantConverter
-
+import com.obsbot.happyinn.apps.happyinninobsbot.core.database.dao.media.DirectoryDao
+import com.obsbot.happyinn.apps.happyinninobsbot.core.database.dao.media.MediumDao
+import com.obsbot.happyinn.apps.happyinninobsbot.core.database.dao.media.MediumStateDao
+import com.obsbot.happyinn.apps.happyinninobsbot.core.database.entities.media.AudioStreamInfoEntity
+import com.obsbot.happyinn.apps.happyinninobsbot.core.database.entities.media.DirectoryEntity
+import com.obsbot.happyinn.apps.happyinninobsbot.core.database.entities.media.MediumEntity
+import com.obsbot.happyinn.apps.happyinninobsbot.core.database.entities.media.MediumStateEntity
+import com.obsbot.happyinn.apps.happyinninobsbot.core.database.entities.media.SubtitleStreamInfoEntity
+import com.obsbot.happyinn.apps.happyinninobsbot.core.database.entities.media.VideoStreamInfoEntity
 @Database(
     entities = [
         NewsResourceEntity::class,
@@ -25,6 +32,14 @@ import com.google.samples.apps.nowinandroid.core.database.util.InstantConverter
         TopicEntity::class,
         TopicFtsEntity::class,
         RecentSearchQueryEntity::class,
+
+        // 添加媒体相关实体
+        MediumEntity::class,
+        DirectoryEntity::class,
+        MediumStateEntity::class,
+        VideoStreamInfoEntity::class,
+        AudioStreamInfoEntity::class,
+        SubtitleStreamInfoEntity::class,
     ],
     /*version = 14,
     autoMigrations = [
@@ -54,4 +69,8 @@ internal abstract class HioDatabase : RoomDatabase() {
     abstract fun topicFtsDao(): TopicFtsDao
     abstract fun newsResourceFtsDao(): NewsResourceFtsDao
     abstract fun recentSearchQueryDao(): RecentSearchQueryDao
+    abstract fun mediumDao(): MediumDao
+    abstract fun directoryDao(): DirectoryDao
+    abstract fun mediumStateDao(): MediumStateDao
+
 }

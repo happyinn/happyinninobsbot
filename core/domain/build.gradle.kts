@@ -1,6 +1,7 @@
 plugins {
     alias(libs.plugins.happyinninobsbot.android.library)
     alias(libs.plugins.happyinninobsbot.android.library.jacoco)
+    alias(libs.plugins.happyinninobsbot.hilt)
     id("com.google.devtools.ksp")
 }
 

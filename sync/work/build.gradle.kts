@@ -21,6 +21,8 @@ dependencies {
     implementation(projects.core.data)
     implementation(projects.core.notifications)
 
+    implementation(libs.github.anilbeesetti.nextlib.mediainfo)
+
     prodImplementation(libs.firebase.cloud.messaging)
     prodImplementation(platform(libs.firebase.bom))
 

@@ -2,6 +2,9 @@ syntax = "proto3";
 
 import "com/obsbot/happyinn/apps/happyinninobsbot/data/dark_theme_config.proto";
 import "com/obsbot/happyinn/apps/happyinninobsbot/data/theme_brand.proto";
+import "com/obsbot/happyinn/apps/happyinninobsbot/data/sort_config.proto";
+import "com/obsbot/happyinn/apps/happyinninobsbot/data/media_layout_mode.proto";
+import "com/obsbot/happyinn/apps/happyinninobsbot/data/media_view_mode.proto";
 
 option java_package = "com.obsbot.happyinn.apps.happyinninobsbot.core.datastore";
 option java_multiple_files = true;
@@ -33,5 +36,21 @@ message UserPreferences {
 
     bool use_dynamic_color = 19;
 
-    // NEXT AVAILABLE ID: 21
+    SortByProto sort_by = 21;
+    SortOrderProto sort_order = 22;
+    bool mark_last_played_media = 23;
+    bool show_floating_play_button = 24;
+    repeated string exclude_folders = 25;
+    MediaViewModeProto media_view_mode = 26;
+    MediaLayoutModeProto media_layout_mode = 27;
+    bool show_duration_field = 28;
+    bool show_extension_field = 29;
+    bool show_path_field = 30;
+    bool show_resolution_field = 31;
+    bool show_size_field = 32;
+    bool show_thumbnail_field = 33;
+    bool show_played_progress = 34;
+
+    // NEXT AVAILABLE ID: 35
+
 }

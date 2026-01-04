@@ -1,24 +1,24 @@
-/*
- * 版权所�?2022 The Android Open Source Project
- *
- * 根据 Apache 许可�?2.0 版（"许可�?）授权；
- * 除非符合许可证要求，否则您不得使用此文件�?
- * 您可以在以下位置获得许可证副本：
- *
- *     https://www.apache.org/licenses/LICENSE-2.0
- *
- * 除非适用法律要求或书面同意，根据许可证分发的软件
- * 是基�?按原�?的基础上分发的，不附带任何明示或暗示的担保条件�?
- * 请参阅许可证了解特定语言 governing permissions �?limitations�?
- */
-
 package com.obsbot.happyinn.apps.happyinninobsbot.core.model.data
 
+import com.obsbot.happyinn.apps.happyinninobsbot.core.model.data.media.MediaLayoutMode
+import com.obsbot.happyinn.apps.happyinninobsbot.core.model.data.media.MediaViewMode
+import com.obsbot.happyinn.apps.happyinninobsbot.core.model.data.media.Sort
+import kotlinx.serialization.Serializable
+
 /**
- * 汇总用户兴趣数据的�?
+ * 用户数据模型
+ *
+ * @param bookmarkedNewsResources 用户收藏的新闻资源ID集合
+ * @param viewedNewsResources 用户已查看的新闻资源ID集合
+ * @param followedTopics 用户关注的主题ID集合
+ * @param themeBrand 主题品牌设置
+ * @param darkThemeConfig 深色主题配置
+ * @param useDynamicColor 是否使用动态颜?
+ * @param shouldHideOnboarding 是否隐藏引导页面
  */
+
+@Serializable
 data class UserData(
-    //TODO 更改用户数据属性
 
     // 用户收藏的新闻资源ID集合
     val bookmarkedNewsResources: Set<String>,
@@ -34,5 +34,34 @@ data class UserData(
     val useDynamicColor: Boolean,
     // 是否隐藏引导页面
     val shouldHideOnboarding: Boolean,
-)
+
+    val sortBy: Sort.By = Sort.By.TITLE,
+    val sortOrder: Sort.Order = Sort.Order.ASCENDING,
+    val markLastPlayedMedia: Boolean = true,
+    val showFloatingPlayButton: Boolean = true,
+    val excludeFolders: List<String> = emptyList(),
+    val mediaViewMode: MediaViewMode = MediaViewMode.FOLDERS,
+    val mediaLayoutMode: MediaLayoutMode = MediaLayoutMode.LIST,
+
+    // Fields
+    val showDurationField: Boolean = true,
+    val showExtensionField: Boolean = false,
+    val showPathField: Boolean = true,
+    val showResolutionField: Boolean = false,
+    val showSizeField: Boolean = false,
+    val showThumbnailField: Boolean = true,
+    val showPlayedProgress: Boolean = true,
+    ) {
+    companion object {
+        val DEFAULT = UserData(
+            bookmarkedNewsResources = emptySet(),
+            viewedNewsResources = emptySet(),
+            followedTopics = emptySet(),
+            themeBrand = ThemeBrand.DEFAULT,
+            darkThemeConfig = DarkThemeConfig.FOLLOW_SYSTEM,
+            useDynamicColor = false,
+            shouldHideOnboarding = false,
+        )
+    }
+}
 

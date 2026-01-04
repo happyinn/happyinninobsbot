@@ -9,6 +9,8 @@ import com.obsbot.happyinn.apps.happyinninobsbot.core.data.repository.OfflineFir
 import com.obsbot.happyinn.apps.happyinninobsbot.core.data.repository.RecentSearchRepository
 import com.obsbot.happyinn.apps.happyinninobsbot.core.data.repository.SearchContentsRepository
 import com.obsbot.happyinn.apps.happyinninobsbot.core.data.repository.TopicsRepository
+import com.obsbot.happyinn.apps.happyinninobsbot.core.data.repository.media.LocalMediaRepository
+import com.obsbot.happyinn.apps.happyinninobsbot.core.data.repository.media.MediaRepository
 import com.obsbot.happyinn.apps.happyinninobsbot.core.data.util.ConnectivityManagerNetworkMonitor
 import com.obsbot.happyinn.apps.happyinninobsbot.core.data.util.NetworkMonitor
 import com.obsbot.happyinn.apps.happyinninobsbot.core.data.util.TimeZoneBroadcastMonitor
@@ -20,7 +22,7 @@ import dagger.hilt.components.SingletonComponent
 
 /**
  * 数据层的 Dagger Hilt 模块
- * 提供数据仓库和工具类的依赖绑�?
+ * 提供数据仓库和工具类的依赖绑现
  */
 @Module
 @InstallIn(SingletonComponent::class)
@@ -28,7 +30,7 @@ abstract class DataModule {
 
     /**
      * 绑定主题仓库实现
-     * �?OfflineFirstTopicsRepository 绑定�?TopicsRepository 接口
+     * 现OfflineFirstTopicsRepository 绑定现TopicsRepository 接口
      */
     @Binds
     internal abstract fun bindsTopicRepository(
@@ -37,7 +39,7 @@ abstract class DataModule {
 
     /**
      * 绑定新闻资源仓库实现
-     * �?OfflineFirstNewsRepository 绑定�?NewsRepository 接口
+     * 现OfflineFirstNewsRepository 绑定现NewsRepository 接口
      */
     @Binds
     internal abstract fun bindsNewsResourceRepository(
@@ -46,7 +48,7 @@ abstract class DataModule {
 
     /**
      * 绑定用户数据仓库实现
-     * �?OfflineFirstUserDataRepository 绑定�?UserDataRepository 接口
+     * 现OfflineFirstUserDataRepository 绑定现UserDataRepository 接口
      */
     @Binds
     internal abstract fun bindsUserDataRepository(
@@ -54,8 +56,8 @@ abstract class DataModule {
     ): UserDataRepository
 
     /**
-     * 绑定最近搜索仓库实�?
-     * �?DefaultRecentSearchRepository 绑定�?RecentSearchRepository 接口
+     * 绑定最近搜索仓库实现
+     * 现DefaultRecentSearchRepository 绑定现RecentSearchRepository 接口
      */
     @Binds
     internal abstract fun bindsRecentSearchRepository(
@@ -64,7 +66,7 @@ abstract class DataModule {
 
     /**
      * 绑定搜索内容仓库实现
-     * �?DefaultSearchContentsRepository 绑定�?SearchContentsRepository 接口
+     * 现DefaultSearchContentsRepository 绑定现SearchContentsRepository 接口
      */
     @Binds
     internal abstract fun bindsSearchContentsRepository(
@@ -72,17 +74,29 @@ abstract class DataModule {
     ): SearchContentsRepository
 
     /**
-     * 绑定网络监控器实�?
-     * �?ConnectivityManagerNetworkMonitor 绑定�?NetworkMonitor 接口
+     * 绑定视频内容仓库实现
+     * 现DefaultSearchContentsRepository 绑定现SearchContentsRepository 接口
+     */
+    @Binds
+    internal abstract fun bindMediaRepository(
+        mediaRepository: LocalMediaRepository,
+    ): MediaRepository
+
+
+    /**
+     * 绑定网络监控器实现
+     * 现ConnectivityManagerNetworkMonitor 绑定现NetworkMonitor 接口
      */
     @Binds
     internal abstract fun bindsNetworkMonitor(
         networkMonitor: ConnectivityManagerNetworkMonitor,
     ): NetworkMonitor
 
+
+
     /**
-     * 绑定时区监控器实�?
-     * �?TimeZoneBroadcastMonitor 绑定�?TimeZoneMonitor 接口
+     * 绑定时区监控器实现
+     * 现TimeZoneBroadcastMonitor 绑定现TimeZoneMonitor 接口
      */
     @Binds
     internal abstract fun binds(impl: TimeZoneBroadcastMonitor): TimeZoneMonitor

@@ -1,0 +1,19 @@
+syntax = "proto3";
+
+option java_package = "com.obsbot.happyinn.apps.happyinninobsbot.core.datastore";
+option java_multiple_files = true;
+
+enum SortByProto {
+    SORT_BY_UNSPECIFIED = 0;
+    SORT_BY_TITLE = 1;
+    SORT_BY_LENGTH = 2;
+    SORT_BY_PATH = 3;
+    SORT_BY_SIZE = 4;
+    SORT_BY_DATE = 5;
+}
+
+enum SortOrderProto {
+    SORT_ORDER_UNSPECIFIED = 0;
+    SORT_ORDER_ASCENDING = 1;
+    SORT_ORDER_DESCENDING = 2;
+}

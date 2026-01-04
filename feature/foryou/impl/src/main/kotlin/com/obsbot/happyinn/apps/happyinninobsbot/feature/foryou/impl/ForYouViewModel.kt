@@ -178,7 +178,7 @@ class ForYouViewModel @Inject constructor(
         // 将打开的新闻标记为已观态
         viewModelScope.launch {
             userDataRepository.setNewsResourceViewed(
-                NewsResourceId = newsResourceId,
+                newsResourceId = newsResourceId,
                 viewed = true,
             )
         }

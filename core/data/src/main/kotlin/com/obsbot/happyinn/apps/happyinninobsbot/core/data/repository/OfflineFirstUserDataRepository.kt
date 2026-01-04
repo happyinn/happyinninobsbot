@@ -5,6 +5,7 @@ import com.obsbot.happyinn.apps.happyinninobsbot.core.datastore.HioPreferencesDa
 import com.obsbot.happyinn.apps.happyinninobsbot.core.model.data.DarkThemeConfig
 import com.obsbot.happyinn.apps.happyinninobsbot.core.model.data.ThemeBrand
 import com.obsbot.happyinn.apps.happyinninobsbot.core.model.data.UserData
+import com.obsbot.happyinn.apps.happyinninobsbot.core.model.data.media.MediaConfig
 import kotlinx.coroutines.flow.Flow
 import javax.inject.Inject
 
@@ -25,16 +26,16 @@ internal class OfflineFirstUserDataRepository @Inject constructor(
 //        analyticsHelper.logTopicFollowToggled(followedTopicId, followed)
     }
 
-    override suspend fun setNewsResourceBookmarked(NewsResourceId: String, bookmarked: Boolean) {
-        hioPreferencesDataSource.setNewsResourceBookmarked(NewsResourceId, bookmarked)
+    override suspend fun setNewsResourceBookmarked(newsResourceId: String, bookmarked: Boolean) {
+        hioPreferencesDataSource.setNewsResourceBookmarked(newsResourceId, bookmarked)
         /*analyticsHelper.logNewsResourceBookmarkToggled(
             NewsResourceId = NewsResourceId,
             isBookmarked = bookmarked,
         )*/
     }
 
-    override suspend fun setNewsResourceViewed(NewsResourceId: String, viewed: Boolean) =
-        hioPreferencesDataSource.setNewsResourceViewed(NewsResourceId, viewed)
+    override suspend fun setNewsResourceViewed(newsResourceId: String, viewed: Boolean) =
+        hioPreferencesDataSource.setNewsResourceViewed(newsResourceId, viewed)
 
     override suspend fun setThemeBrand(themeBrand: ThemeBrand) {
         hioPreferencesDataSource.setThemeBrand(themeBrand)
@@ -55,5 +56,22 @@ internal class OfflineFirstUserDataRepository @Inject constructor(
         hioPreferencesDataSource.setShouldHideOnboarding(shouldHideOnboarding)
 //        analyticsHelper.logOnboardingStateChanged(shouldHideOnboarding)
     }
+
+    override suspend fun updateMediaConfig(mediaConfig: MediaConfig) {
+        hioPreferencesDataSource.setSortBy(mediaConfig.sortBy)
+        hioPreferencesDataSource.setSortOrder(mediaConfig.sortOrder)
+        hioPreferencesDataSource.setShowFloatingPlayButton(mediaConfig.showFloatingPlayButton)
+        hioPreferencesDataSource.setExcludeFolders(mediaConfig.excludeFolders)
+        hioPreferencesDataSource.setMediaViewMode(mediaConfig.mediaViewMode)
+        hioPreferencesDataSource.setMediaLayoutMode(mediaConfig.mediaLayoutMode)
+        hioPreferencesDataSource.setShowDurationField(mediaConfig.showDurationField)
+        hioPreferencesDataSource.setShowExtensionField(mediaConfig.showExtensionField)
+        hioPreferencesDataSource.setShowPathField(mediaConfig.showPathField)
+        hioPreferencesDataSource.setShowResolutionField(mediaConfig.showResolutionField)
+        hioPreferencesDataSource.setShowSizeField(mediaConfig.showSizeField)
+        hioPreferencesDataSource.setShowThumbnailField(mediaConfig.showThumbnailField)
+        hioPreferencesDataSource.setShowPlayedProgress(mediaConfig.showPlayedProgress)
+    }
+
 }
 

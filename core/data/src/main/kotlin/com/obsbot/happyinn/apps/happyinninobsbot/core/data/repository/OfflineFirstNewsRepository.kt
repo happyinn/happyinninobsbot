@@ -4,11 +4,11 @@ import com.obsbot.happyinn.apps.happyinninobsbot.core.data.changeListSync
 import com.obsbot.happyinn.apps.happyinninobsbot.core.data.model.asEntity
 import com.obsbot.happyinn.apps.happyinninobsbot.core.data.model.topicCrossReferences
 import com.obsbot.happyinn.apps.happyinninobsbot.core.data.model.topicEntityShells
-import com.obsbot.happyinn.apps.happyinninobsbot.core.database.dao.NewsResourceDao
-import com.obsbot.happyinn.apps.happyinninobsbot.core.database.dao.TopicDao
-import com.obsbot.happyinn.apps.happyinninobsbot.core.database.model.PopulatedNewsResource
-import com.obsbot.happyinn.apps.happyinninobsbot.core.database.model.TopicEntity
-import com.obsbot.happyinn.apps.happyinninobsbot.core.database.model.asExternalModel
+import com.obsbot.happyinn.apps.happyinninobsbot.core.database.dao.news.NewsResourceDao
+import com.obsbot.happyinn.apps.happyinninobsbot.core.database.dao.news.TopicDao
+import com.obsbot.happyinn.apps.happyinninobsbot.core.database.entities.news.PopulatedNewsResource
+import com.obsbot.happyinn.apps.happyinninobsbot.core.database.entities.news.TopicEntity
+import com.obsbot.happyinn.apps.happyinninobsbot.core.database.entities.news.asExternalModel
 import com.obsbot.happyinn.apps.happyinninobsbot.core.datastore.ChangeListVersions
 import com.obsbot.happyinn.apps.happyinninobsbot.core.datastore.HioPreferencesDataSource
 import com.obsbot.happyinn.apps.happyinninobsbot.core.model.data.NewsResource

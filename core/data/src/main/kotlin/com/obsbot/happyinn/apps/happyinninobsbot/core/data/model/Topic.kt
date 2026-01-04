@@ -1,6 +1,6 @@
 package com.google.samples.apps.nowinandroid.core.data.model
 
-import com.obsbot.happyinn.apps.happyinninobsbot.core.database.model.TopicEntity
+import com.obsbot.happyinn.apps.happyinninobsbot.core.database.entities.news.TopicEntity
 import com.obsbot.happyinn.apps.happyinninobsbot.core.network.model.NetworkTopic
 
 

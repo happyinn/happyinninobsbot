@@ -1,5 +1,12 @@
 package com.obsbot.happyinn.apps.happyinninobsbot.feature.videos.impl.composables
 
+/**
+ * 媒体内容相关组件
+ * 
+ * 该文件包含用于媒体列表显示的通用组件，包括懒加载列表、进度指示器、
+ * 空状态视图、删除确认对话框和底部操作面板等。
+ */
+
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -38,8 +45,19 @@ import com.obsbot.happyinn.apps.happyinninobsbot.core.designsystem.component.Don
 import com.obsbot.happyinn.apps.happyinninobsbot.core.designsystem.component.HioDialog
 import com.obsbot.happyinn.apps.happyinninobsbot.core.ui.video.ListItemComponent
 import com.obsbot.happyinn.apps.happyinninobsbot.feature.videos.impl.R
-import com.obsbot.happyinn.apps.happyinninobsbot.feature.videos.impl.screens.CIRCULAR_PROGRESS_INDICATOR_TEST_TAG
+import com.obsbot.happyinn.apps.happyinninobsbot.feature.videos.impl.screens.media.CIRCULAR_PROGRESS_INDICATOR_TEST_TAG
 
+/**
+ * 媒体懒加载列表组件
+ * 
+ * 使用LazyColumn实现的懒加载列表，用于高效显示大量媒体内容。
+ * 支持自定义垂直和水平排列方式。
+ * 
+ * @param modifier 组件修饰符
+ * @param verticalArrangement 垂直排列方式，默认顶部对齐
+ * @param horizontalAlignment 水平对齐方式，默认左侧对齐
+ * @param content 列表内容，通过LazyListScope DSL定义
+ */
 @Composable
 fun MediaLazyList(
     modifier: Modifier = Modifier,
@@ -56,6 +74,11 @@ fun MediaLazyList(
     )
 }
 
+/**
+ * 中心圆形进度条组件
+ * 
+ * 在屏幕中心显示的加载进度指示器，用于表示数据正在加载中。
+ */
 @Composable
 fun CenterCircularProgressBar() {
     Column(
@@ -69,6 +92,11 @@ fun CenterCircularProgressBar() {
     }
 }
 
+/**
+ * 未找到视频视图组件
+ * 
+ * 当媒体列表为空时显示的提示视图，提示用户没有找到视频内容。
+ */
 @Composable
 fun NoVideosFound() {
     Column(
@@ -88,6 +116,17 @@ fun NoVideosFound() {
     }
 }
 
+/**
+ * 删除确认对话框组件
+ * 
+ * 用于在执行删除操作前向用户确认，显示要删除的文件列表。
+ * 
+ * @param subText 删除操作的说明文字
+ * @param onConfirm 确认删除的回调函数
+ * @param onCancel 取消删除的回调函数
+ * @param fileNames 要删除的文件名列表
+ * @param modifier 组件修饰符
+ */
 @Composable
 fun DeleteConfirmationDialog(
     subText: String,
@@ -132,6 +171,17 @@ fun DeleteDialogPreview() {
     )
 }
 
+/**
+ * 选项底部面板组件
+ * 
+ * 从屏幕底部弹出的操作面板，用于显示一组操作选项。
+ * 支持部分展开状态跳过。
+ * 
+ * @param title 面板标题
+ * @param onDismiss 面板关闭回调
+ * @param sheetState 面板状态，用于控制展开/折叠
+ * @param content 面板内容，通过ColumnScope DSL定义
+ */
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun OptionsBottomSheet(
@@ -161,6 +211,16 @@ fun OptionsBottomSheet(
     }
 }
 
+/**
+ * 底部面板项组件
+ * 
+ * 底部操作面板中的单个选项项，包含图标和文字，点击可触发相应操作。
+ * 
+ * @param text 选项显示文字
+ * @param icon 选项图标
+ * @param onClick 点击回调函数
+ * @param modifier 组件修饰符
+ */
 @Composable
 fun BottomSheetItem(
     text: String,

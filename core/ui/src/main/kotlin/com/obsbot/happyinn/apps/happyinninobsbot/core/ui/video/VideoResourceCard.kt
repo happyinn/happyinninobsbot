@@ -37,43 +37,44 @@ fun VideoResourceCardExpanded(
     onClick: () -> Unit,
     modifier: Modifier = Modifier,
 ) {
-    // 定义可访问性标签和分享内容
+    // 定义可访问性标签，用于无障碍服务
     val clickActionLabel = stringResource(R.string.core_ui_card_tap_action)
 
-
-    // 设置拖拽标志，根据Android版本适配
+    // 设置拖拽标志，根据 Android 版本适配
+    // Android 7.0 (API 24) 及以上版本支持全局拖拽
     val dragAndDropFlags = if (VERSION.SDK_INT >= VERSION_CODES.N) {
-        View.DRAG_FLAG_GLOBAL
+        View.DRAG_FLAG_GLOBAL // 全局拖拽标志
     } else {
-        0
+        0 // 低版本不支持全局拖拽
     }
 
-    // 卡片组件
+    // 卡片组件：Material3 卡片容器
     Card(
-        onClick = onClick,
-        shape = RoundedCornerShape(16.dp),
-        colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.surface),
+        onClick = onClick, // 点击事件
+        shape = RoundedCornerShape(16.dp), // 圆角形状，16dp 圆角半径
+        colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.surface), // 使用主题表面颜色
         // 使用自定义标签为无障碍服务提供按钮动作的描述
         modifier = modifier
             .semantics {
-                onClick(label = clickActionLabel, action = null)
+                onClick(label = clickActionLabel, action = null) // 语义化点击标签
             }
     ) {
-        //整个是一层纵向布局的容器
+        // 整个是一层纵向布局的容器
         Column {
-            //顶部图片
-            // 如果新闻资源有头部图片URL，则显示头部图片
-            // 下部内容
+            // 顶部图片区域（当前未实现）
+            // 如果视频资源有头部图片 URL，则显示头部图片
+            
+            // 下部内容区域
             Box(
-                modifier = Modifier.padding(16.dp),
+                modifier = Modifier.padding(16.dp), // 内边距 16dp
             ) {
-                //又是一个纵向布局
+                // 又是一个纵向布局容器
                 Column {
-                    Spacer(modifier = Modifier.height(12.dp))
+                    Spacer(modifier = Modifier.height(12.dp)) // 顶部间距
 
-                    //显示一行标题和收藏按钮
+                    // 显示一行标题和收藏按钮（当前未实现）
                     Row {
-
+                        // 标题和收藏按钮的布局（待实现）
                     }
 
                 }

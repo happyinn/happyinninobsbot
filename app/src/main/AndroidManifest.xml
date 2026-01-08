@@ -54,7 +54,6 @@
                 <category android:name="android.intent.category.BROWSABLE" />  <!-- 可通过浏览器启动 -->
 
                 <data android:scheme="https" />  <!-- 支持HTTPS协议 -->
-<!--                <data android:host="www.nowinandroid.apps.samples.google.com" />  &lt;!&ndash; 匹配的域名 &ndash;&gt;-->
             </intent-filter>
         </activity>
 

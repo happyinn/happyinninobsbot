@@ -18,7 +18,7 @@
     <string name="core_ui_feed_sharing_data">%1$s: %2$s</string>
 
 
-    <string name="app_name" translatable="false">Next Player</string>
+    <string name="app_name" translatable="false">Hio Player</string>
     <string name="about_description">版本、支持、致谢</string>
     <string name="about_name">关于</string>
     <string name="appearance_description">根据您的喜好调整应用</string>
@@ -41,10 +41,10 @@
     <string name="navigate_up">向上导航</string>
     <string name="no_videos_found">未找到视频</string>
     <string name="open_settings">打开设置</string>
-    <string name="permission_info">Next Player 应用需要 \"%1$s\" 权限来访问和播放媒体。没有它，媒体访问和播放将无法工作。为了完全使用应用，请授予权限。</string>
+    <string name="permission_info">Hio Player 应用需要 \"%1$s\" 权限来访问和播放媒体。没有它，媒体访问和播放将无法工作。为了完全使用应用，请授予权限。</string>
     <string name="permission_not_granted">权限未授予</string>
     <string name="permission_request">权限请求</string>
-    <string name="permission_settings">Next Player 应用需要 \"%1$s\" 权限来访问和播放媒体。没有它，媒体访问和播放将无法工作。由于权限被永久拒绝，要完全使用应用，请从设置中授予权限。</string>
+    <string name="permission_settings">Hio Player 应用需要 \"%1$s\" 权限来访问和播放媒体。没有它，媒体访问和播放将无法工作。由于权限被永久拒绝，要完全使用应用，请从设置中授予权限。</string>
     <string name="player_controls_exit">向上导航</string>
     <string name="player_controls_next">播放器下一首</string>
     <string name="player_controls_play_pause">播放器播放/暂停</string>
@@ -73,7 +73,7 @@
     <string name="swipe_gesture">滑动手势</string>
     <string name="swipe_gesture_description">垂直滑动以调整亮度和音量</string>
     <string name="title">标题</string>
-    <string name="title_activity_player">Next Player 活动</string>
+    <string name="title_activity_player">Hio Player 活动</string>
     <string name="unknown_error">发生未知错误</string>
     <string name="playback">播放</string>
     <string name="interface_name">界面</string>

@@ -1,5 +1,4 @@
-package com.obsbot.happyinn.apps.happyinninobsbot.core.model.data
-
+ package com.obsbot.happyinn.apps.happyinninobsbot.core.model.data
 import com.obsbot.happyinn.apps.happyinninobsbot.core.model.data.media.MediaLayoutMode
 import com.obsbot.happyinn.apps.happyinninobsbot.core.model.data.media.MediaViewMode
 import com.obsbot.happyinn.apps.happyinninobsbot.core.model.data.media.Sort

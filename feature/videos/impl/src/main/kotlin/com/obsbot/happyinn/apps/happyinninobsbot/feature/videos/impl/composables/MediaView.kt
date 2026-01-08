@@ -1,5 +1,12 @@
 package com.obsbot.happyinn.apps.happyinninobsbot.feature.videos.impl.composables
 
+/**
+ * 媒体视图组件
+ * 
+ * 该文件包含媒体视图的核心组件，用于显示文件夹和视频的网格列表。
+ * 支持长按弹出操作菜单、删除、重命名、分享等功能。
+ */
+
 import android.content.Intent
 import android.net.Uri
 import androidx.compose.foundation.ExperimentalFoundationApi
@@ -60,16 +67,20 @@ import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 
 /**
- * 媒体视图组件，用于显示文件夹和视频列表
+ * 媒体视图主组件
+ * 
+ * 用于显示文件夹和视频列表的核心视图组件。根据用户偏好设置以列表或网格方式展示，
+ * 支持点击和长按交互，可以进行文件夹导航、视频播放和各种操作。
+ * 
  * @param isLoading 是否正在加载媒体数据
  * @param rootFolder 根文件夹，包含要显示的媒体内容
- * @param preferences 应用偏好设置
- * @param onFolderClick 文件夹点击回调
+ * @param preferences 应用偏好设置，影响显示样式和内容
+ * @param onFolderClick 文件夹点击回调，用于导航到子文件夹
  * @param onDeleteFolderClick 删除文件夹回调
- * @param onVideoClick 视频点击回调
+ * @param onVideoClick 视频点击回调，用于播放视频
  * @param onRenameVideoClick 重命名视频回调
  * @param onDeleteVideoClick 删除视频回调
- * @param onVideoLoaded 视频加载完成回调
+ * @param onVideoLoaded 视频加载完成回调，用于记录播放历史
  */
 @OptIn(ExperimentalMaterial3Api::class, ExperimentalFoundationApi::class)
 @Composable
@@ -84,25 +95,37 @@ fun MediaView(
     onDeleteVideoClick: (String) -> Unit,
     onVideoLoaded: (Uri) -> Unit,
 ) {
+    // 获取触觉反馈控制器
     val haptic = LocalHapticFeedback.current
+    // 存储当前长按选中的文件夹
     var showFolderActionsFor: Folder? by rememberSaveable { mutableStateOf(null) }
+    // 存储待删除的文件夹
     var deleteFolderAction: Folder? by rememberSaveable { mutableStateOf(null) }
+    // 协程作用域，用于执行异步操作
     val scope = rememberCoroutineScope()
 
+    // 存储当前长按选中的视频
     var showMediaActionsFor: Video? by rememberSaveable { mutableStateOf(null) }
+    // 存储待删除的视频
     var deleteAction: Video? by rememberSaveable { mutableStateOf(null) }
+    // 存储待重命名的视频
     var renameAction: Video? by rememberSaveable { mutableStateOf(null) }
+    // 存储待查看信息的视频
     var showInfoAction: Video? by rememberSaveable { mutableStateOf(null) }
 
+    // 获取当前上下文和底部面板状态
     val context = LocalContext.current
     val bottomSheetState = rememberModalBottomSheetState(skipPartiallyExpanded = true)
 
+    // 正在加载时显示进度条
     if (isLoading) {
         CenterCircularProgressBar()
     } else {
+        // 定义最小尺寸常量
         val folderMinWidth = 90.dp
         val videoMinWidth = 130.dp
         BoxWithConstraints {
+            // 根据布局模式计算内边距和间距
             val contentHorizontalPadding = when (preferences.mediaLayoutMode) {
                 MediaLayoutMode.LIST -> 0.dp
                 MediaLayoutMode.GRID -> 16.dp
@@ -111,6 +134,7 @@ fun MediaView(
                 MediaLayoutMode.LIST -> 0.dp
                 MediaLayoutMode.GRID -> 16.dp
             }
+            // 计算网格列数
             val maxWidth = this.maxWidth - (contentHorizontalPadding * 2) - itemSpacing
             val maxFolders = (maxWidth / folderMinWidth).toInt()
             val maxVideos = (maxWidth / videoMinWidth).toInt()
@@ -119,6 +143,7 @@ fun MediaView(
                 MediaLayoutMode.GRID -> lcm(maxFolders, maxVideos)
             }
 
+            // 计算单个文件夹和视频占用的列数
             val singleFolderSpan = when (preferences.mediaLayoutMode) {
                 MediaLayoutMode.LIST -> 1
                 MediaLayoutMode.GRID -> spans / maxFolders
@@ -128,12 +153,14 @@ fun MediaView(
                 MediaLayoutMode.GRID -> spans / maxVideos
             }
 
+            // 创建垂直网格列表
             LazyVerticalGrid(
                 columns = GridCells.Fixed(spans),
                 contentPadding = PaddingValues(horizontal = contentHorizontalPadding, vertical = 16.dp),
                 verticalArrangement = Arrangement.spacedBy(itemSpacing),
                 horizontalArrangement = Arrangement.spacedBy(itemSpacing),
             ) {
+                // 如果没有文件夹和视频，显示空状态视图
                 if (rootFolder == null || rootFolder.folderList.isEmpty() && rootFolder.mediaList.isEmpty()) {
                     item(
                         span = { GridItemSpan(maxLineSpan) },
@@ -141,6 +168,7 @@ fun MediaView(
                     return@LazyVerticalGrid
                 }
 
+                // 如果是文件夹树视图且有文件夹，显示文件夹分区标题
                 if (preferences.mediaViewMode == MediaViewMode.FOLDER_TREE && rootFolder.folderList.isNotEmpty()) {
                     item(
                         span = { GridItemSpan(maxLineSpan) },
@@ -148,6 +176,8 @@ fun MediaView(
                         SectionTitle(title = stringResource(id = R.string.folders))
                     }
                 }
+
+                // 渲染文件夹列表
                 items(
                     items = rootFolder.folderList,
                     key = { it.path },
@@ -167,22 +197,26 @@ fun MediaView(
                     )
                 }
 
+                // 如果是文件夹树视图且有文件夹，添加间距
                 if (preferences.mediaViewMode == MediaViewMode.FOLDER_TREE && rootFolder.folderList.isNotEmpty()) {
                     item(span = { GridItemSpan(maxLineSpan) }) {
                         Spacer(modifier = Modifier.size(12.dp))
                     }
                 }
 
+                // 如果是文件夹树视图且有视频，显示视频分区标题
                 if (preferences.mediaViewMode == MediaViewMode.FOLDER_TREE && rootFolder.mediaList.isNotEmpty()) {
                     item(span = { GridItemSpan(maxLineSpan) }) {
                         SectionTitle(title = stringResource(id = R.string.videos))
                     }
                 }
+                // 渲染视频列表
                 items(
                     items = rootFolder.mediaList,
                     key = { it.path },
                     span = { GridItemSpan(singleVideoSpan) },
                 ) { video ->
+                    // 视频加载完成后触发回调
                     LaunchedEffect(Unit) {
                         onVideoLoaded(Uri.parse(video.uriString))
                     }
@@ -203,6 +237,7 @@ fun MediaView(
         }
     }
 
+    // 显示文件夹操作面板
     showFolderActionsFor?.let {
         OptionsBottomSheet(
             title = it.name,
@@ -221,6 +256,7 @@ fun MediaView(
         }
     }
 
+    // 显示删除文件夹确认对话框
     deleteFolderAction?.let { folder ->
         DeleteConfirmationDialog(
             subText = stringResource(R.string.delete_folder),
@@ -233,11 +269,13 @@ fun MediaView(
         )
     }
 
+    // 显示视频操作面板
     showMediaActionsFor?.let {
         OptionsBottomSheet(
             title = it.nameWithExtension,
             onDismiss = { showMediaActionsFor = null },
         ) {
+            // 重命名选项
             BottomSheetItem(
                 text = stringResource(R.string.rename),
                 icon = HioIcons.Edit,
@@ -248,6 +286,7 @@ fun MediaView(
                     }
                 },
             )
+            // 分享选项
             BottomSheetItem(
                 text = stringResource(R.string.share),
                 icon = HioIcons.Share,
@@ -267,6 +306,7 @@ fun MediaView(
                     }
                 },
             )
+            // 属性选项
             BottomSheetItem(
                 text = stringResource(R.string.properties),
                 icon = HioIcons.Info,
@@ -277,6 +317,7 @@ fun MediaView(
                     }
                 },
             )
+            // 删除选项
             BottomSheetItem(
                 text = stringResource(R.string.delete),
                 icon = HioIcons.Delete,
@@ -290,6 +331,7 @@ fun MediaView(
         }
     }
 
+    // 显示删除视频确认对话框
     deleteAction?.let {
         DeleteConfirmationDialog(
             subText = stringResource(id = R.string.delete_file),
@@ -302,6 +344,7 @@ fun MediaView(
         )
     }
 
+    // 显示视频信息对话框
     showInfoAction?.let {
         ShowVideoInfoDialog(
             video = it,
@@ -309,6 +352,7 @@ fun MediaView(
         )
     }
 
+    // 显示重命名对话框
     renameAction?.let { video ->
         ShowRenameDialog(
             name = video.displayName,
@@ -324,6 +368,13 @@ fun MediaView(
     }
 }
 
+/**
+ * 分区标题组件
+ * 
+ * 用于在媒体列表中显示分区标题，如"文件夹"、"视频"等。
+ * 
+ * @param title 标题文字
+ */
 @Composable
 private fun SectionTitle(title: String) {
     Text(
@@ -335,13 +386,24 @@ private fun SectionTitle(title: String) {
     )
 }
 
+/**
+ * 重命名对话框组件
+ * 
+ * 用于让用户输入新的文件名。
+ * 
+ * @param name 原始文件名
+ * @param onDismiss 对话框关闭回调
+ * @param onDone 确认重命名的回调，参数为新文件名
+ */
 @Composable
 fun ShowRenameDialog(
     name: String,
     onDismiss: () -> Unit,
     onDone: (String) -> Unit,
 ) {
+    // 用于存储编辑后的文件名
     var mediaName by rememberSaveable { mutableStateOf(name) }
+    // 用于请求焦点的控制器
     val focusRequester = remember { FocusRequester() }
     HioDialog(
         onDismissRequest = onDismiss,
@@ -364,13 +426,21 @@ fun ShowRenameDialog(
         dismissButton = { CancelButton(onClick = onDismiss) },
     )
 
+    // 延迟请求焦点，解决屏幕旋转时焦点未初始化的问题
     LaunchedEffect(key1 = Unit) {
-        // To fix focus requester not initialized error on screen rotation
         delay(200.milliseconds)
         focusRequester.requestFocus()
     }
 }
 
+/**
+ * 视频信息对话框组件
+ * 
+ * 显示视频的详细信息，包括文件信息、视频轨道、音频轨道和字幕轨道等。
+ * 
+ * @param video 要显示信息的视频对象
+ * @param onDismiss 对话框关闭回调
+ */
 @Composable
 fun ShowVideoInfoDialog(
     video: Video,
@@ -385,6 +455,7 @@ fun ShowVideoInfoDialog(
                 verticalArrangement = Arrangement.spacedBy(5.dp),
                 modifier = Modifier.verticalScroll(rememberScrollState()),
             ) {
+                // 文件信息部分
                 MediaInfoTitle(text = stringResource(R.string.file))
                 MediaInfoText(
                     title = stringResource(id = R.string.file),
@@ -402,12 +473,14 @@ fun ShowVideoInfoDialog(
                     title = stringResource(id = R.string.duration),
                     subText = video.formattedDuration,
                 )
+                // 可选的视频格式信息
                 video.format?.let {
                     MediaInfoText(
                         title = stringResource(id = R.string.format),
                         subText = it,
                     )
                 }
+                // 视频轨道信息
                 video.videoStream?.let { videoStream ->
                     MediaInfoTitle(text = stringResource(id = R.string.video_track))
                     videoStream.title?.let {
@@ -435,6 +508,7 @@ fun ShowVideoInfoDialog(
                         )
                     }
                 }
+                // 音频轨道信息
                 video.audioStreams.forEachIndexed { index, audioStream ->
                     MediaInfoTitle(text = "${stringResource(id = R.string.audio_track)} #${index + 1}")
                     audioStream.title?.let {
@@ -472,6 +546,7 @@ fun ShowVideoInfoDialog(
                         )
                     }
                 }
+                // 字幕轨道信息
                 video.subtitleStreams.forEachIndexed { index, subtitleStream ->
                     MediaInfoTitle(text = "${stringResource(id = R.string.subtitle_track)} #${index + 1}")
                     subtitleStream.title?.let {
@@ -501,6 +576,14 @@ fun ShowVideoInfoDialog(
     )
 }
 
+/**
+ * 媒体信息标题组件
+ * 
+ * 用于在视频信息对话框中显示信息分类标题。
+ * 
+ * @param text 标题文字
+ * @param paddingValues 内边距值
+ */
 @Composable
 fun MediaInfoTitle(
     text: String,
@@ -514,6 +597,15 @@ fun MediaInfoTitle(
     )
 }
 
+/**
+ * 媒体信息文本组件
+ * 
+ * 用于在视频信息对话框中显示键值对形式的信息。
+ * 
+ * @param title 信息标题（键）
+ * @param subText 信息内容（值）
+ * @param modifier 组件修饰符
+ */
 @Composable
 fun MediaInfoText(
     title: String,
@@ -526,10 +618,24 @@ fun MediaInfoText(
     }
 }
 
+/**
+ * 计算最小公倍数
+ * 
+ * @param a 第一个整数
+ * @param b 第二个整数
+ * @return 最小公倍数
+ */
 fun lcm(a: Int, b: Int): Int {
     return abs(a * b) / gcd(a, b)
 }
 
+/**
+ * 计算最大公约数（欧几里得算法）
+ * 
+ * @param a 第一个整数
+ * @param b 第二个整数
+ * @return 最大公约数
+ */
 fun gcd(a: Int, b: Int): Int {
     return if (b == 0) a else gcd(b, a % b)
 }

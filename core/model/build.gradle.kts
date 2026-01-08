@@ -1,6 +1,7 @@
 plugins {
     alias(libs.plugins.happyinninobsbot.android.library)
     alias(libs.plugins.happyinninobsbot.hilt)
+    alias(libs.plugins.kotlin.serialization)
 }
 
 android {

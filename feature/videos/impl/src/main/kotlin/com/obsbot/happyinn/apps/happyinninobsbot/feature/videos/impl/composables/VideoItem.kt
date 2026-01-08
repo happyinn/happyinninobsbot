@@ -1,5 +1,12 @@
 package com.obsbot.happyinn.apps.happyinninobsbot.feature.videos.impl.composables
 
+/**
+ * 视频列表项组件
+ * 
+ * 该文件包含用于显示视频信息的UI组件，支持列表和网格两种布局模式。
+ * 视频项可以显示缩略图、标题、路径、大小、分辨率、时长和播放进度等信息。
+ */
+
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -31,6 +38,7 @@ import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextOverflow
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.tooling.preview.PreviewLightDark
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.min
@@ -44,6 +52,16 @@ import com.obsbot.happyinn.apps.happyinninobsbot.core.model.data.media.Video
 import com.obsbot.happyinn.apps.happyinninobsbot.core.ui.video.ListItemComponent
 
 
+/**
+ * 视频项组件
+ * 
+ * 根据用户偏好的媒体布局模式，以列表或网格方式显示视频信息。
+ * 
+ * @param video 要显示的视频数据
+ * @param isRecentlyPlayedVideo 是否为最近播放的视频
+ * @param preferences 用户偏好设置，用于决定显示样式和内容
+ * @param modifier 组件修饰符
+ */
 @Composable
 fun VideoItem(
     video: Video,
@@ -51,6 +69,7 @@ fun VideoItem(
     preferences: UserData,
     modifier: Modifier = Modifier,
 ) {
+    // 根据媒体布局模式选择不同的展示方式
     when (preferences.mediaLayoutMode) {
         MediaLayoutMode.LIST -> VideoListItem(
             video = video,
@@ -67,6 +86,16 @@ fun VideoItem(
     }
 }
 
+/**
+ * 视频列表项组件
+ * 
+ * 以列表形式显示视频，包含缩略图、标题、路径和统计信息。
+ * 
+ * @param video 要显示的视频数据
+ * @param isRecentlyPlayedVideo 是否为最近播放的视频
+ * @param preferences 用户偏好设置
+ * @param modifier 组件修饰符
+ */
 @OptIn(ExperimentalLayoutApi::class)
 @Composable
 private fun VideoListItem(
@@ -76,6 +105,7 @@ private fun VideoListItem(
     modifier: Modifier = Modifier,
 ) {
     ListItemComponent(
+        // 根据是否最近播放设置标题和副标题颜色
         colors = ListItemDefaults.colors(
             headlineColor = if (isRecentlyPlayedVideo && preferences.markLastPlayedMedia) {
                 MaterialTheme.colorScheme.primary
@@ -88,6 +118,7 @@ private fun VideoListItem(
                 ListItemDefaults.colors().supportingTextColor
             },
         ),
+        // 头部内容：视频缩略图
         leadingContent = {
             ThumbnailView(
                 video = video,
@@ -96,6 +127,7 @@ private fun VideoListItem(
                     .width(min(150.dp, LocalConfiguration.current.screenWidthDp.dp * 0.35f)),
             )
         },
+        // 标题内容：视频名称
         headlineContent = {
             Text(
                 text = if (preferences.showExtensionField) video.nameWithExtension else video.displayName,
@@ -104,7 +136,9 @@ private fun VideoListItem(
                 overflow = TextOverflow.Ellipsis,
             )
         },
+        // 副标题内容：路径和统计信息
         supportingContent = {
+            // 如果用户偏好显示路径，则显示视频路径
             if (preferences.showPathField) {
                 Text(
                     text = video.path.substringBeforeLast("/"),
@@ -114,6 +148,7 @@ private fun VideoListItem(
                     modifier = Modifier.padding(vertical = 2.dp),
                 )
             }
+            // 流式布局显示统计信息（大小、分辨率等）
             FlowRow(
                 modifier = Modifier
                     .fillMaxWidth()
@@ -121,9 +156,11 @@ private fun VideoListItem(
                 horizontalArrangement = Arrangement.spacedBy(5.dp),
                 verticalArrangement = Arrangement.spacedBy(5.dp),
             ) {
+                // 如果用户偏好显示大小，则显示文件大小
                 if (preferences.showSizeField) {
                     InfoChip(text = video.formattedFileSize)
                 }
+                // 如果用户偏好显示分辨率且视频有高度，则显示分辨率
                 if (preferences.showResolutionField && video.height > 0) {
                     InfoChip(text = "${video.height}p")
                 }
@@ -133,6 +170,16 @@ private fun VideoListItem(
     )
 }
 
+/**
+ * 视频网格项组件
+ * 
+ * 以网格形式显示视频，主要显示缩略图和名称。
+ * 
+ * @param video 要显示的视频数据
+ * @param isRecentlyPlayedVideo 是否为最近播放的视频
+ * @param preferences 用户偏好设置
+ * @param modifier 组件修饰符
+ */
 @Composable
 private fun VideoGridItem(
     video: Video,
@@ -146,10 +193,12 @@ private fun VideoGridItem(
         verticalArrangement = Arrangement.spacedBy(8.dp),
         horizontalAlignment = Alignment.CenterHorizontally,
     ) {
+        // 视频缩略图
         ThumbnailView(
             video = video,
             preferences = preferences,
         )
+        // 视频名称
         Text(
             text = if (preferences.showExtensionField) video.nameWithExtension else video.displayName,
             maxLines = 2,
@@ -165,6 +214,16 @@ private fun VideoGridItem(
     }
 }
 
+/**
+ * 缩略图视图组件
+ * 
+ * 显示视频的缩略图，支持显示时长标签和播放进度条。
+ * 如果没有缩略图，则显示默认视频图标。
+ * 
+ * @param modifier 组件修饰符
+ * @param video 视频数据
+ * @param preferences 用户偏好设置
+ */
 @Composable
 private fun ThumbnailView(
     modifier: Modifier = Modifier,
@@ -178,6 +237,7 @@ private fun ThumbnailView(
             .background(MaterialTheme.colorScheme.surfaceColorAtElevation(1.dp))
             .aspectRatio(16f / 10f),
     ) {
+        // 默认视频图标（当没有缩略图时显示）
         Icon(
             imageVector = HioIcons.Video,
             contentDescription = null,
@@ -186,6 +246,7 @@ private fun ThumbnailView(
                 .align(Alignment.Center)
                 .fillMaxSize(0.5f),
         )
+        // 如果用户偏好显示缩略图且缩略图路径有效，则异步加载缩略图
         if (preferences.showThumbnailField && !video.thumbnailPath.isNullOrBlank()) {
             AsyncImage(
                 model = ImageRequest.Builder(context)
@@ -198,6 +259,7 @@ private fun ThumbnailView(
                 modifier = Modifier.fillMaxSize(),
             )
         }
+        // 如果用户偏好显示时长，则在右下角显示时长信息芯片
         if (preferences.showDurationField) {
             InfoChip(
                 text = video.formattedDuration,
@@ -210,6 +272,7 @@ private fun ThumbnailView(
             )
         }
 
+        // 如果用户偏好显示播放进度且视频有播放进度，则显示进度条
         if (preferences.showPlayedProgress && video.playedPercentage > 0) {
             Box(
                 modifier = Modifier
@@ -217,11 +280,13 @@ private fun ThumbnailView(
                     .fillMaxWidth()
                     .align(Alignment.BottomCenter),
             ) {
+                // 进度条背景
                 Box(
                     modifier = Modifier
                         .fillMaxSize()
                         .background(MaterialTheme.colorScheme.secondaryContainer),
                 )
+                // 实际进度（使用圆形剪辑）
                 Box(
                     modifier = Modifier
                         .fillMaxWidth(video.playedPercentage)
@@ -234,44 +299,44 @@ private fun ThumbnailView(
     }
 }
 
-/*@PreviewLightDark
+@PreviewLightDark
 @Composable
 fun VideoItemRecentlyPlayedPreview() {
     HioPlayerTheme {
         Surface {
             VideoListItem(
                 video = Video.sample,
-                preferences = UserData(),
+                preferences = UserData.DEFAULT,
                 isRecentlyPlayedVideo = true,
             )
         }
     }
-}*/
+}
 
-/*@PreviewLightDark
+@PreviewLightDark
 @Composable
 fun VideoItemPreview() {
     HioPlayerTheme {
         Surface {
             VideoListItem(
                 video = Video.sample,
-                preferences = UserData(),
+                preferences = UserData.DEFAULT,
                 isRecentlyPlayedVideo = false,
             )
         }
     }
-}*/
+}
 
-/*
+@Preview
 @PreviewLightDark
 @Composable
 fun VideoGridItemPreview() {
     HioPlayerTheme {
         VideoGridItem(
             video = Video.sample,
-            preferences = UserData(),
+            preferences = UserData.DEFAULT,
             isRecentlyPlayedVideo = true,
         )
     }
 }
-*/
+

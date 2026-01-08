@@ -1,5 +1,8 @@
 package com.obsbot.happyinn.apps.happyinninobsbot.ui
 
+import android.content.Context
+import android.content.Intent
+import android.net.Uri
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.WindowInsets
@@ -45,6 +48,7 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.semantics.testTagsAsResourceId
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.platform.LocalContext
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.navigation3.runtime.NavKey
 import androidx.navigation3.runtime.entryProvider
@@ -64,8 +68,10 @@ import com.obsbot.happyinn.apps.happyinninobsbot.feature.bookmarks.impl.navigati
 import com.obsbot.happyinn.apps.happyinninobsbot.feature.foryou.api.navigation.ForYouNavKey
 import com.obsbot.happyinn.apps.happyinninobsbot.feature.foryou.impl.navigation.forYouEntry
 import com.obsbot.happyinn.apps.happyinninobsbot.feature.interests.impl.navigation.interestsEntry
+import com.obsbot.happyinn.apps.happyinninobsbot.feature.player.PlayerActivity
 import com.obsbot.happyinn.apps.happyinninobsbot.feature.search.api.navigation.SearchNavKey
 import com.obsbot.happyinn.apps.happyinninobsbot.feature.settings.impl.SettingsDialog
+import com.obsbot.happyinn.apps.happyinninobsbot.feature.videos.impl.navigation.FolderEntry
 import com.obsbot.happyinn.apps.happyinninobsbot.feature.videos.impl.navigation.videosEntry
 import com.obsbot.happyinn.apps.happyinninobsbot.navigation.TOP_LEVEL_NAV_ITEMS
 import com.obsbot.happyinn.apps.happyinninobsbot.feature.settings.impl.R as settingsR
@@ -319,12 +325,17 @@ internal fun HioAppContent(
                     // 列表详情场景策略
                     val listDetailStrategy = rememberListDetailSceneStrategy<NavKey>()
 
+                    // 获取当前上下文
+                    val context = LocalContext.current
+                    
                     // 导航条目提供器
                     val entryProvider = entryProvider {
                         forYouEntry(navigator)
                         bookmarksEntry(navigator)
                         interestsEntry(navigator)
-                        videosEntry(navigator)
+                        videosEntry(navigator, context::startPlayerActivity)
+                        // 文件夹详情入口，支持根据 FolderNavKey 展示指定路径下的媒体文件
+                        FolderEntry(navigator, context::startPlayerActivity)
                         /*topicEntry(navigator)
                         searchEntry(navigator)*/
                     }
@@ -364,5 +375,11 @@ private fun Modifier.notificationDot(): Modifier =
             )
         }
     }
+
+fun Context.startPlayerActivity(uri: Uri) {
+    val intent = Intent(Intent.ACTION_VIEW, uri, this, PlayerActivity::class.java)
+    startActivity(intent)
+}
+
 
 

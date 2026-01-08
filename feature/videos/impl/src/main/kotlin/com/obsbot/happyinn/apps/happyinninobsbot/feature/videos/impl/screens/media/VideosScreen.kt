@@ -1,4 +1,4 @@
-package com.obsbot.happyinn.apps.happyinninobsbot.feature.videos.impl.screens
+package com.obsbot.happyinn.apps.happyinninobsbot.feature.videos.impl.screens.media
 
 import android.net.Uri
 import androidx.activity.compose.rememberLauncherForActivityResult
@@ -55,6 +55,7 @@ import com.obsbot.happyinn.apps.happyinninobsbot.core.ui.video.PermissionMissing
 import com.obsbot.happyinn.apps.happyinninobsbot.feature.videos.impl.composables.MediaView
 import com.obsbot.happyinn.apps.happyinninobsbot.feature.videos.impl.composables.QuickSettingsDialog
 import com.obsbot.happyinn.apps.happyinninobsbot.core.ui.R
+import com.obsbot.happyinn.apps.happyinninobsbot.feature.videos.impl.screens.MediaState
 
 /**
  * 圆形进度指示器的测试标签，用于UI测试
@@ -144,7 +145,9 @@ internal fun VideosScreen(
 
     // 创建文件选择启动器，用于选择本地视频文件
     val selectVideoFileLauncher = rememberLauncherForActivityResult(
-        contract = ActivityResultContracts.GetContent(),
+        contract = ActivityResultContracts.GetContent().apply {
+            //只显示视频文件
+        },
         onResult = { uri -> uri?.let(onPlayVideo) },
     )
 
@@ -180,9 +183,12 @@ internal fun VideosScreen(
         },
         // 浮动操作按钮（播放最近视频）
         floatingActionButton = {
+            //TODO 无法显示浮动按钮
+
             // 如果不显示浮动播放按钮或没有存储权限，则不显示
             if (!preferences.showFloatingPlayButton) return@Scaffold
-            if (!permissionState.status.isGranted) return@Scaffold
+            val permissionGranted = permissionState.status.isGranted
+            if (!permissionGranted) return@Scaffold
 
             FloatingActionButton(
                 onClick = {

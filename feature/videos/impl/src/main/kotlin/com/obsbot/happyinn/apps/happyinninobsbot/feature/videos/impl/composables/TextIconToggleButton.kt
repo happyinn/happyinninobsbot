@@ -1,7 +1,11 @@
-/**
- * 带有文本和图标的切换按钮组件
- */
 package com.obsbot.happyinn.apps.happyinninobsbot.feature.videos.impl.composables
+
+/**
+ * 文本图标切换按钮组件
+ * 
+ * 该文件包含带有文本和图标的切换按钮组件，用于在设置界面中
+ * 让用户选择不同的排序选项或其他设置项。
+ */
 
 import androidx.compose.foundation.Indication
 import androidx.compose.foundation.clickable
@@ -26,7 +30,11 @@ import androidx.compose.ui.unit.dp
 import com.obsbot.happyinn.apps.happyinninobsbot.core.designsystem.theme.HioPlayerTheme
 
 /**
- * 带有文本和图标的切换按钮组件
+ * 文本图标切换按钮组件
+ * 
+ * 这是一个可切换状态的按钮组件，结合了图标和文字两种元素。
+ * 按钮包含一个图标按钮和下方的文字说明，适用于排序选项等场景。
+ * 
  * @param text 按钮下方显示的文本
  * @param icon 按钮上显示的图标
  * @param modifier 修改器，用于自定义组件外观
@@ -76,6 +84,8 @@ fun TextIconToggleButton(
 
 /**
  * 文本图标切换按钮的预览
+ * 
+ * 用于在预览模式下展示组件的默认外观。
  */
 @Preview
 @Composable

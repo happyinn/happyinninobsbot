@@ -10,7 +10,9 @@ import com.obsbot.happyinn.apps.happyinninobsbot.core.data.repository.RecentSear
 import com.obsbot.happyinn.apps.happyinninobsbot.core.data.repository.SearchContentsRepository
 import com.obsbot.happyinn.apps.happyinninobsbot.core.data.repository.TopicsRepository
 import com.obsbot.happyinn.apps.happyinninobsbot.core.data.repository.media.LocalMediaRepository
+import com.obsbot.happyinn.apps.happyinninobsbot.core.data.repository.media.LocalPreferencesRepository
 import com.obsbot.happyinn.apps.happyinninobsbot.core.data.repository.media.MediaRepository
+import com.obsbot.happyinn.apps.happyinninobsbot.core.data.repository.media.PreferencesRepository
 import com.obsbot.happyinn.apps.happyinninobsbot.core.data.util.ConnectivityManagerNetworkMonitor
 import com.obsbot.happyinn.apps.happyinninobsbot.core.data.util.NetworkMonitor
 import com.obsbot.happyinn.apps.happyinninobsbot.core.data.util.TimeZoneBroadcastMonitor
@@ -57,7 +59,7 @@ abstract class DataModule {
 
     /**
      * 绑定最近搜索仓库实现
-     * 现DefaultRecentSearchRepository 绑定现RecentSearchRepository 接口
+     * 把DefaultRecentSearchRepository 绑定现RecentSearchRepository 接口
      */
     @Binds
     internal abstract fun bindsRecentSearchRepository(
@@ -66,7 +68,7 @@ abstract class DataModule {
 
     /**
      * 绑定搜索内容仓库实现
-     * 现DefaultSearchContentsRepository 绑定现SearchContentsRepository 接口
+     * 把DefaultSearchContentsRepository 绑定现SearchContentsRepository 接口
      */
     @Binds
     internal abstract fun bindsSearchContentsRepository(
@@ -75,12 +77,21 @@ abstract class DataModule {
 
     /**
      * 绑定视频内容仓库实现
-     * 现DefaultSearchContentsRepository 绑定现SearchContentsRepository 接口
+     * 把DefaultSearchContentsRepository 绑定现SearchContentsRepository 接口
      */
     @Binds
     internal abstract fun bindMediaRepository(
         mediaRepository: LocalMediaRepository,
     ): MediaRepository
+
+    /**
+     * 绑定视频内容仓库实现
+     * 现LocalPreferencesRepository 绑定现PreferencesRepository 接口
+     */
+    @Binds
+    internal abstract fun bindPreferencesRepository(
+        mediaRepository: LocalPreferencesRepository,
+    ): PreferencesRepository
 
 
     /**

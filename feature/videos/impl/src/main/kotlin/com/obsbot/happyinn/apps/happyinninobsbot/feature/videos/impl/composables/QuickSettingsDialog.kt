@@ -1,7 +1,11 @@
-/**
- * 快速设置对话框相关组件
- */
 package com.obsbot.happyinn.apps.happyinninobsbot.feature.videos.impl.composables
+
+/**
+ * 快速设置对话框组件
+ * 
+ * 该文件包含用于快速调整应用程序设置的对话框组件，
+ * 包括媒体视图模式、布局模式、排序选项和字段显示设置等。
+ */
 
 import androidx.compose.foundation.horizontalScroll
 import androidx.compose.foundation.layout.Arrangement
@@ -54,10 +58,14 @@ import com.obsbot.happyinn.apps.happyinninobsbot.feature.videos.impl.extensions.
 
 
 /**
- * 快速设置对话框，用于调整应用程序的各种设置
- * @param userData 当前应用偏好设置
- * @param onDismiss 对话框关闭回调
- * @param updatePreferences 更新偏好设置的回调
+ * 快速设置对话框
+ * 
+ * 用于调整应用程序各种设置的对话框组件。用户可以在此对话框中
+ * 修改媒体视图模式、布局方式、排序规则和字段显示偏好。
+ * 
+ * @param userData 当前应用偏好设置，用于初始化对话框中的值
+ * @param onDismiss 对话框关闭回调函数
+ * @param updatePreferences 更新偏好设置的回调函数，参数为修改后的UserData
  */
 @OptIn(ExperimentalLayoutApi::class, ExperimentalMaterial3Api::class)
 @Composable
@@ -121,12 +129,14 @@ fun QuickSettingsDialog(
                     }
                 }
                 HorizontalDivider(modifier = Modifier.padding(top = 16.dp))
+                // 排序部分
                 DialogSectionTitle(text = stringResource(R.string.sort))
                 SortOptions(
                     selectedSortBy = preferences.sortBy,
                     onOptionSelected = { preferences = preferences.copy(sortBy = it) },
                 )
                 Spacer(modifier = Modifier.height(8.dp))
+                // 排序顺序（升序/降序）
                 SingleChoiceSegmentedButtonRow(
                     modifier = Modifier.fillMaxWidth(),
                 ) {
@@ -152,6 +162,7 @@ fun QuickSettingsDialog(
                     }
                 }
                 HorizontalDivider(modifier = Modifier.padding(top = 16.dp))
+                // 字段显示设置部分
                 DialogSectionTitle(text = stringResource(R.string.fields))
                 FlowRow(
                     modifier = Modifier
@@ -159,36 +170,43 @@ fun QuickSettingsDialog(
                         .wrapContentHeight(align = Alignment.Top),
                     horizontalArrangement = Arrangement.spacedBy(8.dp),
                 ) {
+                    // 时长字段
                     FieldChip(
                         label = stringResource(id = R.string.duration),
                         selected = preferences.showDurationField,
                         onClick = { preferences = preferences.copy(showDurationField = !preferences.showDurationField) },
                     )
+                    // 扩展名字段
                     FieldChip(
                         label = stringResource(id = R.string.extension),
                         selected = preferences.showExtensionField,
                         onClick = { preferences = preferences.copy(showExtensionField = !preferences.showExtensionField) },
                     )
+                    // 路径字段
                     FieldChip(
                         label = stringResource(id = R.string.path),
                         selected = preferences.showPathField,
                         onClick = { preferences = preferences.copy(showPathField = !preferences.showPathField) },
                     )
+                    // 播放进度字段
                     FieldChip(
                         label = stringResource(id = R.string.played_progress),
                         selected = preferences.showPlayedProgress,
                         onClick = { preferences = preferences.copy(showPlayedProgress = !preferences.showPlayedProgress) },
                     )
+                    // 分辨率字段
                     FieldChip(
                         label = stringResource(id = R.string.resolution),
                         selected = preferences.showResolutionField,
                         onClick = { preferences = preferences.copy(showResolutionField = !preferences.showResolutionField) },
                     )
+                    // 大小字段
                     FieldChip(
                         label = stringResource(id = R.string.size),
                         selected = preferences.showSizeField,
                         onClick = { preferences = preferences.copy(showSizeField = !preferences.showSizeField) },
                     )
+                    // 缩略图字段
                     FieldChip(
                         label = stringResource(id = R.string.thumbnail),
                         selected = preferences.showThumbnailField,
@@ -211,6 +229,19 @@ fun QuickSettingsDialog(
     )
 }
 
+/**
+ * 字段选择芯片组件
+ * 
+ * 用于快速设置对话框中的字段选择，每个芯片代表一个可显示的字段。
+ * 点击芯片可以切换该字段的显示/隐藏状态。
+ * 
+ * @param label 芯片显示的标签文字
+ * @param selected 是否选中状态
+ * @param onClick 点击回调函数
+ * @param modifier 组件修饰符
+ * @param selectedIcon 选中状态显示的图标
+ * @param unselectedIcon 未选中状态显示的图标
+ */
 @Composable
 fun FieldChip(
     label: String,
@@ -242,6 +273,15 @@ fun FieldChip(
     )
 }
 
+/**
+ * 排序选项组件
+ * 
+ * 显示一组排序选项按钮，用户可以选择不同的排序方式。
+ * 
+ * @param selectedSortBy 当前选中的排序方式
+ * @param onOptionSelected 排序选项选择回调
+ * @param modifier 组件修饰符
+ */
 @Composable
 private fun SortOptions(
     selectedSortBy: Sort.By,
@@ -254,30 +294,35 @@ private fun SortOptions(
             .fillMaxWidth()
             .horizontalScroll(rememberScrollState()),
     ) {
+        // 标题排序
         TextIconToggleButton(
             text = stringResource(id = R.string.title),
             icon = HioIcons.Title,
             isSelected = selectedSortBy == Sort.By.TITLE,
             onClick = { onOptionSelected(Sort.By.TITLE) },
         )
+        // 时长排序
         TextIconToggleButton(
             text = stringResource(id = R.string.duration),
             icon = HioIcons.Length,
             isSelected = selectedSortBy == Sort.By.LENGTH,
             onClick = { onOptionSelected(Sort.By.LENGTH) },
         )
+        // 日期排序
         TextIconToggleButton(
             text = stringResource(id = R.string.date),
             icon = HioIcons.Calendar,
             isSelected = selectedSortBy == Sort.By.DATE,
             onClick = { onOptionSelected(Sort.By.DATE) },
         )
+        // 大小排序
         TextIconToggleButton(
             text = stringResource(id = R.string.size),
             icon = HioIcons.Size,
             isSelected = selectedSortBy == Sort.By.SIZE,
             onClick = { onOptionSelected(Sort.By.SIZE) },
         )
+        // 路径排序
         TextIconToggleButton(
             text = stringResource(id = R.string.location),
             icon = HioIcons.Location,
@@ -287,6 +332,13 @@ private fun SortOptions(
     }
 }
 
+/**
+ * 对话框分区标题组件
+ * 
+ * 用于在设置对话框中显示各部分的标题。
+ * 
+ * @param text 标题文字
+ */
 @Composable
 private fun DialogSectionTitle(text: String) {
     Text(
@@ -296,6 +348,17 @@ private fun DialogSectionTitle(text: String) {
     )
 }
 
+/**
+ * 对话框偏好设置开关组件
+ * 
+ * 用于在对话框中显示带开关的偏好设置项。
+ * 
+ * @param text 设置项显示文字
+ * @param isChecked 当前开关状态
+ * @param onClick 开关点击回调
+ * @param modifier 组件修饰符
+ * @param enabled 是否启用
+ */
 @Composable
 fun DialogPreferenceSwitch(
     text: String,
@@ -329,7 +392,6 @@ fun DialogPreferenceSwitch(
         )
     }
 }
-
 /*@Preview
 @Composable
 fun QuickSettingsPreview() {
@@ -337,3 +399,4 @@ fun QuickSettingsPreview() {
         QuickSettingsDialog(userData = UserData(), onDismiss = { }, updatePreferences = {})
     }
 }*/
+

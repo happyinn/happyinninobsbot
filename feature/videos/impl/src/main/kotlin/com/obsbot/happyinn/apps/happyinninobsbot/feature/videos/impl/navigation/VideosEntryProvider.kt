@@ -4,24 +4,30 @@ import android.net.Uri
 import androidx.navigation3.runtime.EntryProviderScope
 import androidx.navigation3.runtime.NavKey
 import com.obsbot.happyinn.apps.happyinninobsbot.core.navigation.Navigator
-import com.obsbot.happyinn.apps.happyinninobsbot.feature.topic.api.navigation.navigateToTopic
 import com.obsbot.happyinn.apps.happyinninobsbot.feature.videos.api.navigation.VideosNavKey
-import com.obsbot.happyinn.apps.happyinninobsbot.feature.videos.impl.screens.VideosScreen
+import com.obsbot.happyinn.apps.happyinninobsbot.feature.videos.api.navigation.navigateToFolder
+import com.obsbot.happyinn.apps.happyinninobsbot.feature.videos.impl.screens.media.VideosScreen
 
-fun EntryProviderScope<NavKey>.videosEntry(navigator: Navigator) {
+/**
+ * 视频列表入口，负责提供媒体选择主界面。
+ *
+ * @param navigator 全局导航器，用于跳转到文件夹详情等下一级页面
+ * @param onPlayVideo 播放视频回调（从外部注入，保持现有行为）
+ */
+fun EntryProviderScope<NavKey>.videosEntry(
+    navigator: Navigator,
+    onPlayVideo: (uri: Uri) -> Unit,
+) {
     entry<VideosNavKey> {
         VideosScreen(
             onSettingsClick = {
                 // 实现导航到设置屏幕的逻辑
                 TODO("Implement navigate to settings")
             },
-            onPlayVideo = { uri: Uri ->
-                // 实现播放视频的逻辑，可能导航到视频播放器
-                TODO("Implement play video")
-            },
+            onPlayVideo = onPlayVideo,
             onFolderClick = { folderPath: String ->
-                // 实现导航到文件夹详情的逻辑
-                TODO("Implement navigate to folder")
+                // 跳转到文件夹详情页，传递当前文件夹路径
+                navigator.navigateToFolder(folderPath)
             }
         )
     }

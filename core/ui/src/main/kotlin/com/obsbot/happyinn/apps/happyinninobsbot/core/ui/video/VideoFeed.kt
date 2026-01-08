@@ -16,7 +16,7 @@ import com.obsbot.happyinn.apps.happyinninobsbot.core.model.data.media.MediaVide
  * LazyStaggeredGridScope的扩展函数，用于定义视频资源的推荐流
  * 根据[feedState]状态，此函数可能不会渲染任何项�?
  *
- * @param feedState 视频流的当前状态（加载中或加载成功)
+ * @param feedState 视频流的当前状态（加载中或加载成功）
  * @param onTopicClick 当视频中的主题标签被点击时调用的回调函数
  * @param onExpandedCardClick 当展开的视频卡片被点击时调用的可选回调函数
  */
@@ -30,24 +30,25 @@ fun LazyStaggeredGridScope.VideoFeed(
         VideoFeedUiState.Loading -> Unit
         // 加载成功状态下，显示视频列表
         is VideoFeedUiState.Success -> {
+            // 使用 items 函数遍历视频列表并渲染每个视频卡片
             items(
-                items = feedState.feed,
-                key = { it.id },
-                contentType = { "VideosFeedItem" },
+                items = feedState.feed, // 视频资源列表
+                key = { it.id }, // 使用视频ID作为唯一键
+                contentType = { "VideosFeedItem" }, // 内容类型标识
             ) { videosResource ->
-                // 获取当前上下文、分析助手和主题背景
+                // 获取当前上下文、分析助手和主题背景色
                 val context = LocalContext.current
                 val analyticsHelper = LocalAnalyticsHelper.current
                 val backgroundColor = MaterialTheme.colorScheme.background.toArgb()
 
-                // 渲染视频资源卡片
+                // 渲染展开的视频资源卡片
                 VideoResourceCardExpanded(
                     onClick = {
-
+                        // 点击事件处理（当前为空实现）
                     },
                     modifier = Modifier
-                        .padding(horizontal = 8.dp)
-                        .animateItem(),
+                        .padding(horizontal = 8.dp) // 水平方向内边距
+                        .animateItem(), // 添加列表项动画效果
                 )
             }
         }

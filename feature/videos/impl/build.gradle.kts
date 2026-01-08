@@ -1,6 +1,7 @@
 plugins {
     alias(libs.plugins.happyinninobsbot.android.feature.impl)
     alias(libs.plugins.happyinninobsbot.android.library.compose)
+    alias(libs.plugins.happyinninobsbot.android.library)
     alias(libs.plugins.roborazzi)
 }
 
@@ -15,6 +16,8 @@ dependencies {
     implementation(projects.core.designsystem)
     implementation(projects.feature.videos.api)
     implementation(projects.feature.topic.api)
+//    implementation(projects.feature.player)
+
     implementation(libs.androidx.activity.compose)
     implementation(libs.accompanist.permissions)
     implementation(projects.core.service)

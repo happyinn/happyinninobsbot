@@ -1,6 +1,5 @@
 import com.obsbot.happyinn.apps.happyinninobsbot.HioBuildType
 
-
 plugins {
 
     alias(libs.plugins.android.application)
@@ -84,6 +83,7 @@ dependencies {
     implementation(projects.feature.videos.api)
     implementation(projects.feature.videos.impl)
     implementation(projects.feature.settings.impl)
+    implementation(projects.feature.player)
 
     implementation(projects.core.ui)
     implementation(projects.core.analytics)

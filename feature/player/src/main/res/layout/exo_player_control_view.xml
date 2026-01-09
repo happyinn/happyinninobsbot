@@ -1,10 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
+<!-- 播放器控制视图布局文件 -->
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+    <!-- 解锁状态下的控制界面 -->
     <FrameLayout
         android:id="@+id/player_unlock_controls"
         android:layout_width="match_parent"
@@ -17,6 +19,7 @@
             android:fitsSystemWindows="true"
             android:orientation="vertical">
 
+            <!-- 顶部控制栏 -->
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/player_top_controls"
                 android:layout_width="match_parent"
@@ -28,6 +31,7 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent">
 
+                <!-- 返回按钮 -->
                 <ImageButton
                     android:id="@+id/back_button"
                     android:layout_width="wrap_content"
@@ -40,6 +44,7 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 
+                <!-- 视频名称显示 -->
                 <TextView
                     android:id="@+id/video_name"
                     android:layout_width="0dp"
@@ -55,6 +60,7 @@
                     app:layout_constraintTop_toTopOf="parent"
                     tools:text="The Avengers Endgame" />
 
+                <!-- 播放速度选择按钮 -->
                 <ImageButton
                     android:id="@+id/btn_playback_speed"
                     android:layout_width="wrap_content"
@@ -69,6 +75,7 @@
                     app:layout_constraintTop_toTopOf="parent"
                     app:tint="@android:color/white" />
 
+                <!-- 音轨选择按钮 -->
                 <ImageButton
                     android:id="@+id/btn_audio_track"
                     android:layout_width="wrap_content"
@@ -83,6 +90,7 @@
                     app:layout_constraintTop_toTopOf="parent"
                     app:tint="@android:color/white" />
 
+                <!-- 字幕选择按钮 -->
                 <ImageButton
                     android:id="@+id/btn_subtitle_track"
                     android:layout_width="wrap_content"
@@ -98,6 +106,7 @@
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
+            <!-- 底部控制栏 -->
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/player_bottom_controls"
                 android:layout_width="match_parent"
@@ -109,6 +118,7 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent">
 
+                <!-- 播放时间显示 -->
                 <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -118,6 +128,7 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent">
 
+                    <!-- 当前播放时间 -->
                     <TextView
                         android:id="@+id/exo_position"
                         android:layout_width="wrap_content"
@@ -128,11 +139,13 @@
                         app:layout_constraintStart_toStartOf="parent"
                         tools:text="00:00" />
 
+                    <!-- 时间分隔符 -->
                     <View
                         android:layout_width="4dp"
                         android:layout_height="1dp"
                         android:background="@android:color/white" />
 
+                    <!-- 总播放时长 -->
                     <TextView
                         android:id="@+id/exo_duration"
                         android:layout_width="wrap_content"
@@ -143,6 +156,7 @@
                         tools:text="24:21" />
                 </LinearLayout>
 
+                <!-- 屏幕旋转按钮 -->
                 <ImageButton
                     android:id="@+id/screen_rotate"
                     android:layout_width="wrap_content"
@@ -156,7 +170,7 @@
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toTopOf="parent"  />
 
-
+                <!-- 播放进度条 -->
                 <androidx.media3.ui.DefaultTimeBar
                     android:id="@+id/exo_progress"
                     android:layout_width="match_parent"
@@ -167,6 +181,7 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:played_color="?android:attr/colorPrimary" />
 
+                <!-- 额外控制按钮组 -->
                 <LinearLayout
                     android:id="@+id/extra_controls"
                     android:layout_width="match_parent"
@@ -175,6 +190,7 @@
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent">
 
+                    <!-- 锁定控制按钮 -->
                     <ImageButton
                         android:id="@+id/btn_lock_controls"
                         android:layout_width="wrap_content"
@@ -185,6 +201,7 @@
                         android:src="@drawable/ic_lock_open"
                         app:tint="@android:color/white" />
 
+                    <!-- 视频缩放按钮 -->
                     <ImageButton
                         android:id="@+id/btn_video_zoom"
                         android:layout_width="wrap_content"
@@ -196,6 +213,7 @@
                         android:src="@drawable/ic_fit_screen"
                         app:tint="@android:color/white" />
 
+                    <!-- 画中画按钮 -->
                     <ImageButton
                         android:id="@+id/btn_pip"
                         android:layout_width="wrap_content"
@@ -207,6 +225,7 @@
                         android:src="@drawable/ic_pip"
                         app:tint="@android:color/white" />
 
+                    <!-- 后台播放按钮 -->
                     <ImageButton
                         android:id="@+id/btn_background"
                         android:layout_width="wrap_content"
@@ -218,6 +237,7 @@
                         android:src="@drawable/ic_headset"
                         app:tint="@android:color/white" />
 
+                    <!-- 循环播放模式按钮 -->
                     <ImageButton
                         android:id="@+id/btn_loop_mode"
                         android:layout_width="wrap_content"
@@ -232,8 +252,33 @@
                 </LinearLayout>
             </androidx.constraintlayout.widget.ConstraintLayout>
 
+            <FrameLayout
+                android:id="@+id/player_lock_controls"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:fitsSystemWindows="true"
+                android:visibility="invisible"
+                tools:layout_editor_absoluteX="0dp"
+                tools:layout_editor_absoluteY="0dp"
+                tools:visibility="visible">
+
+                <!-- 解锁控制按钮 -->
+                <ImageButton
+                    android:id="@+id/btn_unlock_controls"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/dimen_controls_horizontal"
+                    android:background="@drawable/rounded_corner"
+                    android:contentDescription="@string/controls_unlock"
+                    android:padding="12dp"
+                    android:src="@drawable/ic_lock"
+                    app:tint="@android:color/white" />
+
+            </FrameLayout>
+
         </androidx.constraintlayout.widget.ConstraintLayout>
 
+        <!-- 中央播放控制按钮 -->
         <LinearLayout
             android:id="@+id/player_center_controls"
             android:layout_width="wrap_content"
@@ -242,6 +287,7 @@
             android:gravity="center_vertical"
             android:orientation="horizontal">
 
+            <!-- 上一个按钮 -->
             <ImageButton
                 android:id="@+id/exo_prev"
                 android:layout_width="70dp"
@@ -253,6 +299,7 @@
                 android:scaleType="fitXY"
                 android:src="@drawable/ic_skip_prev" />
 
+            <!-- 播放/暂停按钮 -->
             <ImageButton
                 android:id="@+id/exo_play_pause"
                 android:layout_width="100dp"
@@ -265,7 +312,7 @@
                 android:scaleType="fitXY"
                 android:src="@drawable/ic_play" />
 
-
+            <!-- 下一个按钮 -->
             <ImageButton
                 android:id="@+id/exo_next"
                 android:layout_width="70dp"
@@ -280,25 +327,6 @@
 
     </FrameLayout>
 
-    <FrameLayout
-        android:id="@+id/player_lock_controls"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:fitsSystemWindows="true"
-        android:visibility="invisible"
-        tools:visibility="visible">
-
-        <ImageButton
-            android:id="@+id/btn_unlock_controls"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_margin="@dimen/dimen_controls_horizontal"
-            android:background="@drawable/rounded_corner"
-            android:contentDescription="@string/controls_unlock"
-            android:padding="12dp"
-            android:src="@drawable/ic_lock"
-            app:tint="@android:color/white" />
-
-    </FrameLayout>
+    <!-- 锁定状态下的控制界面 -->
 
 </FrameLayout>

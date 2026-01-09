@@ -1,14 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
+<!-- ExoPlayer 主视图布局文件 -->
 <merge xmlns:android="http://schemas.android.com/apk/res/android">
 
+    <!-- 视频内容框架，保持视频的宽高比 -->
     <androidx.media3.ui.AspectRatioFrameLayout
         android:id="@+id/exo_content_frame"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_gravity="center">
 
-        <!-- Video surface will be inserted as the first child of the content frame. -->
+        <!-- 视频表面会作为内容框架的第一个子元素被插入 -->
 
+        <!-- 视频快门视图，用于播放开始前和结束后的黑屏显示 -->
         <View
             android:id="@+id/exo_shutter"
             android:layout_width="match_parent"
@@ -17,6 +20,7 @@
 
     </androidx.media3.ui.AspectRatioFrameLayout>
 
+    <!-- 缓冲进度条，在视频加载缓冲时显示 -->
     <ProgressBar
         android:id="@id/exo_buffering"
         android:layout_width="wrap_content"
@@ -24,11 +28,13 @@
         android:layout_gravity="center"
         android:indeterminate="true" />
 
+    <!-- 字幕显示视图，用于显示视频字幕 -->
     <androidx.media3.ui.SubtitleView
         android:id="@+id/exo_subtitles"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
 
+    <!-- 控制器占位符，用于放置自定义控制器布局 -->
     <View
         android:id="@id/exo_controller_placeholder"
         android:layout_width="match_parent"
